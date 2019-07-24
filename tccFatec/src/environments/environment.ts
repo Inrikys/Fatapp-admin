@@ -10,7 +10,8 @@ export const environment = {
     databaseURL: "https://tccfatecscs2019-feeaf.firebaseio.com",
     projectId: "tccfatecscs2019-feeaf",
     storageBucket: "tccfatecscs2019-feeaf.appspot.com",
-  }
+  },
+
 };
 
 /*
