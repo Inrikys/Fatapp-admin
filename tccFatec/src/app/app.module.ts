@@ -13,7 +13,9 @@ import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
 // Firebase
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireModule} from "@angular/fire";
+import {AngularFireModule} from '@angular/fire';
+import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +25,7 @@ import {AngularFireModule} from "@angular/fire";
         IonicModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
+        LoginModalModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
     ],
