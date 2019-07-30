@@ -1,4 +1,23 @@
-<modal-header></modal-header>
+<modal-header title="Login"></modal-header>
 
-<ion-content>
+<ion-content color="light">
+    <div class="container">
+        <div text-center>
+            <img src="../../../../assets/imgs/fatecEventos.png">
+        </div>
+        <form [formGroup]="loginForm">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-input formControlName="email" type="text" placeholder="E-mail: "></ion-input>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-input formControlName="password" type="password" placeholder="Senha: "></ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-button (click)="submit()">Login</ion-button>
+            <ion-button>Cadastrar</ion-button>
+        </form>
+    </div>
 </ion-content>

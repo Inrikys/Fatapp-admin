@@ -1,5 +1,16 @@
-input{
-  .login{
-
+ion-input {
+  background-color: white;
+  padding: 0.5rem;
+  margin: 0.3rem;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #808080;
+  overflow: visible;
+  border: 1px solid #808080 !important;
+  border-radius: 5px;
+  .native-input.sc-ion-input-md{
+    font-size: 12px;
+    background-color: white;
+    border-radius: 5px;
   }
 }
