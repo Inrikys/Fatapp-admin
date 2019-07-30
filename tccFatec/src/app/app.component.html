@@ -1,24 +1,26 @@
 <ion-app>
     <ion-split-pane>
         <ion-menu type="overlay">
-            <ion-header>
-                <ion-toolbar>
-                    <ion-buttons slot="end" class="icon-close" (click)="menuClose()"></ion-buttons>
-                    <ion-title>Menu</ion-title>
-                </ion-toolbar>
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-subtitle>IMG</ion-card-subtitle>
-                    </ion-card-header>
-                    <ion-card-content>
-                        <ion-button (click)="goToLogin()">Logar</ion-button>
-                    </ion-card-content>
-                </ion-card>
-            </ion-header>
+            <div class="lightBackground">
+                <ion-header>
+                    <div class="container">
+                    <ion-toolbar color="light">
+                        <ion-buttons slot="end" class="icon-close" (click)="menuClose()"></ion-buttons>
+                    </ion-toolbar>
+                    <div text-center>
+                        <img class="logo" src="../assets/imgs/fatecEventos.png">
+                    </div>
+                    <div padding-bottom text-center>
+                        <ion-button (click)="goToLogin()">Acessar ou realizar cadastro</ion-button>
+                    </div>
+                    </div>
+
+                </ion-header>
+            </div>
 
 
-            <ion-content>
-                <ion-card>
+            <ion-content color="light">
+                <ion-card >
                     <ion-card-header>
                         <ion-card-subtitle>Menu do usuário</ion-card-subtitle>
                     </ion-card-header>
@@ -51,7 +53,7 @@
                                 </ion-item>
                             </ion-menu-toggle>
                         </ion-list>
-s                    </ion-card-content>
+                    </ion-card-content>
                 </ion-card>
             </ion-content>
         </ion-menu>

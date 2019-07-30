@@ -7,7 +7,7 @@ import {ModalController} from "@ionic/angular";
   styleUrls: ['./modal-header.component.scss'],
 })
 export class ModalHeaderComponent implements OnInit {
-
+  public headerTitle = '';
   constructor(
       private modalController: ModalController
   ) { }
@@ -15,9 +15,14 @@ export class ModalHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  @Input() set title(val: string){
+    this.headerTitle = (val !== undefined && val !== null) ? val : null;
+  }
   async closeModal() {
     await this.modalController.dismiss().then(() => {
-      console.log('fechou');
+
+    }). catch(error => {
+      console.log(error);
     });
   }
 
