@@ -1,5 +1,7 @@
 {
   "name": "tccFatec",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
