@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from '../../../services/api/user.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {Storage} from "@ionic/storage";
 
 @Component({
     selector: 'app-login-modal',
@@ -13,26 +14,28 @@ export class LoginModalComponent {
 
     constructor(
         private userService: UserService,
+        private formBuilder: FormBuilder,
+        private storage: Storage,
     ) {
         this.createForm();
     }
 
     private createForm() {
-        this.loginForm = new FormGroup({
-            // tslint:disable-next-line
-            email: new FormControl('', [Validators.required]),
-            password: new FormControl('', Validators.required),
-        });
+        this.loginForm = this.formBuilder.group({
+            email: this.formBuilder.control(''),
+            password: this.formBuilder.control(''),
+        })
     }
-    submit(){
+
+    submit() {
         console.log(this.loginForm);
         const data = {
             email: this.loginForm.get('email').value,
             senha: this.loginForm.get('password').value,
         };
-        console.log(data);
-        this.userService.autenticate(data).subscribe(data => {
-            console.log(data);
+
+        this.userService.autenticate(data).subscribe( async data => {
+            await this.storage.set('user_auth', data);
         });
     }
 }

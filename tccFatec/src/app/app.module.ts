@@ -14,6 +14,9 @@ import {HttpClientModule} from '@angular/common/http';
 // Firebase
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
+import { IonicStorageModule } from '@ionic/storage';
+// Modals
+import {AccountModalModule} from "./components/modals/account-modal/account-modal.module";
 import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
 
 
@@ -23,9 +26,11 @@ import {LoginModalModule} from './components/modals/login-modal/login-modal.modu
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
+        IonicStorageModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
         LoginModalModule,
+        AccountModalModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
     ],
