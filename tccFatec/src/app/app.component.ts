@@ -3,11 +3,12 @@ import {Component} from '@angular/core';
 import {MenuController, ModalController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {Storage} from '@ionic/storage';
 
 // Modals
 import {LoginModalComponent} from './components/modals/login-modal/login-modal.component';
 import {AccountModalComponent} from "./components/modals/account-modal/account-modal.component";
+import {UserAuth} from "./interfaces/user-auth-interface";
+import {UserService} from "./services/api/user.service";
 
 @Component({
     selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent {
         {title: 'Política de privacidade', url: '/privacy-policy'},
     ];
 
-    private userAuth: any = [];
+    private userAuth: UserAuth = null;
 
     constructor(
         private platform: Platform,
@@ -30,7 +31,7 @@ export class AppComponent {
         private statusBar: StatusBar,
         private menuController: MenuController,
         private modalController: ModalController,
-        private storage: Storage,
+        private userService: UserService,
     ) {
         this.initializeApp();
         this.initialize();
@@ -44,10 +45,9 @@ export class AppComponent {
     }
 
     initialize(){
-        this.storage.get('user_auth').then( data => {
+        this.userService.user_auth.subscribe(data => {
             this.userAuth = data;
-            console.log(this.userAuth);
-        });
+        })
 
     }
 
