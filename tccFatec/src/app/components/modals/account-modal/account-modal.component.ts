@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Storage} from "@ionic/storage";
-import {LoadingController} from "@ionic/angular";
+import {LoadingController, ModalController} from "@ionic/angular";
+import {UserService} from "../../../services/api/user.service";
+import {UserAuth} from "../../../interfaces/user-auth-interface";
+
 
 @Component({
   selector: 'app-account-modal',
@@ -10,9 +12,11 @@ import {LoadingController} from "@ionic/angular";
 export class AccountModalComponent implements OnInit {
 
   constructor(
-      private storage: Storage,
+      private user: UserService,
       private loadingController: LoadingController,
-  ) { }
+      private modalController: ModalController,
+  ) {
+  }
 
   ngOnInit() {}
 
@@ -22,7 +26,16 @@ export class AccountModalComponent implements OnInit {
       message: 'Realizando logout...',
     });
     loading.present();
-    await this.storage.remove('user_auth');
+    await this.user.logout();
+    await this.closeModal();
     loading.dismiss();
   }
+
+    async closeModal() {
+        await this.modalController.dismiss().then(() => {
+
+        }). catch(error => {
+            console.log(error);
+        });
+    }
 }
