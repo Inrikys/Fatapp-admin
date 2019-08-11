@@ -1,12 +1,16 @@
 ion-input {
   background-color: white;
   padding: 0.5rem;
-  display: block;
-  border: none;
   overflow: visible;
   border: 1px solid var(--ion-color-secondary) !important;
   .native-input.sc-ion-input-md{
     font-size: 17px;
     background-color: white;
   }
+}
+
+ion-select{
+  background-color: white;
+  overflow: visible;
+  border: 1px solid var(--ion-color-secondary) !important;
 }

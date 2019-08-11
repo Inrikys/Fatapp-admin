@@ -7,7 +7,9 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 // Modals
 import {LoginModalComponent} from './components/modals/login-modal/login-modal.component';
 import {AccountModalComponent} from "./components/modals/account-modal/account-modal.component";
-import {UserAuth} from "./interfaces/user-auth-interface";
+
+//Interfaces
+import {User} from "./interfaces/user-interface";
 import {UserService} from "./services/api/user.service";
 
 @Component({
@@ -17,13 +19,14 @@ import {UserService} from "./services/api/user.service";
 export class AppComponent {
     public userMenu = [
         {title: 'Home', url: '/home'},
+        {title: 'Cadastrar usuário', url: '/admin/user-register'}
     ];
     public generalLinks = [
         {title: 'Sobre', url: '/about'},
         {title: 'Política de privacidade', url: '/privacy-policy'},
     ];
 
-    private userAuth: UserAuth = null;
+    private user: User = null;
 
     constructor(
         private platform: Platform,
@@ -45,8 +48,9 @@ export class AppComponent {
     }
 
     initialize(){
-        this.userService.user_auth.subscribe(data => {
-            this.userAuth = data;
+        this.userService.user.subscribe(data => {
+            this.user = data;
+            console.log(this.user);
         })
 
     }

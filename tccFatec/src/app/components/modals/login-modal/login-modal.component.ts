@@ -29,7 +29,7 @@ export class LoginModalComponent {
         console.log(this.loginForm);
         const data = {
             email: this.loginForm.get('email').value,
-            senha: this.loginForm.get('password').value,
+            password: this.loginForm.get('password').value,
         };
 
         this.userService.autenticate(data);
