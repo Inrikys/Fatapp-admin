@@ -1,22 +1,36 @@
-.lightBackground {
-  background-color: var(--ion-color-light);
+.user-background {
+  background-color: var(--ion-color-primary);
 }
 
 ion-card {
   background-color: white;
 }
-ion-button{
+
+ion-button {
   font-size: 12px;
 }
-.sc-ion-card-md-h {
-   --background: var(transparent);
-   background: white;
-   margin-left: 0px;
-   margin-right: 0px;
- }
 
-.avatar{
+.sc-ion-card-md-h {
+  --background: var(transparent);
+  background: white;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.user-infos {
+  line-height: 1.3rem;
+  color: var(--ion-color-tertiary);
+  font-size: 12px;
+
+  .user-edit {
+    font-size: 11px;
+  }
+}
+
+.avatar {
+  margin-right: 10px;
   border-radius: 50%;
-  width: 5rem;
-  height: auto;
+  border: var(--ion-color-tertiary) 1px solid;
+  width: 4.5rem;
+  height: 4.5rem;
 }
