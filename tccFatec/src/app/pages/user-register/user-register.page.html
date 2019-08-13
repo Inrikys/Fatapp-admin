@@ -3,42 +3,43 @@
 <ion-content color="tertiary">
     <div class="container">
         <h1>Cadastrar usuário</h1>
-        <form class="box-user-register">
+        <form [formGroup]="registerForm" class="box-user-register">
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <ion-input placeholder="Nome"></ion-input>
+                        <ion-input formControlName="name" placeholder="Nome"></ion-input>
                     </ion-col>
                     <ion-col>
-                        <ion-input placeholder="Sobrenome"></ion-input>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-input placeholder="E-mail"></ion-input>
+                        <ion-input formControlName="last_name" placeholder="Sobrenome"></ion-input>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input placeholder="Senha"></ion-input>
+                        <ion-input formControlName="email" placeholder="E-mail"></ion-input>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-select placeholder="Tipo de usuário">
-                            <ion-select-option value="adm">Administrador</ion-select-option>
-                            <ion-select-option value="prof">Professor</ion-select-option>
+                        <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-select formControlName="user_type" placeholder="Tipo de usuário">
+                            <ion-select-option value="Coordenação">Coordenação</ion-select-option>
+                            <ion-select-option value="Secretaria">Secretaria</ion-select-option>
+                            <ion-select-option value="Docente">Docente</ion-select-option>
                         </ion-select>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input placeholder="CPF"></ion-input>
+                        <ion-input formControlName="cpf" placeholder="CPF"></ion-input>
                     </ion-col>
                 </ion-row>
             </ion-grid>
             <div text-center>
-                <ion-button class="btn-user-register">Cadastrar</ion-button>
+                <ion-button (click)="register()" class="btn-user-register">Cadastrar</ion-button>
             </div>
         </form>
     </div>
