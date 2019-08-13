@@ -4,6 +4,8 @@ import {Storage} from '@ionic/storage';
 import {BehaviorSubject} from "rxjs";
 import {User} from "../../interfaces/user-interface";
 import {ModalController} from "@ionic/angular";
+import {environment} from "../../../environments/environment";
+import {GlobalsService} from "../globals.service";
 
 @Injectable({
     providedIn: 'root'
@@ -11,10 +13,17 @@ import {ModalController} from "@ionic/angular";
 
 export class UserService {
 
+    private httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+        })
+    };
+
     constructor(
         private http: HttpClient,
         private storage: Storage,
         private modalController: ModalController,
+        private global: GlobalsService,
     ) {
         this.load();
     }
@@ -22,15 +31,9 @@ export class UserService {
     public user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
      async autenticate(data) {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            })
-        };
-        let api_url = 'https://myspotapp-1541881215537.appspot.com/api/',
-            link = api_url + 'usuario/autenticar';
+            const link = environment.apiUrl + 'usuario/autenticar';
 
-        await this.http.post(link, JSON.stringify(data), httpOptions).subscribe( async data => {
+        await this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe( async data => {
             await this.setData(data);
             await this.modalController.dismiss();
             console.log(data);
@@ -50,5 +53,18 @@ export class UserService {
     setData(data): void {
         void this.storage.set('user_storage', data);
         this.user.next(data);
+    }
+    async register(data){
+        const loading = await this.global.createLoading('Por favor, aguarde...');
+        const link = environment.apiUrl + 'usuario/registrar';
+        this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe( async data => {
+            loading.dismiss();
+            console.log(data);
+            await this.global.createAlert('Usuário cadastrado com sucesso!');
+        }, async error => {
+            loading.dismiss();
+            console.log(error);
+            await this.global.createAlert('Erro ao cadastrar usuário!');
+        });
     }
 }
