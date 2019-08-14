@@ -8,19 +8,43 @@
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="name" placeholder="Nome"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.name">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                     <ion-col>
                         <ion-input formControlName="last_name" placeholder="Sobrenome"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.last_name">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('last_name').hasError(validation.type) && (registerForm.get('last_name').dirty || registerForm.get('last_name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="email" placeholder="E-mail"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.email">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.password">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -30,11 +54,23 @@
                             <ion-select-option value="Secretaria">Secretaria</ion-select-option>
                             <ion-select-option value="Docente">Docente</ion-select-option>
                         </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.user_type">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('user_type').hasError(validation.type) && (registerForm.get('user_type').dirty || registerForm.get('user_type').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="cpf" placeholder="CPF"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.cpf">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('cpf').hasError(validation.type) && (registerForm.get('cpf').dirty || registerForm.get('cpf').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
             </ion-grid>

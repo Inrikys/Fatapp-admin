@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/api/user.service";
+import {UserRegisterValidatorService} from "../../services/validators/user-register-validator.service";
 
 @Component({
   selector: 'app-user-register',
@@ -9,41 +9,27 @@ import {UserService} from "../../services/api/user.service";
 })
 export class UserRegisterPage implements OnInit {
 
-  registerForm: FormGroup;
+  registerForm;
+  validationMessages;
 
   constructor(
-      private formBuilder: FormBuilder,
+      private userRegisterValidator: UserRegisterValidatorService,
       private userService: UserService,
   ) { }
 
   ngOnInit() {
-    this.createForm();
+      this.registerForm = this.userRegisterValidator.getRegistrationForm();
+      this.validationMessages = this.userRegisterValidator.getRegistrationFormValidationsMessages();
   }
 
-  private createForm() {
-    this.registerForm = this.formBuilder.group({
-      name: this.formBuilder.control('', Validators.required),
-      last_name: this.formBuilder.control('', Validators.required),
-      email: this.formBuilder.control('', Validators.required),
-      password: this.formBuilder.control('', Validators.required),
-      user_type: this.formBuilder.control('', Validators.required),
-      cpf: this.formBuilder.control('', Validators.required),
-    })
-  }
 
   async register() {
-    const data = {
-      name: this.registerForm.get('name').value,
-      last_name: this.registerForm.get('last_name').value,
-      user_type: this.registerForm.get('user_type').value,
-      cpf: this.registerForm.get('cpf').value,
-      email: this.registerForm.get('email').value,
-      password: this.registerForm.get('password').value,
-      rg: '123123127',
-    };
-
-    console.log(data);
-    this.userService.register(data);
+      if (!this.registerForm.valid) {
+          this.userRegisterValidator.validateAllFormFields();
+      } else {
+          await this.userService.register(this.registerForm.value);
+          console.log(this.registerForm);
+      }
   }
 
 }
