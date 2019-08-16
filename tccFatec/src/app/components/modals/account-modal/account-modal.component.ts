@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {LoadingController, ModalController} from "@ionic/angular";
 import {UserService} from "../../../services/api/user.service";
 import {User} from "../../../interfaces/user-interface";
-import {FormGroup} from "@angular/forms";
 import {EditAccountValidatorService} from "../../../services/validators/edit-account-validator.service";
 
 
@@ -26,6 +25,8 @@ export class AccountModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.accountForm = this.editAccountValidator.getAccountForm();
+    this.validationMessages = this.editAccountValidator.getValidationsMessages();
     this.initialize();
   }
 
@@ -33,8 +34,7 @@ export class AccountModalComponent implements OnInit {
     await this.userService.user.subscribe(  data => {
       this.user = data;
     });
-    this.accountForm = await this.editAccountValidator.getAccountForm();
-    this.validationMessages = await this.editAccountValidator.getValidationsMessages();
+
 
 
   }
