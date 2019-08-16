@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LoadingController, ModalController} from "@ionic/angular";
 import {UserService} from "../../../services/api/user.service";
-import {UserAuth} from "../../../interfaces/user-auth-interface";
+import {User} from "../../../interfaces/user-interface";
+import {EditAccountValidatorService} from "../../../services/validators/edit-account-validator.service";
 
 
 @Component({
@@ -11,14 +12,32 @@ import {UserAuth} from "../../../interfaces/user-auth-interface";
 })
 export class AccountModalComponent implements OnInit {
 
+    private user: User;
+    accountForm;
+    validationMessages;
+
   constructor(
-      private user: UserService,
+      private userService: UserService,
       private loadingController: LoadingController,
       private modalController: ModalController,
+      private editAccountValidator: EditAccountValidatorService,
   ) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.accountForm = this.editAccountValidator.getAccountForm();
+    this.validationMessages = this.editAccountValidator.getValidationsMessages();
+    this.initialize();
+  }
+
+  async initialize(){
+    await this.userService.user.subscribe(  data => {
+      this.user = data;
+    });
+
+
+
+  }
 
   async logout(){
     const loading = await this.loadingController.create({
@@ -26,7 +45,7 @@ export class AccountModalComponent implements OnInit {
       message: 'Realizando logout...',
     });
     loading.present();
-    await this.user.logout();
+    await this.userService.logout();
     await this.closeModal();
     loading.dismiss();
   }
