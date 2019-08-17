@@ -3,6 +3,7 @@ import {LoadingController, ModalController} from "@ionic/angular";
 import {UserService} from "../../../services/api/user.service";
 import {User} from "../../../interfaces/user-interface";
 import {EditAccountValidatorService} from "../../../services/validators/edit-account-validator.service";
+import {GlobalsService} from "../../../services/globals.service";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AccountModalComponent implements OnInit {
       private loadingController: LoadingController,
       private modalController: ModalController,
       private editAccountValidator: EditAccountValidatorService,
+      private global: GlobalsService,
   ) {
   }
 
@@ -35,8 +37,6 @@ export class AccountModalComponent implements OnInit {
       this.user = data;
     });
 
-
-
   }
 
   async logout(){
@@ -48,6 +48,15 @@ export class AccountModalComponent implements OnInit {
     await this.userService.logout();
     await this.closeModal();
     loading.dismiss();
+  }
+
+  async updateUserData(){
+      if (!this.accountForm.valid) {
+          this.editAccountValidator.validateAllFormFields();
+          this.global.createAlert('Por favor, preencha todos os campos obrigatórios...');
+      } else {
+          this.userService.updateData(this.accountForm.value);
+      }
   }
 
     async closeModal() {

@@ -13,11 +13,7 @@ import {GlobalsService} from "../globals.service";
 
 export class UserService {
 
-    private httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-        })
-    };
+    private httpOptions: any;
 
     constructor(
         private http: HttpClient,
@@ -30,10 +26,15 @@ export class UserService {
 
     public user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-     async autenticate(data) {
-            const link = environment.apiUrl + 'usuario/autenticar';
+    async autenticate(data) {
+        this.httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            })
+        };
+        const link = environment.apiUrl + 'usuario/autenticar';
 
-        await this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe( async data => {
+        await this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
             await this.setData(data);
             await this.modalController.dismiss();
             console.log(data);
@@ -45,19 +46,22 @@ export class UserService {
             this.user.next(data);
         });
     }
-    logout(){
-        this.storage.remove('user_storage').then((data)=>{
+
+    logout() {
+        this.storage.remove('user_storage').then((data) => {
             this.user.next(data);
         });
     }
+
     setData(data): void {
         void this.storage.set('user_storage', data);
         this.user.next(data);
     }
-    async register(data){
+
+    async register(data) {
         const loading = await this.global.createLoading('Por favor, aguarde...');
         const link = environment.apiUrl + 'usuario/registrar';
-        this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe( async data => {
+        this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
             loading.dismiss();
             console.log(data);
             await this.global.createAlert('Usuário cadastrado com sucesso!');
@@ -66,5 +70,26 @@ export class UserService {
             console.log(error);
             await this.global.createAlert('Erro ao cadastrar usuário!');
         });
+    }
+
+    async updateData(data) {
+        let user;
+        await this.storage.get('user_storage').then( (res) => {
+            user = res;
+            this.httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${user.token}`,
+                })
+            };
+        });
+
+        const link = environment.apiUrl + 'usuario/' + user.usuario._id;
+
+        await this.http.put(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
+            await this.setData(data);
+            await this.modalController.dismiss();
+            console.log(data);
+        })
     }
 }
