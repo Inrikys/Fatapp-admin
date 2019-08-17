@@ -1,9 +1,9 @@
 <modal-header title="Editar perfil"></modal-header>
-<ion-content>
-    <div class="container">
+<ion-content color="tertiary">
+    <div *ngIf="user" class="container">
         <form [formGroup]="accountForm">
-            <ion-grid>
-                <ion-row>
+            <ion-grid  padding-top  class="box">
+                <ion-row *ngIf="user.usuario.image">
                     <ion-col>
                         <div text-center>
                             <img class="avatar account" src="{{user.usuario.image}}">
@@ -12,7 +12,8 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input formControlName="name" placeholder="Nome" [(ngModel)]="user.usuario.name"></ion-input>
+                        <ion-input formControlName="name" placeholder="Nome"
+                                   [(ngModel)]="user.usuario.name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.name">
                             <div class="error-message"
                                  *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
@@ -23,10 +24,11 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input formControlName="last_name" placeholder="Sobrenome" [(ngModel)]="user.usuario.last_name"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.name">
+                        <ion-input formControlName="last_name" placeholder="Sobrenome"
+                                   [(ngModel)]="user.usuario.last_name"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.last_name">
                             <div class="error-message"
-                                 *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
+                                 *ngIf="accountForm.get('last_name').hasError(validation.type) && (accountForm.get('last_name').dirty || accountForm.get('last_name').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -34,10 +36,11 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input formControlName="email" placeholder="E-mail" [(ngModel)]="user.usuario.email"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.name">
+                        <ion-input formControlName="email" placeholder="E-mail"
+                                   [(ngModel)]="user.usuario.email"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.email">
                             <div class="error-message"
-                                 *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
+                                 *ngIf="accountForm.get('email').hasError(validation.type) && (accountForm.get('email').dirty || accountForm.get('email').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -46,9 +49,9 @@
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="cpf" placeholder="CPF" [(ngModel)]="user.usuario.cpf"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.name">
+                        <ng-container *ngFor="let validation of validationMessages.cpf">
                             <div class="error-message"
-                                 *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
+                                 *ngIf="accountForm.get('cpf').hasError(validation.type) && (accountForm.get('cpf').dirty || accountForm.get('cpf').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -57,6 +60,13 @@
                 <ion-row>
                     <ion-col>
                         <p>Alterar senha</p>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div text-center class="update-account">
+                            <ion-button  (click)="updateUserData()">Alterar</ion-button>
+                        </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
