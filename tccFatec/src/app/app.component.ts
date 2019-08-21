@@ -19,7 +19,11 @@ import {UserService} from "./services/api/user.service";
 export class AppComponent {
     public userMenu = [
         {title: 'Home', url: '/home'},
-        {title: 'Cadastrar usuário', url: '/admin/user-register'}
+        {title: 'Cadastrar usuário', url: '/admin/user-register'},
+        {title: 'Controle de acesso', url: '/admin/access-control'},
+        {title: 'Salas', url: '/admin/room'},
+        {title: 'Agenda', url: '/admin/calendar-of-events'},
+        {title: 'Lista de presença', url: '/admin/present-list'}
     ];
     public generalLinks = [
         {title: 'Sobre', url: '/about'},
