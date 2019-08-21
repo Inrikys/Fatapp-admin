@@ -1,9 +1,41 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>room</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<page-header title="Salas"></page-header>
+<ion-content color="tertiary">
+    <div padding-top class="container">
+        <ion-radio-group padding-top>
+            <ion-grid text-center>
+                <ion-row>
+                    <ion-col>
+                        <div>
+                            <ion-radio value="1"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Salas</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <ion-radio value="2"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Laboratórios</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <ion-radio value="3"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Auditórios</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div (click)="goToAddRoomModal()">
+                            <ion-icon class="add-room" name="add-circle"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-radio-group>
+        <room></room>
+    </div>
 </ion-content>

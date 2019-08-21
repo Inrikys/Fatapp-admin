@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RoomPage } from './room.page';
+import {ComponentsModule} from "../../components/components.module";
+import {AddRoomModalModule} from "../../components/modals/add-room-modal/add-room-modal.module";
 
 const routes: Routes = [
   {
@@ -15,12 +17,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AddRoomModalModule,
+        RouterModule.forChild(routes),
+        ComponentsModule
+    ],
   declarations: [RoomPage]
 })
 export class RoomPageModule {}
