@@ -13,7 +13,11 @@ const routes: Routes = [
     children: [
         { path: 'user-register', loadChildren: './pages/user-register/user-register.module#UserRegisterPageModule' },
         ]
-  },
+  },  { path: 'access-control', loadChildren: './pages/access-control/access-control.module#AccessControlPageModule' },
+  { path: 'present-list', loadChildren: './pages/present-list/present-list.module#PresentListPageModule' },
+  { path: 'room', loadChildren: './pages/room/room.module#RoomPageModule' },
+  { path: 'calendar-of-events', loadChildren: './pages/calendar-of-events/calendar-of-events.module#CalendarOfEventsPageModule' },
+
 
 
 ];
