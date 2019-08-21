@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalController} from "@ionic/angular";
+import {AddRoomModalComponent} from "../../components/modals/add-room-modal/add-room-modal.component";
 
 @Component({
   selector: 'app-room',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomPage implements OnInit {
 
-  constructor() { }
+  constructor(
+      private modalController: ModalController,
+  ) { }
 
   ngOnInit() {
+  }
+
+  async goToAddRoomModal(){
+    const modal = await this.modalController.create({
+      component: AddRoomModalComponent,
+    });
+    modal.present();
   }
 
 }

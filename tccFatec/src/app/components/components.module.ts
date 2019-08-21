@@ -5,6 +5,7 @@ import {IonicModule} from "@ionic/angular";
 // headers
 import {ModalHeaderComponent} from "./headers/modal-header/modal-header.component";
 import {PageHeaderComponent} from "./headers/page-header/page-header.component";
+import {RoomComponentComponent} from "./room-component/room-component.component";
 
 @NgModule({
   imports: [
@@ -13,11 +14,13 @@ import {PageHeaderComponent} from "./headers/page-header/page-header.component";
   ],
     declarations: [
         ModalHeaderComponent,
-        PageHeaderComponent
+        PageHeaderComponent,
+        RoomComponentComponent,
     ],
     exports: [
         ModalHeaderComponent,
-        PageHeaderComponent
+        PageHeaderComponent,
+        RoomComponentComponent
     ],
 })
 export class ComponentsModule { }

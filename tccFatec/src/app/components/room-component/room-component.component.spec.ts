@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeAccessPerfilComponent } from './change-access-perfil.component';
+import { RoomComponentComponent } from './room-component.component';
 
-describe('ChangeAccessPerfilComponent', () => {
-  let component: ChangeAccessPerfilComponent;
-  let fixture: ComponentFixture<ChangeAccessPerfilComponent>;
+describe('RoomComponentComponent', () => {
+  let component: RoomComponentComponent;
+  let fixture: ComponentFixture<RoomComponentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeAccessPerfilComponent ],
+      declarations: [ RoomComponentComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChangeAccessPerfilComponent);
+    fixture = TestBed.createComponent(RoomComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
