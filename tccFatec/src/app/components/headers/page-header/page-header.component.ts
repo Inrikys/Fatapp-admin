@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'page-header',
@@ -11,7 +11,7 @@ export class PageHeaderComponent implements OnInit {
   public headerTitle = '';
 
   constructor(
-      private router: Router,
+      private navController: NavController,
   ) { }
   ngOnInit() {}
 
@@ -20,6 +20,6 @@ export class PageHeaderComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['home']);
+    this.navController.back();
   }
 }

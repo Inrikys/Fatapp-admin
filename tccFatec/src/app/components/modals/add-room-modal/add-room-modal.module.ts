@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {AddRoomModalComponent} from './add-room-modal.component';
 import {IonicModule} from "@ionic/angular";
 import {ComponentsModule} from "../../components.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [AddRoomModalComponent],
@@ -10,7 +11,8 @@ import {ComponentsModule} from "../../components.module";
   imports: [
     CommonModule,
     IonicModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class AddRoomModalModule { }

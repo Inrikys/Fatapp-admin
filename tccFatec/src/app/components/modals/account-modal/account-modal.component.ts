@@ -4,6 +4,7 @@ import {UserService} from "../../../services/api/user.service";
 import {User} from "../../../interfaces/user-interface";
 import {EditAccountValidatorService} from "../../../services/validators/edit-account-validator.service";
 import {GlobalsService} from "../../../services/globals.service";
+import {ChangePasswordModalComponent} from "../change-password-modal/change-password-modal.component";
 
 
 @Component({
@@ -65,5 +66,12 @@ export class AccountModalComponent implements OnInit {
         }). catch(error => {
             console.log(error);
         });
+    }
+
+    async goToChangePassword() {
+        const modal = await this.modalController.create({
+            component: ChangePasswordModalComponent,
+        });
+        modal.present();
     }
 }
