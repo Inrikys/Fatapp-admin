@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-password-modal.component.scss'],
 })
 export class ChangePasswordModalComponent implements OnInit {
-
+  changePasswordForm;
+  validationMessages;
   constructor() { }
 
   ngOnInit() {}

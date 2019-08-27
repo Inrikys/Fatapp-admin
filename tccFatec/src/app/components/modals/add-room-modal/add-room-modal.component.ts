@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AddRoomValidatorService} from "../../../services/validators/add-room/add-room-validator.service";
 
 @Component({
   selector: 'app-add-room-modal',
@@ -6,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-room-modal.component.scss'],
 })
 export class AddRoomModalComponent implements OnInit {
+  formRoom;
+  validationMessages;
 
-  constructor() { }
+  constructor(
+      private addRoomValidator: AddRoomValidatorService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formRoom = this.addRoomValidator.getFormRoom();
+    this.validationMessages = this.addRoomValidator.getFormRoomValidationsMessages();
+  }
 
+  async submit(){
+    if (!this.formRoom.valid){
+      this.addRoomValidator.validateAllFormFields();
+    } else {
+      await console.log(this.formRoom.value)
+    }
+  }
 }
