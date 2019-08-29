@@ -19,6 +19,17 @@ import { IonicStorageModule } from '@ionic/storage';
 import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
 import {AccountModalModule} from './components/modals/account-modal/account-modal.module';
 
+// Font Awesome
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+library.add(fas, far, fab);
+
+// BrMasker
+import { BrMaskerModule } from 'br-mask';
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,6 +39,8 @@ import {AccountModalModule} from './components/modals/account-modal/account-moda
         IonicModule.forRoot(),
         IonicStorageModule.forRoot(),
         AppRoutingModule,
+        BrMaskerModule,
+        FontAwesomeModule,
         HttpClientModule,
         LoginModalModule,
         AccountModalModule,

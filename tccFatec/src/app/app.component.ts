@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {MenuController, ModalController, Platform} from '@ionic/angular';
+import {LoadingController, MenuController, ModalController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
@@ -22,7 +22,6 @@ export class AppComponent {
         {title: 'Cadastrar usuário', url: '/admin/user-register'},
         {title: 'Controle de acesso', url: '/admin/access-control'},
         {title: 'Salas', url: '/admin/room'},
-        {title: 'Agenda', url: '/admin/calendar-of-events'},
         {title: 'Lista de presença', url: '/admin/present-list'}
     ];
     public generalLinks = [
@@ -39,6 +38,7 @@ export class AppComponent {
         private menuController: MenuController,
         private modalController: ModalController,
         private userService: UserService,
+        private loadingController: LoadingController,
     ) {
         this.initializeApp();
         this.initialize();
@@ -59,8 +59,14 @@ export class AppComponent {
 
     }
 
-    menuClose() {
-        this.menuController.close();
+    async logout(){
+        const loading = await this.loadingController.create({
+            duration: 2000,
+            message: 'Realizando logout...',
+        });
+        loading.present();
+        await this.userService.logout();
+        loading.dismiss();
     }
 
     async goToLogin() {

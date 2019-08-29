@@ -5,7 +5,8 @@ import {AccountModalComponent} from "./account-modal.component";
 import {ComponentsModule} from "../../components.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ChangePasswordModalModule} from "../change-password-modal/change-password-modal.module";
-
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {BrMaskerModule} from "br-mask";
 
 
 @NgModule({
@@ -16,6 +17,8 @@ import {ChangePasswordModalModule} from "../change-password-modal/change-passwor
         ComponentsModule,
         ReactiveFormsModule,
         ChangePasswordModalModule,
+        FontAwesomeModule,
+        BrMaskerModule,
     ],
   declarations: [AccountModalComponent],
   entryComponents:[AccountModalComponent],

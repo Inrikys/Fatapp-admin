@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { UserRegisterPage } from './user-register.page';
 import {ComponentsModule} from "../../components/components.module";
+import {BrMaskerModule} from "br-mask";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 const routes: Routes = [
   {
@@ -22,7 +24,9 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         ComponentsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrMaskerModule,
+        FontAwesomeModule,
     ],
   declarations: [UserRegisterPage]
 })
