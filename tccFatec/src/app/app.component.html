@@ -22,8 +22,8 @@
                         </div>
                         <ion-label class="user-infos">
                             <div><span>Olá, </span><span>{{user.usuario.name}}</span></div>
-                                <div>{{user.usuario.user_type}}</div>
-                                <div class="user-edit" padding-top color="tertiary" (click)="goToAccount()">Editar</div>
+                            <div>{{user.usuario.user_type}}</div>
+                            <div class="user-edit" padding-top color="tertiary" (click)="goToAccount()">Editar</div>
                         </ion-label>
 
                     </ion-item>
@@ -32,7 +32,7 @@
 
 
             <ion-content color="tertiary">
-                <ion-card>
+                <ion-card *ngIf="user">
                     <ion-card-header>
                         <ion-card-subtitle>Menu do usuário</ion-card-subtitle>
                     </ion-card-header>
@@ -46,7 +46,15 @@
                                     </ion-label>
                                 </ion-item>
                             </ion-menu-toggle>
+                            <ion-menu-toggle>
+                                <ion-item class="menu-item">
+                                    <ion-label (click)="logout()">
+                                        Logout
+                                    </ion-label>
+                                </ion-item>
+                            </ion-menu-toggle>
                         </ion-list>
+
 
                     </ion-card-content>
                 </ion-card>

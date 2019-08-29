@@ -2,7 +2,7 @@
 <ion-content color="tertiary">
     <div *ngIf="user" class="container">
         <form [formGroup]="accountForm">
-            <ion-grid  padding-top  class="box">
+            <ion-grid padding-top class="box">
                 <ion-row *ngIf="user.usuario.image">
                     <ion-col>
                         <div text-center>
@@ -11,19 +11,29 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="11">
+
                         <ion-input formControlName="name" placeholder="Nome"
-                                   [(ngModel)]="user.usuario.name"></ion-input>
+                                   [(ngModel)]="user.usuario.name">
+                        </ion-input>
+
                         <ng-container *ngFor="let validation of validationMessages.name">
+
                             <div class="error-message"
                                  *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
                     </ion-col>
+                    <ion-col class="account-edit-icon">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
                 </ion-row>
+
+
+
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="11">
                         <ion-input formControlName="last_name" placeholder="Sobrenome"
                                    [(ngModel)]="user.usuario.last_name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.last_name">
@@ -33,9 +43,12 @@
                             </div>
                         </ng-container>
                     </ion-col>
+                    <ion-col class="account-edit-icon">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="11">
                         <ion-input formControlName="email" placeholder="E-mail"
                                    [(ngModel)]="user.usuario.email"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.email">
@@ -45,16 +58,24 @@
                             </div>
                         </ng-container>
                     </ion-col>
+                    <ion-col class="account-edit-icon">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
-                        <ion-input formControlName="cpf" placeholder="CPF" [(ngModel)]="user.usuario.cpf"></ion-input>
+                    <ion-col size="11">
+                        <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="user.usuario.cpf">
+
+                        </ion-input>
                         <ng-container *ngFor="let validation of validationMessages.cpf">
                             <div class="error-message"
                                  *ngIf="accountForm.get('cpf').hasError(validation.type) && (accountForm.get('cpf').dirty || accountForm.get('cpf').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
+                    </ion-col>
+                    <ion-col class="account-edit-icon">
+                        <div><fa-icon slot="end" [icon]="['fas', 'edit']"></fa-icon></div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -65,13 +86,12 @@
                 <ion-row>
                     <ion-col>
                         <div text-center class="update-account">
-                            <ion-button  (click)="updateUserData()">Alterar</ion-button>
+                            <ion-button (click)="updateUserData()">Alterar </ion-button>
                         </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </form>
-        <ion-button (click)="logout()">Logout</ion-button>
     </div>
 </ion-content>
 

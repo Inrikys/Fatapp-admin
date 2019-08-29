@@ -4,7 +4,7 @@ ion-input {
   overflow: visible;
   border: 1px solid var(--ion-color-secondary) !important;
   .native-input.sc-ion-input-md{
-    font-size: 17px;
+    font-size: 14px;
     background-color: white;
   }
 }
@@ -21,4 +21,13 @@ textarea{
   overflow: auto;
   border: 1px solid var(--ion-color-secondary);
   margin: 0 1%;
+}
+
+.header-icon{
+  ion-icon[_ngcontent-ydu-c1] {
+    font-size: 22px;
+  }
+  ion-icon{
+    font-size: 22px;
+  }
 }

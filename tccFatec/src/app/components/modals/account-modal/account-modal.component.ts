@@ -40,17 +40,6 @@ export class AccountModalComponent implements OnInit {
 
   }
 
-  async logout(){
-    const loading = await this.loadingController.create({
-      duration: 2000,
-      message: 'Realizando logout...',
-    });
-    loading.present();
-    await this.userService.logout();
-    await this.closeModal();
-    loading.dismiss();
-  }
-
   async updateUserData(){
       if (!this.accountForm.valid) {
           this.editAccountValidator.validateAllFormFields();
