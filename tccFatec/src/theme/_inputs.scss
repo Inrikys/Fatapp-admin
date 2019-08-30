@@ -31,3 +31,40 @@ textarea{
     font-size: 22px;
   }
 }
+
+ion-datetime{
+  border: 1px solid var(--ion-color-secondary);
+  font-size: 12px;
+  text-align: left;
+  height: 2rem;
+  width: 100%;
+  padding: 10px 8px;
+}
+
+// Checkbox
+input[type=checkbox], input[type='radio'] {
+  appearance: none;
+  background: #F0F0F0;
+  border-radius: 6px;
+  width: 23px;
+  height: 23px;
+  margin-right: 10px;
+  &:checked{
+    &:before{
+      content: '\2713\0020';
+      font-size: 20px;
+      color: white;
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+      background: var(--ion-color-primary);
+      border-radius: 6px;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle
+    }
+  }
+  &:focus{
+    outline: none;
+  }
+}
