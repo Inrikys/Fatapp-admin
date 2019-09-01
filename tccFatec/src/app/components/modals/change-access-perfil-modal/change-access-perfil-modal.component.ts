@@ -26,7 +26,7 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
     this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages()
   }
 
-  async register() {
+  async update() {
     if (!this.changeAccessPerfilForm.valid) {
         this.changeAccessPerfilValidator.validateAllFormFields();
     } else {
