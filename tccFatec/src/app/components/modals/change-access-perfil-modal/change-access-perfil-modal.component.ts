@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../../services/api/user.service";
+import {UserRegisterValidatorService} from "../../../services/validators/user-register-validator.service";
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-change-access-perfil-modal',
@@ -7,8 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeAccessPerfilModalComponent implements OnInit {
 
-  constructor() { }
+  passedUser;
+  registerForm;
+  validationMessages;
 
-  ngOnInit() {}
+  constructor(
+    private userRegisterValidator: UserRegisterValidatorService,
+    private userService: UserService,
+    private navParams: NavParams
+    ) { }
+
+  ngOnInit() {
+    this.passedUser = this.navParams.get('user');
+    this.registerForm = this.userRegisterValidator.getRegistrationForm();
+    this.validationMessages = this.userRegisterValidator.getRegistrationFormValidationsMessages();
+  }
+
+  async register() {
+    if (!this.registerForm.valid) {
+        this.userRegisterValidator.validateAllFormFields();
+    } else {
+        // await this.userService.updateData(this.registerForm.value);
+        console.log(this.registerForm);
+    }
+}
 
 }

@@ -1,3 +1,82 @@
-<p>
-  change-access-perfil-modal works!
-</p>
+<modal-header title="Alterar Perfil de Acesso"></modal-header>
+
+<ion-content color="tertiary">
+    <div class="container">
+        <h1>Alterar usuário</h1>
+        <form [formGroup]="registerForm" class="box-user-register">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="name" placeholder="Nome" [(ngModel)]="passedUser.name"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.name">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col>
+                        <ion-input formControlName="last_name" placeholder="Sobrenome" [(ngModel)]="passedUser.last_name"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.last_name">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('last_name').hasError(validation.type) && (registerForm.get('last_name').dirty || registerForm.get('last_name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="email" placeholder="E-mail" [(ngModel)]="passedUser.email"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.email">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.password">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-select formControlName="user_type" placeholder="Tipo de usuário" [(ngModel)]="passedUser.user_type">
+                            <ion-select-option value="Coordenação">Coordenação</ion-select-option>
+                            <ion-select-option value="Secretaria">Secretaria</ion-select-option>
+                            <ion-select-option value="Docente">Docente</ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.user_type">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('user_type').hasError(validation.type) && (registerForm.get('user_type').dirty || registerForm.get('user_type').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="cpf" placeholder="CPF" [(ngModel)]="passedUser.cpf"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.cpf">
+                            <div class="error-message"
+                                 *ngIf="registerForm.get('cpf').hasError(validation.type) && (registerForm.get('cpf').dirty || registerForm.get('cpf').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div text-center>
+                <ion-button (click)="register()" class="btn-user-register">Cadastrar</ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>

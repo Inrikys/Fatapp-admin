@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { ComponentsModule } from '../../components/components.module';
 import { IonicModule } from '@ionic/angular';
+import {ChangeAccessPerfilModalModule} from "../../components/modals/change-access-perfil-modal/change-access-perfil-modal.module";
 
 import { AccessControlPage } from './access-control.page';
-import {ComponentsModule} from "../../components/components.module";
 
 const routes: Routes = [
   {
@@ -16,13 +16,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        RouterModule.forChild(routes),
-        ComponentsModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ComponentsModule,
+    ChangeAccessPerfilModalModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+  ],
   declarations: [AccessControlPage]
 })
 export class AccessControlPageModule {}
