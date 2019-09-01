@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../services/api/user.service";
-import {UserRegisterValidatorService} from "../../../services/validators/user-register-validator.service";
 import { NavParams } from '@ionic/angular';
+import {ChangeAccessPerfilService} from "../../../services/validators/chenge-access-perfil/change-access-perfil.service";
 
 @Component({
   selector: 'app-change-access-perfil-modal',
@@ -11,27 +11,27 @@ import { NavParams } from '@ionic/angular';
 export class ChangeAccessPerfilModalComponent implements OnInit {
 
   passedUser;
-  registerForm;
+  changeAccessPerfilForm;
   validationMessages;
 
   constructor(
-    private userRegisterValidator: UserRegisterValidatorService,
+    private changeAccessPerfilValidator: ChangeAccessPerfilService,
     private userService: UserService,
     private navParams: NavParams
     ) { }
 
   ngOnInit() {
     this.passedUser = this.navParams.get('user');
-    this.registerForm = this.userRegisterValidator.getRegistrationForm();
-    this.validationMessages = this.userRegisterValidator.getRegistrationFormValidationsMessages();
+    this.changeAccessPerfilForm = this.changeAccessPerfilValidator.getChangeAccessPerfilForm();
+    this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages()
   }
 
   async register() {
-    if (!this.registerForm.valid) {
-        this.userRegisterValidator.validateAllFormFields();
+    if (!this.changeAccessPerfilForm.valid) {
+        this.changeAccessPerfilValidator.validateAllFormFields();
     } else {
-        // await this.userService.updateData(this.registerForm.value);
-        console.log(this.registerForm);
+        // await this.userService.updateData(this.changeAccessPerfilForm.value);
+        console.log(this.changeAccessPerfilForm);
     }
 }
 

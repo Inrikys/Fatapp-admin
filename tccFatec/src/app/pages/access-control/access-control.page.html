@@ -3,34 +3,35 @@
 <ion-content color="tertiary">
     <div class="container">
         <h1>Controle de Acesso</h1>
-        <form class="box-user-register">
+        <form [formGroup]="accessControlForm" class="box-access-control">
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-label position="fixed">CPF</ion-label>
-                        <ion-input placeholder="111.111.111-11"></ion-input>
+                        <ion-input formControlName="cpf" [brmasker]="{person: true}" placeholder="111.111.111-11"></ion-input>
                     </ion-col>
                     <ion-col>
                         <ion-label position="fixed">Nome</ion-label>
-                        <ion-input></ion-input>
+                        <ion-input formControlName="name"></ion-input>
                     </ion-col>
                 </ion-row>
             </ion-grid>
             <div text-center>
-                <ion-button class="btn-user-register">Pesquisar</ion-button>
+                <ion-button class="btn-access-control" (click)="getUserSearch()">Pesquisar</ion-button>
             </div>
         </form>
     </div>
     <br>
     <div class='container'>
-        <ion-row class="row header">
+        <ion-row class="row header users-access-control">
             <ion-col class="col" size="3">Nome</ion-col>
             <ion-col class="col" size="2">CPF</ion-col>
             <ion-col class="col" size="3">E-mail</ion-col>
             <ion-col class="col" size="2">Perfil</ion-col>
             <ion-col class="col" size="2">Opções</ion-col>
         </ion-row>
-        <ion-row class="row" *ngFor="let row of rows">
+        <span *ngIf="!userSearch || userSearch == ''">
+        <ion-row class="row users-access-control" *ngFor="let row of users">
             <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
             <ion-col class="col" size="2">{{row.cpf}}</ion-col>
             <ion-col class="col" size="3">{{row.email}}</ion-col>
@@ -41,5 +42,19 @@
                 </div>
             </ion-col>
         </ion-row>
+        </span>
+        <span *ngIf="userSearch">
+             <ion-row class="row users-access-control" *ngFor="let row of userSearch">
+            <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
+            <ion-col class="col" size="2">{{row.cpf}}</ion-col>
+            <ion-col class="col" size="3">{{row.email}}</ion-col>
+            <ion-col class="col" size="2">{{row.user_type}}</ion-col>
+            <ion-col class="col" size="2">
+                <div (click)="goToChangePerfilModal(row)">
+                    Alterar
+                </div>
+            </ion-col>
+        </ion-row>
+        </span>
     </div>
 </ion-content>

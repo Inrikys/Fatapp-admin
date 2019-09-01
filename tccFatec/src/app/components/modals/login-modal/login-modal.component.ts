@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UserService} from '../../../services/api/user.service';
-import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder} from '@angular/forms';
 
 @Component({
     selector: 'app-login-modal',
@@ -25,13 +25,13 @@ export class LoginModalComponent {
         })
     }
 
-    submit() {
+    async submit() {
         console.log(this.loginForm);
         const data = {
             email: this.loginForm.get('email').value,
             password: this.loginForm.get('password').value,
         };
 
-        this.userService.autenticate(data);
+        await this.userService.autenticate(data);
     }
 }

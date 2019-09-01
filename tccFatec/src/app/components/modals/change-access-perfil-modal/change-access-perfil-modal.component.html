@@ -3,14 +3,14 @@
 <ion-content color="tertiary">
     <div class="container">
         <h1>Alterar usuário</h1>
-        <form [formGroup]="registerForm" class="box-user-register">
+        <form [formGroup]="changeAccessPerfilForm" class="box-user-register">
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="name" placeholder="Nome" [(ngModel)]="passedUser.name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.name">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('name').hasError(validation.type) && (changeAccessPerfilForm.get('name').dirty || changeAccessPerfilForm.get('name').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -19,7 +19,7 @@
                         <ion-input formControlName="last_name" placeholder="Sobrenome" [(ngModel)]="passedUser.last_name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.last_name">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('last_name').hasError(validation.type) && (registerForm.get('last_name').dirty || registerForm.get('last_name').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('last_name').hasError(validation.type) && (changeAccessPerfilForm.get('last_name').dirty || changeAccessPerfilForm.get('last_name').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -30,7 +30,7 @@
                         <ion-input formControlName="email" placeholder="E-mail" [(ngModel)]="passedUser.email"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.email">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('email').hasError(validation.type) && (changeAccessPerfilForm.get('email').dirty || changeAccessPerfilForm.get('email').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -41,7 +41,7 @@
                         <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.password">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('password').hasError(validation.type) && (changeAccessPerfilForm.get('password').dirty || changeAccessPerfilForm.get('password').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -56,7 +56,7 @@
                         </ion-select>
                         <ng-container *ngFor="let validation of validationMessages.user_type">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('user_type').hasError(validation.type) && (registerForm.get('user_type').dirty || registerForm.get('user_type').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('user_type').hasError(validation.type) && (changeAccessPerfilForm.get('user_type').dirty || changeAccessPerfilForm.get('user_type').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -67,7 +67,7 @@
                         <ion-input formControlName="cpf" placeholder="CPF" [(ngModel)]="passedUser.cpf"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.cpf">
                             <div class="error-message"
-                                 *ngIf="registerForm.get('cpf').hasError(validation.type) && (registerForm.get('cpf').dirty || registerForm.get('cpf').touched)">
+                                 *ngIf="changeAccessPerfilForm.get('cpf').hasError(validation.type) && (changeAccessPerfilForm.get('cpf').dirty || registerForm.get('cpf').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>

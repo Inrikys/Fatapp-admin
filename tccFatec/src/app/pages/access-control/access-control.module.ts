@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { IonicModule } from '@ionic/angular';
 import {ChangeAccessPerfilModalModule} from "../../components/modals/change-access-perfil-modal/change-access-perfil-modal.module";
+import {BrMaskerModule} from "br-mask";
 
 import { AccessControlPage } from './access-control.page';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
     ChangeAccessPerfilModalModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    BrMaskerModule,
   ],
   declarations: [AccessControlPage]
 })
