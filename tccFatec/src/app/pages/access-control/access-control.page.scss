@@ -1,12 +1,16 @@
-.box-user-register{
+.box-access-control{
     background-color: white;
     border: 1px solid var(--ion-color-secondary);
     padding-top: 2%;
     padding-bottom: 5%;
   }
-  .btn-user-register{
+  .btn-access-control{
     width: 50%;
     border-radius: 0;
+  }
+
+  .users-access-control{
+    font-size: 0.7rem;
   }
 
 .header .col {

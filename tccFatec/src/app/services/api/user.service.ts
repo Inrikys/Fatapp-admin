@@ -92,4 +92,19 @@ export class UserService {
             console.log(data);
         })
     }
+
+    async getAllUsers(){
+        let user;
+        await this.storage.get('user_storage').then( (res) => {
+            user = res;
+            this.httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${user.token}`,
+                })
+            };
+        });
+        const link = environment.apiUrl + 'usuario/';
+        return this.http.get(link, this.httpOptions).toPromise();
+    }
 }
