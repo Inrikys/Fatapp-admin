@@ -1,8 +1,8 @@
-<modal-header title="Alterar Perfil de Acesso"></modal-header>
+<modal-header title="Alterar perfil de acesso"></modal-header>
 
 <ion-content color="tertiary">
     <div class="container">
-        <h1>Alterar usuário</h1>
+        <h1 class="page-title">Alterar usuário</h1>
         <form [formGroup]="changeAccessPerfilForm" class="box-user-register">
             <ion-grid>
                 <ion-row>
@@ -64,7 +64,7 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input formControlName="cpf" placeholder="CPF" [(ngModel)]="passedUser.cpf"></ion-input>
+                        <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="passedUser.cpf"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.cpf">
                             <div class="error-message"
                                  *ngIf="changeAccessPerfilForm.get('cpf').hasError(validation.type) && (changeAccessPerfilForm.get('cpf').dirty || registerForm.get('cpf').touched)">
@@ -75,7 +75,7 @@
                 </ion-row>
             </ion-grid>
             <div text-center>
-                <ion-button (click)="register()" class="btn-user-register">Cadastrar</ion-button>
+                <ion-button (click)="update()" class="btn-user-register">Alterar</ion-button>
             </div>
         </form>
     </div>
