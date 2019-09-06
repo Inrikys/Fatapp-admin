@@ -1,5 +1,32 @@
 <page-header title="Lista de presença"></page-header>
 
 <ion-content>
-
+    <div class="container">
+        <h1 class="page-title">Lista de presença</h1>
+        <form>
+            <ion-grid>
+                <ion-row text-center>
+                    <ion-col size="1"></ion-col>
+                    <ion-col size="5">
+                        <ion-item lines="none">
+                            <ion-label>De</ion-label>
+                            <ion-datetime placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04"
+                                      max="2050-01-01"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="5">
+                        <ion-item lines="none">
+                            <ion-label>Até  </ion-label>
+                            <ion-datetime placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04"
+                                      max="2050-01-01"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="1"></ion-col>
+                </ion-row>
+            </ion-grid>
+            <div text-center>
+                <ion-button class="btn-access-control" (click)="getUserSearch()">Pesquisar</ion-button>
+            </div>
+        </form>
+    </div>
 </ion-content>

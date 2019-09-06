@@ -84,7 +84,7 @@ export class UserService {
             };
         });
 
-        const link = environment.apiUrl + 'usuario/' + user.usuario._id;
+        const link = environment.apiUrl + 'usuario/:id=' + user.usuario._id;
 
         await this.http.put(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
             await this.setData(data);

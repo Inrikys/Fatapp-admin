@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-present-list',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PresentListPage implements OnInit {
 
-  constructor() { }
+  public presentListForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
+   }
+
+  private createForm() {
+    this.presentListForm = this.formBuilder.group({
+      date_start: this.formBuilder.control(''),
+      date_end: this.formBuilder.control(''),
+    });
+  }
 
   ngOnInit() {
   }

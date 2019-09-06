@@ -11,7 +11,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="11">
+                    <ion-col size="10">
 
                         <ion-input formControlName="name" placeholder="Nome"
                                    [(ngModel)]="user.usuario.name">
@@ -25,7 +25,7 @@
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col class="account-edit-icon">
+                    <ion-col size="2">
                         <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
                     </ion-col>
                 </ion-row>
@@ -33,7 +33,7 @@
 
 
                 <ion-row>
-                    <ion-col size="11">
+                    <ion-col size="10">
                         <ion-input formControlName="last_name" placeholder="Sobrenome"
                                    [(ngModel)]="user.usuario.last_name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.last_name">
@@ -43,12 +43,12 @@
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col class="account-edit-icon">
+                    <ion-col size="2">
                         <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="11">
+                    <ion-col size="10">
                         <ion-input formControlName="email" placeholder="E-mail"
                                    [(ngModel)]="user.usuario.email"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.email">
@@ -58,12 +58,12 @@
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col class="account-edit-icon">
+                    <ion-col size="2">
                         <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="11">
+                    <ion-col size="10">
                         <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="user.usuario.cpf">
 
                         </ion-input>
@@ -74,17 +74,17 @@
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col class="account-edit-icon">
+                    <ion-col size="2">
                         <div><fa-icon slot="end" [icon]="['fas', 'edit']"></fa-icon></div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <p><span (click)="goToChangePassword()">Alterar senha</span></p>
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <div text-center class="update-account">
                             <ion-button (click)="updateUserData()">Alterar </ion-button>
                         </div>

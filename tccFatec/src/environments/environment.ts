@@ -11,6 +11,7 @@ export const environment = {
     projectId: "tccfatecscs2019-feeaf",
     storageBucket: "tccfatecscs2019-feeaf.appspot.com",
   },
+  //apiUrl: 'http://localhost:8080/api/',
   apiUrl: 'https://myspotapp-1541881215537.appspot.com/api/' ,
 
 };
