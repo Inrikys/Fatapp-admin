@@ -93,6 +93,27 @@ export class UserService {
         })
     }
 
+    async changePassword(data){
+        let user;
+        await this.storage.get('user_storage').then( (res) => {
+            user = res;
+            this.httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${user.token}`,
+                })
+            };
+        });
+
+        const link = environment.apiUrl + 'usuario/novaSenha/' + user.usuario._id;
+
+        await this.http.put(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
+            await this.setData(data);
+            await this.modalController.dismiss();
+            console.log(data);
+        })
+    }
+
     async getAllUsers(){
         let user;
         await this.storage.get('user_storage').then( (res) => {
