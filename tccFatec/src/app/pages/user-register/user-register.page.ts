@@ -36,12 +36,6 @@ export class UserRegisterPage implements OnInit {
             await loading.present();
             const registerResponse: any = await this.usersService.register(this.registerForm.value);
             await loading.dismiss();
-            console.log(registerResponse);
-            if (!registerResponse) {
-                this.global.createAlert('Erro ao cadastrar. E-mail ou CPF já existentes');
-            } else {
-                this.global.createAlert('Usuário cadastrado com sucesso!');
-            }
         }
     }
 

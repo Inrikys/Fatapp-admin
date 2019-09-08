@@ -10,7 +10,7 @@ import { AccountModalComponent } from './components/modals/account-modal/account
 
 // Interfaces
 import { User } from './interfaces/user-interface';
-import { UserService } from './services/api/user.service';
+import { UsersService } from './services/firebase/users/users.service';
 
 @Component({
     selector: 'app-root',
@@ -37,7 +37,7 @@ export class AppComponent {
         private statusBar: StatusBar,
         private menuController: MenuController,
         private modalController: ModalController,
-        private userService: UserService,
+        private usersService: UsersService,
         private loadingController: LoadingController,
     ) {
         this.initializeApp();
@@ -51,8 +51,8 @@ export class AppComponent {
         });
     }
 
-    initialize() {
-        this.userService.user.subscribe(data => {
+     initialize() {
+        this.usersService.user.subscribe(data => {
             this.user = data;
             console.log(this.user);
         });
@@ -64,7 +64,7 @@ export class AppComponent {
             message: 'Realizando logout...',
         });
         await loading.present();
-        await this.userService.logout();
+        await this.usersService.logout();
         await loading.dismiss();
     }
 

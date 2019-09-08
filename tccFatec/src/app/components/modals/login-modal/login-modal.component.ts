@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {UserService} from '../../../services/api/user.service';
 import {FormGroup, FormBuilder} from '@angular/forms';
+import { UsersService } from 'src/app/services/firebase/users/users.service';
 
 @Component({
     selector: 'app-login-modal',
@@ -12,7 +12,7 @@ export class LoginModalComponent {
     public loginForm: FormGroup;
 
     constructor(
-        private userService: UserService,
+        private usersService: UsersService,
         private formBuilder: FormBuilder,
     ) {
         this.createForm();
@@ -22,7 +22,7 @@ export class LoginModalComponent {
         this.loginForm = this.formBuilder.group({
             email: this.formBuilder.control(''),
             password: this.formBuilder.control(''),
-        })
+        });
     }
 
     async submit() {
@@ -32,6 +32,6 @@ export class LoginModalComponent {
             password: this.loginForm.get('password').value,
         };
 
-        await this.userService.autenticate(data);
+        this.usersService.login(data);
     }
 }

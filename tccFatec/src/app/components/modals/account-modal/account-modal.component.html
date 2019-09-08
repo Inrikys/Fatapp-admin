@@ -3,10 +3,10 @@
     <div *ngIf="user" class="container">
         <form [formGroup]="accountForm">
             <ion-grid padding-top class="box">
-                <ion-row *ngIf="user.usuario.image">
+                <ion-row *ngIf="user.image">
                     <ion-col>
                         <div text-center>
-                            <img class="avatar account" src="{{user.usuario.image}}">
+                            <img class="avatar account" src="{{user.image}}">
                         </div>
                     </ion-col>
                 </ion-row>
@@ -14,7 +14,7 @@
                     <ion-col size="10">
 
                         <ion-input formControlName="name" placeholder="Nome"
-                                   [(ngModel)]="user.usuario.name">
+                                   [(ngModel)]="user.name">
                         </ion-input>
 
                         <ng-container *ngFor="let validation of validationMessages.name">
@@ -32,7 +32,7 @@
                 <ion-row>
                     <ion-col size="10">
                         <ion-input formControlName="last_name" placeholder="Sobrenome"
-                                   [(ngModel)]="user.usuario.last_name"></ion-input>
+                                   [(ngModel)]="user.last_name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.last_name">
                             <div class="error-message"
                                  *ngIf="accountForm.get('last_name').hasError(validation.type) && (accountForm.get('last_name').dirty || accountForm.get('last_name').touched)">
@@ -47,7 +47,7 @@
                 <ion-row>
                     <ion-col size="10">
                         <ion-input formControlName="email" placeholder="E-mail"
-                                   [(ngModel)]="user.usuario.email"></ion-input>
+                                   [(ngModel)]="user.email"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.email">
                             <div class="error-message"
                                  *ngIf="accountForm.get('email').hasError(validation.type) && (accountForm.get('email').dirty || accountForm.get('email').touched)">
@@ -61,7 +61,7 @@
                 </ion-row>
                 <ion-row>
                     <ion-col size="10">
-                        <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="user.usuario.cpf">
+                        <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="user.cpf">
 
                         </ion-input>
                         <ng-container *ngFor="let validation of validationMessages.cpf">

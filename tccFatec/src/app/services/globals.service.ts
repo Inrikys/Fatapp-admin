@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AlertController, LoadingController, ToastController} from "@ionic/angular";
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -7,30 +7,33 @@ import {AlertController, LoadingController, ToastController} from "@ionic/angula
 export class GlobalsService {
 
   constructor(
-      private loadingController: LoadingController,
-      private toastController: ToastController,
-      private alertController: AlertController,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    private alertController: AlertController,
   ) { }
 
-  async createLoading(message){
+  async createLoading(message) {
     const loading = await this.loadingController.create({
-      message: 'message',
+      message
     });
     return loading;
   }
 
-  async createAlert(message){
+  async createAlert(message) {
     const alert = await this.alertController.create({
       header: 'Fatapp diz:',
-      message: message,
+      message,
     });
     alert.present();
   }
 
-  async createToast(message){
+  async createToast(message) {
     const toast = await this.toastController.create({
       header: 'Fatapp diz:',
-      message: message,
+      message,
+      position: 'top',
+      color: 'primary',
+      duration: 3000,
     });
     toast.present();
   }

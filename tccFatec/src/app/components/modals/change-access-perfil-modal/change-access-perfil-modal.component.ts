@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/api/user.service";
 import { NavParams } from '@ionic/angular';
-import {ChangeAccessPerfilService} from "../../../services/validators/chenge-access-perfil/change-access-perfil.service";
+import {ChangeAccessPerfilService} from '../../../services/validators/chenge-access-perfil/change-access-perfil.service';
+import { UsersService } from 'src/app/services/firebase/users/users.service';
 
 @Component({
   selector: 'app-change-access-perfil-modal',
@@ -16,7 +16,7 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
 
   constructor(
     private changeAccessPerfilValidator: ChangeAccessPerfilService,
-    private userService: UserService,
+    private usersService: UsersService,
     private navParams: NavParams
     ) { }
 
