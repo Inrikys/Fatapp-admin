@@ -6,7 +6,7 @@
         <form [formGroup]="changeAccessPerfilForm" class="box-user-register">
             <ion-grid>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="6">
                         <ion-input formControlName="name" placeholder="Nome" [(ngModel)]="passedUser.name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.name">
                             <div class="error-message"
@@ -15,7 +15,7 @@
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col>
+                    <ion-col size="6">
                         <ion-input formControlName="last_name" placeholder="Sobrenome" [(ngModel)]="passedUser.last_name"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.last_name">
                             <div class="error-message"
@@ -26,7 +26,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <ion-input formControlName="email" placeholder="E-mail" [(ngModel)]="passedUser.email"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.email">
                             <div class="error-message"
@@ -37,7 +37,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.password">
                             <div class="error-message"
@@ -48,7 +48,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <ion-select formControlName="user_type" placeholder="Tipo de usuário" [(ngModel)]="passedUser.user_type">
                             <ion-select-option value="Coordenação">Coordenação</ion-select-option>
                             <ion-select-option value="Secretaria">Secretaria</ion-select-option>
@@ -63,7 +63,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="12">
                         <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="passedUser.cpf"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.cpf">
                             <div class="error-message"

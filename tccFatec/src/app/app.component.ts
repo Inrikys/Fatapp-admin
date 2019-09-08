@@ -1,16 +1,16 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {LoadingController, MenuController, ModalController, Platform} from '@ionic/angular';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import { LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 // Modals
-import {LoginModalComponent} from './components/modals/login-modal/login-modal.component';
-import {AccountModalComponent} from "./components/modals/account-modal/account-modal.component";
+import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
+import { AccountModalComponent } from './components/modals/account-modal/account-modal.component';
 
-//Interfaces
-import {User} from "./interfaces/user-interface";
-import {UserService} from "./services/api/user.service";
+// Interfaces
+import { User } from './interfaces/user-interface';
+import { UserService } from './services/api/user.service';
 
 @Component({
     selector: 'app-root',
@@ -18,15 +18,15 @@ import {UserService} from "./services/api/user.service";
 })
 export class AppComponent {
     public userMenu = [
-        {title: 'Home', url: '/home'},
-        {title: 'Cadastrar usuário', url: '/admin/user-register'},
-        {title: 'Controle de acesso', url: '/admin/access-control'},
-        {title: 'Salas', url: '/admin/room'},
-        {title: 'Lista de presença', url: '/admin/present-list'}
+        { title: 'Home', url: '/home' },
+        { title: 'Cadastrar usuário', url: '/admin/user-register' },
+        { title: 'Controle de acesso', url: '/admin/access-control' },
+        { title: 'Salas', url: '/admin/room' },
+        { title: 'Lista de presença', url: '/admin/present-list' }
     ];
     public generalLinks = [
-        {title: 'Sobre', url: '/about'},
-        {title: 'Política de privacidade', url: '/privacy-policy'},
+        { title: 'Sobre', url: '/about' },
+        { title: 'Política de privacidade', url: '/privacy-policy' },
     ];
 
     private user: User = null;
@@ -51,22 +51,21 @@ export class AppComponent {
         });
     }
 
-    initialize(){
+    initialize() {
         this.userService.user.subscribe(data => {
             this.user = data;
             console.log(this.user);
-        })
+        });
 
     }
 
-    async logout(){
+    async logout() {
         const loading = await this.loadingController.create({
-            duration: 2000,
             message: 'Realizando logout...',
         });
-        loading.present();
+        await loading.present();
         await this.userService.logout();
-        loading.dismiss();
+        await loading.dismiss();
     }
 
     async goToLogin() {
@@ -76,7 +75,7 @@ export class AppComponent {
         loginModal.present();
     }
 
-    async goToAccount(){
+    async goToAccount() {
         const accountModal = await this.modalController.create({
             component: AccountModalComponent,
         });

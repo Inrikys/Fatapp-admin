@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDY3XySQofefS6rVyuz-7rocX-0hQgaYok\n",
-    authDomain: "tccfatecscs2019-feeaf.firebaseapp.com",
-    databaseURL: "https://tccfatecscs2019-feeaf.firebaseio.com",
-    projectId: "tccfatecscs2019-feeaf",
-    storageBucket: "tccfatecscs2019-feeaf.appspot.com",
+    apiKey: 'AIzaSyDY3XySQofefS6rVyuz-7rocX-0hQgaYok\n',
+    authDomain: 'tccfatecscs2019-feeaf.firebaseapp.com',
+    databaseURL: 'https://tccfatecscs2019-feeaf.firebaseio.com',
+    projectId: 'tccfatecscs2019-feeaf',
+    storageBucket: 'tccfatecscs2019-feeaf.appspot.com',
   },
-  apiUrl: 'https://myspotapp-1541881215537.appspot.com/api/' ,
+  apiUrl: 'http://localhost:8080/api/',
+  // apiUrl: 'https://myspotapp-1541881215537.appspot.com/api/' ,
 
 };
 
