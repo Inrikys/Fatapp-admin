@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {LoadingController, ModalController} from "@ionic/angular";
-import {UserService} from "../../../services/api/user.service";
-import {User} from "../../../interfaces/user-interface";
-import {EditAccountValidatorService} from "../../../services/validators/edit-account-validator.service";
-import {GlobalsService} from "../../../services/globals.service";
-import {ChangePasswordModalComponent} from "../change-password-modal/change-password-modal.component";
+import { LoadingController, ModalController } from "@ionic/angular";
+import { UserService } from "../../../services/api/user.service";
+import { User } from "../../../interfaces/user-interface";
+import { EditAccountValidatorService } from "../../../services/validators/edit-account-validator.service";
+import { GlobalsService } from "../../../services/globals.service";
+import { ChangePasswordModalComponent } from "../change-password-modal/change-password-modal.component";
 
 
 @Component({
@@ -14,16 +14,16 @@ import {ChangePasswordModalComponent} from "../change-password-modal/change-pass
 })
 export class AccountModalComponent implements OnInit {
 
-    private user: User;
-    accountForm;
-    validationMessages;
+  private user: User;
+  accountForm;
+  validationMessages;
 
   constructor(
-      private userService: UserService,
-      private loadingController: LoadingController,
-      private modalController: ModalController,
-      private editAccountValidator: EditAccountValidatorService,
-      private global: GlobalsService,
+    private userService: UserService,
+    private loadingController: LoadingController,
+    private modalController: ModalController,
+    private editAccountValidator: EditAccountValidatorService,
+    private global: GlobalsService,
   ) {
   }
 
@@ -33,34 +33,35 @@ export class AccountModalComponent implements OnInit {
     this.initialize();
   }
 
-  async initialize(){
-    await this.userService.user.subscribe(  data => {
+  async initialize() {
+    await this.userService.user.subscribe(data => {
       this.user = data;
     });
 
   }
 
-  async updateUserData(){
-      if (!this.accountForm.valid) {
-          this.editAccountValidator.validateAllFormFields();
-          this.global.createAlert('Por favor, preencha todos os campos obrigatórios...');
-      } else {
-          this.userService.updateData(this.accountForm.value);
-      }
+  async updateUserData() {
+    if (!this.accountForm.valid) {
+      this.editAccountValidator.validateAllFormFields();
+      this.global.createAlert('Por favor, preencha todos os campos obrigatórios...');
+    } else {
+      const updateResponse = await this.userService.updateData(this.accountForm.value);
+      console.log(updateResponse);
+    }
   }
 
-    async closeModal() {
-        await this.modalController.dismiss().then(() => {
+  async closeModal() {
+    await this.modalController.dismiss().then(() => {
 
-        }). catch(error => {
-            console.log(error);
-        });
-    }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 
-    async goToChangePassword() {
-        const modal = await this.modalController.create({
-            component: ChangePasswordModalComponent,
-        });
-        modal.present();
-    }
+  async goToChangePassword() {
+    const modal = await this.modalController.create({
+      component: ChangePasswordModalComponent,
+    });
+    modal.present();
+  }
 }

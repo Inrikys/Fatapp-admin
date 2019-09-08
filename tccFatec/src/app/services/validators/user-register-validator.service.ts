@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +52,7 @@ export class UserRegisterValidatorService {
             password: [
                 {type: 'required', message: 'Senha obrigatória'},
                 {type: 'minlength', message: 'Senha com no mínimo 8 caracteres'}
-            ]
-        }
+            ],
+        };
     }
 }

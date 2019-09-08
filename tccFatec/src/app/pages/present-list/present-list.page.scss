@@ -2,7 +2,7 @@
     background-color: white;
     border: 1px solid var(--ion-color-secondary);
     padding-top: 2%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
   }
   .users-present-list{
     font-size: 0.7rem;
@@ -11,6 +11,17 @@
 .header .col {
     background-color:#696969;
     color: white;
+}
+.box-present-list{
+    width: 100%;
+}
+
+.label-fixed.sc-ion-label-md-h {
+    -ms-flex: 0 0 100px;
+    flex: 0 0 35px;
+    width: 100px;
+     min-width: 0px;
+     max-width: 200px;
 }
 
 .col {
