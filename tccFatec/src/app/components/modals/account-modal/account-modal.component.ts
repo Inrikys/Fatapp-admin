@@ -45,7 +45,10 @@ export class AccountModalComponent implements OnInit {
       this.editAccountValidator.validateAllFormFields();
       this.global.createAlert('Por favor, preencha todos os campos obrigatórios...');
     } else {
+      const loading = await this.loadingController.create({message: 'Carregando...'});
+      await loading.present();
       const updateResponse = await this.userService.updateData(this.accountForm.value);
+      await loading.dismiss();
       console.log(updateResponse);
     }
   }
