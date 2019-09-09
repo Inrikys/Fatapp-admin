@@ -22,6 +22,7 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
 
   ngOnInit() {
     this.passedUser = this.navParams.get('user');
+    console.log(this.passedUser);
     this.changeAccessPerfilForm = this.changeAccessPerfilValidator.getChangeAccessPerfilForm();
     this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages()
   }
@@ -31,7 +32,7 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
         this.changeAccessPerfilValidator.validateAllFormFields();
     } else {
         // await this.userService.updateData(this.changeAccessPerfilForm.value);
-        console.log(this.changeAccessPerfilForm);
+        this.usersService.updateAccessUser(this.changeAccessPerfilForm.value);
     }
 }
 

@@ -47,6 +47,9 @@ export class AccessControlPage implements AfterViewInit {
         i++;
       });
       console.log(this.users);
+    }).catch(error => {
+      console.log(error);
+      this.global.createAlert(error);
     });
   }
 
@@ -81,14 +84,14 @@ export class AccessControlPage implements AfterViewInit {
   //   }
   // }
 
-  // async goToChangePerfilModal(obj) {
-  //   const modal = await this.modalController.create({
-  //     component: ChangeAccessPerfilModalComponent,
-  //     componentProps: {
-  //       user: obj
-  //     }
-  //   });
-  //   modal.present();
-  // }
+  async goToChangePerfilModal(passedUser) {
+    const modal = await this.modalController.create({
+      component: ChangeAccessPerfilModalComponent,
+      componentProps: {
+        user: passedUser
+      }
+    });
+    modal.present();
+  }
 
 }

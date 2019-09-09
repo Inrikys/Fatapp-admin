@@ -103,6 +103,28 @@ export class UsersService {
     });
   }
 
+  getUsers() {
+    return this.angularFireDb.database.ref(`usersProfile/`).once('value');
+  }
+
+  getUser(uid) {
+    return this.angularFireDb.database.ref(`usersProfile/`).once('value');
+  }
+
+  updateAccessUser(accessUser: any) {
+    const uid = accessUser.uid;
+    this.angularFireDb.database.ref('usersProfile/').child(`${uid}`).update(accessUser).then(() => {
+      this.angularFireDb.database.ref(`usersProfile/${uid}`).once('value').then(snapshot => {
+        this.global.createToast('Dados atualizados!');
+        this.modalController.dismiss();
+      });
+    }).catch(error => {
+      console.log(error);
+      this.global.createToast(error);
+    });
+
+  }
+
   async updateUser(data) {
     const uid = this.user.value.uid;
     const response: any = this.updateEmail(data.email);
@@ -156,7 +178,10 @@ export class UsersService {
     return response;
   }
 
-  getUsers() {
-    return this.angularFireDb.database.ref(`usersProfile/`).once('value');
+  forgetPassword(email) {
+    const response = this.afAuth.auth.sendPasswordResetEmail(`${email.email}`).then(() => {
+      this.global.createAlert('Solicitação para redefinir senha foi enviada ao seu e-mail');
+    });
   }
+
 }

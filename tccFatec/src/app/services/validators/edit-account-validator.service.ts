@@ -46,6 +46,6 @@ export class EditAccountValidatorService {
                 {type: 'required', message: 'Email obrigatório'},
                 {type: 'email', message: 'Endereço de email inválido'},
             ]
-        }
+        };
     }
 }

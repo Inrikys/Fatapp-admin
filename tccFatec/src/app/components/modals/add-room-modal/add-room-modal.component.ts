@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AddRoomValidatorService} from "../../../services/validators/add-room/add-room-validator.service";
+import { AddRoomValidatorService } from '../../../services/validators/add-room/add-room-validator.service';
 
 @Component({
   selector: 'app-add-room-modal',
@@ -11,7 +11,7 @@ export class AddRoomModalComponent implements OnInit {
   validationMessages;
 
   constructor(
-      private addRoomValidator: AddRoomValidatorService,
+    private addRoomValidator: AddRoomValidatorService,
   ) { }
 
   ngOnInit() {
@@ -19,11 +19,11 @@ export class AddRoomModalComponent implements OnInit {
     this.validationMessages = this.addRoomValidator.getFormRoomValidationsMessages();
   }
 
-  async submit(){
-    if (!this.formRoom.valid){
+  async submit() {
+    if (!this.formRoom.valid) {
       this.addRoomValidator.validateAllFormFields();
     } else {
-      await console.log(this.formRoom.value)
+      console.log(this.formRoom.value);
     }
   }
 }

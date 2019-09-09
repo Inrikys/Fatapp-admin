@@ -16,8 +16,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import { IonicStorageModule } from '@ionic/storage';
 import {AngularFireAuth} from '@angular/fire/auth';
-import * as fbAdmin from 'firebase-admin';
-import * as serviceAccount from '../environments/tccfatecscs2019-feeaf-firebase-adminsdk-uzok9-e098585d79.json';
+
 // Modals
 import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
 import {AccountModalModule} from './components/modals/account-modal/account-modal.module';

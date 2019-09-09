@@ -54,7 +54,6 @@ export class AppComponent {
      initialize() {
         this.usersService.user.subscribe(data => {
             this.user = data;
-            console.log(this.user);
         });
 
     }
