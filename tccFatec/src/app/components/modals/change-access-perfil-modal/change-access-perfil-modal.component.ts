@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/api/user.service";
 import { NavParams } from '@ionic/angular';
-import {ChangeAccessPerfilService} from "../../../services/validators/chenge-access-perfil/change-access-perfil.service";
+import { ChangeAccessPerfilService } from '../../../services/validators/chenge-access-perfil/change-access-perfil.service';
+import { UsersService } from 'src/app/services/firebase/users/users.service';
 
 @Component({
   selector: 'app-change-access-perfil-modal',
@@ -16,23 +16,25 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
 
   constructor(
     private changeAccessPerfilValidator: ChangeAccessPerfilService,
-    private userService: UserService,
+    private usersService: UsersService,
     private navParams: NavParams
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.passedUser = this.navParams.get('user');
+    console.log(this.passedUser);
     this.changeAccessPerfilForm = this.changeAccessPerfilValidator.getChangeAccessPerfilForm();
     this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages()
   }
 
   async update() {
     if (!this.changeAccessPerfilForm.valid) {
-        this.changeAccessPerfilValidator.validateAllFormFields();
+      this.changeAccessPerfilValidator.validateAllFormFields();
     } else {
-        // await this.userService.updateData(this.changeAccessPerfilForm.value);
-        console.log(this.changeAccessPerfilForm);
+      // await this.userService.updateData(this.changeAccessPerfilForm.value);
+      console.log(this.changeAccessPerfilForm.value);
+      this.usersService.updateAccessUser(this.changeAccessPerfilForm.value, this.passedUser);
     }
-}
+  }
 
 }

@@ -14,15 +14,15 @@
             <div class="user-background">
                 <ion-header *ngIf="user">
                     <ion-item class="user-background" lines="none">
-                        <div *ngIf="!user.usuario.image">
+                        <div *ngIf="!user.image || user.image == ''">
                             <img class="avatar" src="../assets/imgs/defaultAvatar.png">
                         </div>
-                        <div *ngIf="user.usuario.image">
-                            <img class="avatar" src="{{user.usuario.image}}">
+                        <div *ngIf="user.image">
+                            <img class="avatar" src="{{user.image}}">
                         </div>
                         <ion-label class="user-infos">
-                            <div><span>Olá, </span><span>{{user.usuario.name}}</span></div>
-                            <div>{{user.usuario.user_type}}</div>
+                            <div><span>Olá, </span><span>{{user.name}}</span></div>
+                            <div>{{user.user_type}}</div>
                             <div class="user-edit" padding-top color="tertiary" (click)="goToAccount()">Editar</div>
                         </ion-label>
 

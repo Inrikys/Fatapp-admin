@@ -52,6 +52,6 @@ export class AddRoomValidatorService {
       projector: [
         {type: 'required', message: 'Informação obrigatória'},
       ],
-    }
+    };
   }
 }

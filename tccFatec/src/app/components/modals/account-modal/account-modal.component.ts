@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, ModalController } from "@ionic/angular";
-import { UserService } from "../../../services/api/user.service";
-import { User } from "../../../interfaces/user-interface";
-import { EditAccountValidatorService } from "../../../services/validators/edit-account-validator.service";
-import { GlobalsService } from "../../../services/globals.service";
-import { ChangePasswordModalComponent } from "../change-password-modal/change-password-modal.component";
+import { LoadingController, ModalController } from '@ionic/angular';
+import { UserService } from '../../../services/api/user.service';
+import { User } from '../../../interfaces/user-interface';
+import { EditAccountValidatorService } from '../../../services/validators/edit-account-validator.service';
+import { GlobalsService } from '../../../services/globals.service';
+import { ChangePasswordModalComponent } from '../change-password-modal/change-password-modal.component';
+import { UsersService } from 'src/app/services/firebase/users/users.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AccountModalComponent implements OnInit {
   validationMessages;
 
   constructor(
-    private userService: UserService,
+    private usersService: UsersService,
     private loadingController: LoadingController,
     private modalController: ModalController,
     private editAccountValidator: EditAccountValidatorService,
@@ -34,7 +35,7 @@ export class AccountModalComponent implements OnInit {
   }
 
   async initialize() {
-    await this.userService.user.subscribe(data => {
+    this.usersService.user.subscribe(data => {
       this.user = data;
     });
 
@@ -45,7 +46,10 @@ export class AccountModalComponent implements OnInit {
       this.editAccountValidator.validateAllFormFields();
       this.global.createAlert('Por favor, preencha todos os campos obrigatórios...');
     } else {
-      const updateResponse = await this.userService.updateData(this.accountForm.value);
+      const loading = await this.loadingController.create({message: 'Carregando...'});
+      await loading.present();
+      const updateResponse = await this.usersService.updateUser(this.accountForm.value);
+      await loading.dismiss();
       console.log(updateResponse);
     }
   }

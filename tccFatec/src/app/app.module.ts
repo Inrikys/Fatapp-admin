@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import { IonicStorageModule } from '@ionic/storage';
+import {AngularFireAuth} from '@angular/fire/auth';
+
 // Modals
 import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
 import {AccountModalModule} from './components/modals/account-modal/account-modal.module';
@@ -50,6 +52,7 @@ import { BrMaskerModule } from 'br-mask';
     providers: [
         StatusBar,
         SplashScreen,
+        AngularFireAuth,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     ],
     bootstrap: [AppComponent]
