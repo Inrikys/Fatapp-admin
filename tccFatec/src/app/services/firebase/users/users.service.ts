@@ -111,9 +111,9 @@ export class UsersService {
     return this.angularFireDb.database.ref(`usersProfile/`).once('value');
   }
 
-  updateAccessUser(accessUser: any) {
+  updateAccessUser(profile, accessUser: any) {
     const uid = accessUser.uid;
-    this.angularFireDb.database.ref('usersProfile/').child(`${uid}`).update(accessUser).then(() => {
+    this.angularFireDb.database.ref('usersProfile/').child(`${uid}`).update(profile).then(() => {
       this.angularFireDb.database.ref(`usersProfile/${uid}`).once('value').then(snapshot => {
         this.global.createToast('Dados atualizados!');
         this.modalController.dismiss();

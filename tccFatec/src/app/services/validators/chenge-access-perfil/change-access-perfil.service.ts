@@ -19,8 +19,6 @@ export class ChangeAccessPerfilService {
 
   createForm() {
     return this.changeAccessPerfilForm = this.formBuilder.group({
-      name: [null, Validators.compose([Validators.required])],
-      last_name: [null, Validators.compose([Validators.required])],
       user_type: [null, Validators.compose([Validators.required])],
     });
   }
@@ -33,12 +31,6 @@ export class ChangeAccessPerfilService {
 
   getChangeAccessPerfilValidationsMessages() {
     return {
-      name: [
-        {type: 'required', message: 'Nome obrigatório'},
-      ],
-      last_name: [
-        {type: 'required', message: 'Sobrenome obrigatório'},
-      ],
       user_type: [
         {type: 'required', message: 'Escolha o tipo de usuário'},
       ],
