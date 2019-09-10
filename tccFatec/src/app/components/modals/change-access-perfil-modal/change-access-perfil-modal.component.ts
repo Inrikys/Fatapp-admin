@@ -24,7 +24,7 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
     this.passedUser = this.navParams.get('user');
     console.log(this.passedUser);
     this.changeAccessPerfilForm = this.changeAccessPerfilValidator.getChangeAccessPerfilForm();
-    this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages()
+    this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages();
   }
 
   async update() {
