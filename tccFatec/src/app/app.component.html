@@ -23,7 +23,8 @@
                         <ion-label class="user-infos">
                             <div><span>Olá, </span><span>{{user.name}}</span></div>
                             <div>{{user.user_type}}</div>
-                            <div class="user-edit" padding-top color="tertiary" (click)="goToAccount()">Editar</div>
+                                <div class="user-options user-edit" margin-top (click)="goToAccount()">Editar</div>
+                                <div class="user-options user-logout" (click)="logout()">Logout</div>
                         </ion-label>
 
                     </ion-item>
@@ -43,13 +44,6 @@
                                 <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
                                     <ion-label>
                                         {{p.title}}
-                                    </ion-label>
-                                </ion-item>
-                            </ion-menu-toggle>
-                            <ion-menu-toggle>
-                                <ion-item class="menu-item">
-                                    <ion-label (click)="logout()">
-                                        Logout
                                     </ion-label>
                                 </ion-item>
                             </ion-menu-toggle>
