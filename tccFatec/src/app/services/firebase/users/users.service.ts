@@ -5,7 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { GlobalsService } from '../../globals.service';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,7 @@ export class UsersService {
     private global: GlobalsService,
     private storage: Storage,
     private modalController: ModalController,
+    private alertController: AlertController
   ) {
     this.load();
   }
@@ -163,8 +164,17 @@ export class UsersService {
   }
 
   updatePassword(newPassword) {
-    const response = this.afAuth.auth.currentUser.updatePassword(newPassword).then(() => {
+    const response = this.afAuth.auth.currentUser.updatePassword(newPassword).then(async () => {
       console.log('Senha atualizada!');
+      const alert = await this.alertController.create({
+        message: 'Senha atualizada!',
+        header: 'Fatapp diz:',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      alert.onDidDismiss().then(() => {
+        this.modalController.dismiss();
+      });
       return true;
     }).catch(error => {
       console.log(error);
