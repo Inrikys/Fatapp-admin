@@ -20,11 +20,13 @@
                         <div *ngIf="user.image">
                             <img class="avatar" src="{{user.image}}">
                         </div>
-                        <ion-label class="user-infos">
-                            <div><span>Olá, </span><span>{{user.name}}</span></div>
-                            <div>{{user.user_type}}</div>
-                                <div class="user-options user-edit" margin-top (click)="goToAccount()">Editar</div>
-                                <div class="user-options user-logout" (click)="logout()">Logout</div>
+                        <ion-label>
+                            <div class="user-infos">
+                                <div><span>Olá, </span><span>{{user.name}}</span></div>
+                                <div class="user-type">{{user.user_type}}</div>
+                            </div>
+                            <div class="user-options user-edit" margin-top (click)="goToAccount()">Editar</div>
+                            <div class="user-options user-logout" (click)="logout()">Logout</div>
                         </ion-label>
 
                     </ion-item>

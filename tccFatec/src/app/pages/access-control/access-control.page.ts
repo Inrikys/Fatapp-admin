@@ -46,43 +46,36 @@ export class AccessControlPage implements AfterViewInit {
         this.users[i] = value.val();
         i++;
       });
-      console.log(this.users);
     }).catch(error => {
       console.log(error);
       this.global.createAlert(error);
     });
   }
 
-  getUserSearch() {
+  async getUserSearch() {
+    try {
+      this.userSearch = [];
+      const usersToFilter = this.users;
 
+      console.log(usersToFilter);
+
+      const keyword = this.accessControlForm.value.name;
+      console.log(keyword);
+
+      this.userSearch = usersToFilter.filter(collection => {
+
+        return collection.cpf.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.last_name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.user_type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.name.toLowerCase() + collection.last_name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.email.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  // async getUserSearch() {
-  //   if ((this.accessControlForm.get('name').value !== '') && (this.accessControlForm.get('cpf').value !== '')) {
-  //     this.userSearch = await this.users.filter(collection => {
-  //       return collection.cpf === this.accessControlForm.get('cpf').value && collection.name.toLowerCase() + ' ' + collection.last_name.toLowerCase() === this.accessControlForm.get('name').value.toLowerCase();
-  //     });
-  //     if (this.userSearch.length === 0) {
-  //       await this.global.createAlert('CPF e Nome incompatíveis')
-  //     }
-  //   } else if ((this.accessControlForm.get('name').value === '') && (this.accessControlForm.get('cpf').value !== '')) {
-  //     this.userSearch = await this.users.filter(collection => {
-  //       return collection.cpf === this.accessControlForm.get('cpf').value;
-  //     });
-  //     if (this.userSearch.length === 0) {
-  //       await this.global.createAlert('CPF não encontrado')
-  //     }
-  //   } else if ((this.accessControlForm.get('cpf').value === '') && (this.accessControlForm.get('name').value !== '')) {
-  //     this.userSearch = await this.users.filter(collection => {
-  //       return collection.name.toLowerCase() + ' ' + collection.last_name.toLowerCase() === this.accessControlForm.get('name').value.toLowerCase();
-  //     });
-  //     if (this.userSearch.length === 0) {
-  //       await this.global.createAlert('Nome não encontrado')
-  //     }
-  //   } else if ((this.accessControlForm.get('name').value === '') && (this.accessControlForm.get('cpf').value === '')) {
-  //     this.getAllUsers();
-  //   }
-  // }
 
   async goToChangePerfilModal(passedUser) {
     const modal = await this.modalController.create({
