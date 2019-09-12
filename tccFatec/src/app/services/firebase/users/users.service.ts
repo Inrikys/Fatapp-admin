@@ -6,6 +6,7 @@ import { GlobalsService } from '../../globals.service';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { ModalController, AlertController } from '@ionic/angular';
+import undefined = require('firebase/empty-import');
 
 @Injectable({
   providedIn: 'root'
@@ -41,34 +42,52 @@ export class UsersService {
 
 
   register(data: User) {
+    let validateCpf = true;
+    let email: any;
     try {
-      return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password).then(newUser => {
-        const uid = newUser.user.uid;
-        const dateTime = Date();
-        const userObj = {
-          uid,
-          name: data.name,
-          last_name: data.last_name,
-          email: data.email,
-          cpf: data.cpf,
-          image: `https://ui-avatars.com/api/?name=${data.name}+${data.last_name}&?background=#808080&color=f5f5f5`,
-          user_type: data.user_type,
-          created_at: dateTime,
-        };
-        return this.angularFireDb.database.ref(`usersProfile/${uid}`).set(userObj).then(() => {
-          this.global.createAlert('Usuário criado com sucesso!');
-        }).catch(error => {
-          console.log(error);
+      this.getUsers().then(snapshot => {
+        snapshot.forEach(collection => {
+          if (collection.val().cpf === data.cpf) {
+            validateCpf = false;
+            if (!validateCpf) {
+              email = collection.val().email;
+            }
+          }
         });
+        if (validateCpf) {
+          return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password).then(newUser => {
+            const uid = newUser.user.uid;
+            const dateTime = Date();
+            const userObj = {
+              uid,
+              name: data.name,
+              last_name: data.last_name,
+              email: data.email,
+              cpf: data.cpf,
+              image: `https://ui-avatars.com/api/?name=${data.name}+${data.last_name}&?background=#808080&color=f5f5f5`,
+              user_type: data.user_type,
+              created_at: dateTime,
+            };
+            return this.angularFireDb.database.ref(`usersProfile/${uid}`).set(userObj).then(() => {
+              this.global.createAlert('Usuário criado com sucesso!');
+              this.afAuth.auth.signOut();
+            }).catch(error => {
+              console.log(error);
+            });
 
-      }).catch(error => {
-        console.log(error);
-        if (error.code === 'auth/email-already-in-use') {
-          this.global.createAlert('E-mail já está sendo usado');
-        } else if (error.code === 'auth/invalid-email') {
-          this.global.createAlert('E-mail inválido');
+          }).catch(error => {
+            console.log(error);
+            if (error.code === 'auth/email-already-in-use') {
+              this.global.createAlert('E-mail já está sendo usado');
+            } else if (error.code === 'auth/invalid-email') {
+              this.global.createAlert('E-mail inválido');
+            }
+          });
+        } else {
+          this.global.createAlert('Esse CPF já está vinculado ao e-mail: ' + email + ' use a opção esqueci a senha na tela de Login');
         }
       });
+
     } catch (error) {
       console.log(error);
     }
@@ -127,24 +146,35 @@ export class UsersService {
   }
 
   async updateUser(data) {
-    const uid = this.user.value.uid;
-    const response: any = this.updateEmail(data.email);
-    console.log(response);
+    try {
 
-    if (!response) {
-      this.global.createToast('Erro ao atualizar dados!');
-    } else {
-      this.angularFireDb.database.ref('usersProfile/').child(`${uid}`).update(data).then(() => {
-        this.angularFireDb.database.ref(`usersProfile/${uid}`).once('value').then(snapshot => {
-          this.setData(snapshot.val());
-          this.global.createToast('Dados atualizados!');
-          this.modalController.dismiss();
-        });
-      }).catch(error => {
-        console.log(error);
-        this.global.createToast(error);
-      });
+      const uid = this.user.value.uid;
+      const response: any = await this.updateEmail(data.email);
+      console.log(response);
+
+      if (response === null || response === undefined) {
+        this.global.createAlert('Ocorreu um erro de sessão, por favor, inicie uma nova sessão');
+      } else {
+        if (!response) {
+          this.global.createToast('Erro ao atualizar dados!');
+        } else {
+          this.angularFireDb.database.ref('usersProfile/').child(`${uid}`).update(data).then(() => {
+            this.angularFireDb.database.ref(`usersProfile/${uid}`).once('value').then(snapshot => {
+              this.setData(snapshot.val());
+              this.global.createToast('Dados atualizados!');
+              this.modalController.dismiss();
+            });
+          }).catch(error => {
+            console.log(error);
+            this.global.createToast(error);
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      this.global.createAlert('Ocorreu um erro de sessão, por favor, inicie uma nova sessão');
     }
+
   }
 
   updateEmail(newEmail) {
