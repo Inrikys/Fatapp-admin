@@ -2,13 +2,16 @@
 <ion-content color="tertiary">
     <div class="container">
         <form [formGroup]="formRoom" padding-top class="box">
+            <div text-center >
+                <img class="door" src="../../../../assets/imgs/porta.png">
+            </div>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-input formControlName="number" placeholder="Número da sala"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.number">
                             <div class="error-message"
-                                 *ngIf="formRoom.get('number').hasError(validation.type) && (formRoom.get('number').dirty || formRoom.get('number').touched)">
+                                *ngIf="formRoom.get('number').hasError(validation.type) && (formRoom.get('number').dirty || formRoom.get('number').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -21,7 +24,7 @@
                         </ion-select>
                         <ng-container *ngFor="let validation of validationMessages.type">
                             <div class="error-message"
-                                 *ngIf="formRoom.get('type').hasError(validation.type) && (formRoom.get('type').dirty || formRoom.get('type').touched)">
+                                *ngIf="formRoom.get('type').hasError(validation.type) && (formRoom.get('type').dirty || formRoom.get('type').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -32,37 +35,11 @@
                         <ion-input formControlName="capacity" placeholder="Qtd de pessoas"></ion-input>
                         <ng-container *ngFor="let validation of validationMessages.capacity">
                             <div class="error-message"
-                                 *ngIf="formRoom.get('capacity').hasError(validation.type) && (formRoom.get('capacity').dirty || formRoom.get('capacity').touched)">
+                                *ngIf="formRoom.get('capacity').hasError(validation.type) && (formRoom.get('capacity').dirty || formRoom.get('capacity').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
                     </ion-col>
-                    <ion-col>
-                        <ion-input formControlName="computer" placeholder="Qtd de computadores"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.computer">
-                            <div class="error-message"
-                                 *ngIf="formRoom.get('computer').hasError(validation.type) && (formRoom.get('computer').dirty || formRoom.get('computer').touched)">
-                                {{ validation.message }}
-                            </div>
-                        </ng-container>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-select formControlName="projector" placeholder="Possui projetor?">
-                            <ion-select-option>Sim</ion-select-option>
-                            <ion-select-option>Não</ion-select-option>
-                        </ion-select>
-                        <ng-container *ngFor="let validation of validationMessages.projector">
-                            <div class="error-message"
-                                 *ngIf="formRoom.get('projector').hasError(validation.type) && (formRoom.get('projector').dirty || formRoom.get('projector').touched)">
-                                {{ validation.message }}
-                            </div>
-                        </ng-container>
-                    </ion-col>
-                </ion-row>
-                <ion-row padding-top>
-                    <textarea formControlName="obs" placeholder="Observações"></textarea>
                 </ion-row>
             </ion-grid>
             <div padding-top padding-bottom text-center>

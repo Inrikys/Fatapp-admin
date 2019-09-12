@@ -23,9 +23,6 @@ export class AddRoomValidatorService {
       number: [null, Validators.compose([Validators.required])],
       type: [null, Validators.compose([Validators.required])],
       capacity: [null, Validators.compose([Validators.required])],
-      computer: [null, Validators.compose([Validators.required])],
-      projector: [null, Validators.compose([Validators.required])],
-      obs: '',
     });
   }
 
@@ -45,12 +42,6 @@ export class AddRoomValidatorService {
       ],
       capacity: [
         {type: 'required', message: 'Capacidade obrigatória'},
-      ],
-      computer: [
-        {type: 'required', message: 'Quantidade obrigatória'},
-      ],
-      projector: [
-        {type: 'required', message: 'Informação obrigatória'},
       ],
     };
   }
