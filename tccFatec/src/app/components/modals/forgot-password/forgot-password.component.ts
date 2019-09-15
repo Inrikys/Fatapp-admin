@@ -7,7 +7,7 @@ import { UsersService } from 'src/app/services/firebase/users/users.service';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
 
   public forgotPasswordForm;
   public validationMessages;
@@ -19,8 +19,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = this.forgotPasswordValidator.getPasswordForm();
     this.validationMessages = this.forgotPasswordValidator.getPasswordFormValidationsMessages();
   }
-
-  ngOnInit() { }
 
   submit() {
     if (!this.forgotPasswordForm.valid) {

@@ -1,19 +1,33 @@
 <modal-header title="Adicionar Recurso"></modal-header>
 <ion-content color="tertiary">
     <div class="container">
-        <form padding-top class="box">
+        <form [formGroup]="addResourceForm" padding-top class="box">
             <div text-center>
                 <img class="page-icon" src="../../../../assets/imgs/tools.png">
             </div>
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <ion-input placeholder="Recurso"></ion-input>
+                        <ion-select formControlName="name" placeholder="Recurso">
+                            <ion-select-option>Computador</ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.resource">
+                            <div class="error-message"
+                                *ngIf="addResourceForm.get('resource').hasError(validation.type) && (addResourceForm.get('resource').dirty || addResourceForm.get('resource').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-input placeholder="Quantidade"></ion-input>
+                        <ion-input formControlName="resource_amount" placeholder="Quantidade"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.resource_amount">
+                            <div class="error-message"
+                                *ngIf="addResourceForm.get('resource_amount').hasError(validation.type) && (addResourceForm.get('resource_amount').dirty || addResourceForm.get('resource_amount').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
                     </ion-col>
                 </ion-row>
             </ion-grid>
