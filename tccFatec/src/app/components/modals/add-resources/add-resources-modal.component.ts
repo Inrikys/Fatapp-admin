@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddResourceValidatorService } from 'src/app/services/validators/add-resource/add-resource-validator.service';
 
 @Component({
   selector: 'app-add-resources-modal',
@@ -7,8 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddResourcesModalComponent implements OnInit {
 
-  constructor() { }
+  public addResourceForm;
+  public validationMessages;
 
-  ngOnInit() {}
+  constructor(
+    private addResourceValidator: AddResourceValidatorService,
+  ) {
+    this.addResourceForm = this.addResourceValidator.getAddResourceForm();
+    this.validationMessages = this.addResourceValidator.getAddResourceFormValidationsMessages();
+  }
+
+  ngOnInit() { }
+
+  submit() {
+    if (!this.addResourceForm.valid) {
+      this.addResourceValidator.validateAllFormFields();
+    } else {
+      console.log(this.addResourceForm.value);
+    }
+  }
 
 }

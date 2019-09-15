@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddResourcesModalComponent } from 'src/app/components/modals/add-resources/add-resources-modal.component';
+import { RegisterResourceModalComponent } from 'src/app/components/modals/register-resource/register-resource-modal.component';
 
 
 
@@ -16,6 +17,13 @@ export class EditRoomPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  async goToRegisterResource() {
+    const modal = await this.modalController.create({
+      component: RegisterResourceModalComponent,
+    });
+    modal.present();
   }
 
   async goToAddResource() {

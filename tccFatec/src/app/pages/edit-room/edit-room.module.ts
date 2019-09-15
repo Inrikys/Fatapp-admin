@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { EditRoomPage } from './edit-room.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { AddResourcesModalModule } from 'src/app/components/modals/add-resources/add-resources-modal.module';
+import { RegisterResourceModalModule } from 'src/app/components/modals/register-resource/register-resource-modal.module';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ComponentsModule,
     AddResourcesModalModule,
+    RegisterResourceModalModule,
   ],
   declarations: [EditRoomPage]
 })
