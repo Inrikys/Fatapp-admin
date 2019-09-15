@@ -6,7 +6,6 @@ import { GlobalsService } from '../../globals.service';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { ModalController, AlertController } from '@ionic/angular';
-import undefined = require('firebase/empty-import');
 
 @Injectable({
   providedIn: 'root'

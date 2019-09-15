@@ -1,0 +1,25 @@
+<modal-header title="Adicionar Recurso"></modal-header>
+<ion-content color="tertiary">
+    <div class="container">
+        <form padding-top class="box">
+            <div text-center>
+                <img class="page-icon" src="../../../../assets/imgs/tools.png">
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-input placeholder="Recurso"></ion-input>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input placeholder="Quantidade"></ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div padding-top padding-bottom text-center>
+                <ion-button text-center (click)="submit()">Adicionar recurso</ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>

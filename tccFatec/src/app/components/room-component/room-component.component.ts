@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
+import { GlobalsService } from 'src/app/services/globals.service';
 
 @Component({
   selector: 'room',
@@ -9,16 +10,17 @@ import {Router} from "@angular/router";
 export class RoomComponentComponent implements OnInit {
 
   constructor(
-      private router: Router,
+    private router: Router,
+    private global: GlobalsService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  goToCalendar(){
-    this.router.navigate(['/admin/calendar-of-events'])
+  goToCalendar() {
+    this.router.navigate(['/admin/calendar-of-events']);
   }
-  goToEditRoom(){
-
+  goToEditRoom(id) {
+    this.global.navigateByUrl('/admin/edit-room?id=' + id);
   }
 
 }
