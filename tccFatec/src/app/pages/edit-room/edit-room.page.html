@@ -1,0 +1,64 @@
+<page-header title="Editar sala"></page-header>
+
+
+<ion-content color="tertiary">
+  <div class="container">
+    <div class="box">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10">
+            <ion-item lines="none">
+              <h1 class="page-title">Sala x</h1>
+            </ion-item>
+            <ion-item>
+              <h2 class="page-title">Capacidade: x</h2>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="box">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-icon name="construct" slot="start"></ion-icon>
+              <ion-label>Recursos</ion-label>
+              <ion-button (click)="goToAddResource()" fill="outline" slot="end">Adicionar</ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+
+      <div class="resource-item">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none">
+                <ion-label>Computador</ion-label>
+                <ion-button fill="outline" slot="end">Remover</ion-button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label>Quantidade:</ion-label>
+                <ion-input></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-button fill="outline" slot="end">Alterar</ion-button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

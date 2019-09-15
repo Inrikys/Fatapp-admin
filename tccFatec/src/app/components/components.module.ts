@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {IonicModule} from "@ionic/angular";
+import {IonicModule} from '@ionic/angular';
 
-// headers
-import {ModalHeaderComponent} from "./headers/modal-header/modal-header.component";
-import {PageHeaderComponent} from "./headers/page-header/page-header.component";
-import {RoomComponentComponent} from "./room-component/room-component.component";
+// Headers
+import {ModalHeaderComponent} from './headers/modal-header/modal-header.component';
+import {PageHeaderComponent} from './headers/page-header/page-header.component';
+
+// Room
+import {RoomComponentComponent} from './room-component/room-component.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,7 @@ import {RoomComponentComponent} from "./room-component/room-component.component"
     exports: [
         ModalHeaderComponent,
         PageHeaderComponent,
-        RoomComponentComponent
+        RoomComponentComponent,
     ],
 })
 export class ComponentsModule { }
