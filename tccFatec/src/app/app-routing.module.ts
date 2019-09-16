@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AdminAccessGuard } from "./guards/admin-access.guard";
+import { AdminAccessGuard } from './guards/admin-access.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,8 +17,10 @@ const routes: Routes = [
       { path: 'calendar-of-events', loadChildren: './pages/calendar-of-events/calendar-of-events.module#CalendarOfEventsPageModule' },
       { path: 'present-list', loadChildren: './pages/present-list/present-list.module#PresentListPageModule' },
       { path: 'edit-room', loadChildren: './pages/edit-room/edit-room.module#EditRoomPageModule' },
+      { path: 'qr-code', loadChildren: './pages/room/qr-code/qr-code.module#QrCodePageModule' },
     ]
   },
+
 
 ];
 

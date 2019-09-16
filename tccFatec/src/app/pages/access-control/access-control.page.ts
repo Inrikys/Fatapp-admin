@@ -57,10 +57,7 @@ export class AccessControlPage implements AfterViewInit {
       this.userSearch = [];
       const usersToFilter = this.users;
 
-      console.log(usersToFilter);
-
       const keyword = this.accessControlForm.value.name;
-      console.log(keyword);
 
       this.userSearch = usersToFilter.filter(collection => {
 

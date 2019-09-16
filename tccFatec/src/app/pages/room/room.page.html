@@ -6,7 +6,7 @@
                 <ion-row>
                     <ion-col>
                         <div>
-                            <ion-radio value="1"></ion-radio>
+                            <ion-radio (click)="filterRoom('Sala')"></ion-radio>
                         </div>
                         <div>
                             <ion-label>Salas</ion-label>
@@ -14,7 +14,7 @@
                     </ion-col>
                     <ion-col>
                         <div>
-                            <ion-radio value="2"></ion-radio>
+                            <ion-radio (click)="filterRoom('Laboratório')"></ion-radio>
                         </div>
                         <div>
                             <ion-label>Laboratórios</ion-label>
@@ -22,7 +22,7 @@
                     </ion-col>
                     <ion-col>
                         <div>
-                            <ion-radio value="3"></ion-radio>
+                            <ion-radio (click)="filterRoom('Auditório')"></ion-radio>
                         </div>
                         <div>
                             <ion-label>Auditórios</ion-label>
@@ -36,6 +36,53 @@
                 </ion-row>
             </ion-grid>
         </ion-radio-group>
-        <room></room>
+
+
+        <div *ngIf="rooms">
+            <div *ngIf="!roomsSearch || roomsSearch == ''">
+                <ion-card class="room-info" *ngFor="let room of rooms">
+                    <ion-item>
+                        <ion-icon *ngIf="room.type == 'Sala'" name="paper-plane" slot="start"></ion-icon>
+                        <ion-icon *ngIf="room.type == 'Laboratório'" ios="ios-desktop" md="md-desktop" slot="start">
+                        </ion-icon>
+                        <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
+                        </ion-icon>
+                        <ion-label>{{room.name}}</ion-label>
+                        <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
+                            atividade</ion-button>
+                    </ion-item>
+                    <ion-card-content>
+                        <div>
+                            <span (click)="goToEditRoom(room.id)" float-right>
+                                <ion-icon class="edit-room" name="create"></ion-icon>
+                            </span>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngIf="roomsSearch">
+                <ion-card class="room-info" *ngFor="let room of roomsSearch">
+                    <ion-item>
+                        <ion-icon *ngIf="room.type == 'Sala'" name="paper-plane" slot="start"></ion-icon>
+                        <ion-icon *ngIf="room.type == 'Laboratório'" ios="ios-desktop" md="md-desktop" slot="start">
+                        </ion-icon>
+                        <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
+                        </ion-icon>
+                        <ion-label>{{room.name}}</ion-label>
+                        <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
+                            atividade</ion-button>
+                    </ion-item>
+                    <ion-card-content>
+                        <div>
+                            <span (click)="goToEditRoom(room.id)" float-right>
+                                <ion-icon class="edit-room" name="create"></ion-icon>
+                            </span>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+
+
     </div>
 </ion-content>

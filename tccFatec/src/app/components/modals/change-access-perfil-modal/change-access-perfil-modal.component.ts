@@ -22,7 +22,6 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
 
   ngOnInit() {
     this.passedUser = this.navParams.get('user');
-    console.log(this.passedUser);
     this.changeAccessPerfilForm = this.changeAccessPerfilValidator.getChangeAccessPerfilForm();
     this.validationMessages = this.changeAccessPerfilValidator.getChangeAccessPerfilValidationsMessages();
   }
