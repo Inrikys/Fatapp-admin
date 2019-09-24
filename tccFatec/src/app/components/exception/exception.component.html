@@ -1,0 +1,45 @@
+<div>
+  <div class="exception-centralize" *ngIf="errorMessage">
+
+    <div class="ion-text-center" *ngIf="exceptionType == 'error_server'">
+      <ion-item lines="none">
+        <div class="exception-icon">
+          <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>
+        </div>
+      </ion-item>
+    </div>
+
+
+    <div class="ion-text-center" *ngIf="exceptionType == 'error_internet'">
+      <ion-item lines="none">
+        <div class="exception-icon">
+          <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+        </div>
+      </ion-item>
+    </div>
+
+    <div class="ion-text-center" *ngIf="exceptionType == 'custom_message' && typeIcon == 'ion'">
+      <ion-item lines="none">
+        <div class="exception-icon">
+          <ion-icon name="{{nameIcon}}"></ion-icon>
+        </div>
+      </ion-item>
+    </div>
+
+    <div class="ion-text-center" *ngIf="exceptionType == 'custom_message' && typeIcon == 'fa'">
+      <ion-item lines="none">
+        <div class="exception-icon">
+          <fa-icon [icon]="[classIcon, nameIcon]"></fa-icon>
+        </div>
+      </ion-item>
+    </div>
+
+    <ion-item lines="none">
+      <div class="exception-text">
+        <p class="ion-text-center">{{errorMessage}}</p>
+      </div>
+    </ion-item>
+
+
+  </div>
+</div>

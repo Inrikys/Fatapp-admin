@@ -76,6 +76,9 @@ export class FatappCoreService {
 
     return this.http.post(link, resource, this.httpOptions).toPromise().catch(error => {
       console.log(error);
+      if (error.status >= 400) {
+        this.global.createAlert('Houve algum erro ao cadastrar o recurso');
+      }
     });
   }
 
@@ -84,7 +87,9 @@ export class FatappCoreService {
 
     return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert('Ocorreu um erro ao remover o recurso');
+      if (error.status >= 400) {
+        this.global.createAlert('Houve algum erro ao remover recurso');
+      }
     });
   }
 
@@ -100,6 +105,64 @@ export class FatappCoreService {
 
     return this.http.post(link, resource, this.httpOptions).toPromise().catch(error => {
       console.log(error);
+      if (error.status >= 400) {
+        this.global.createAlert('Houve algum erro ao adicionar o recurso');
+      }
+    });
+  }
+
+  async getResourceRoom(roomId) {
+    const link = environment.apiCoreUrl + 'rooms/' + roomId + '/resources';
+
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      if (error.status >= 400) {
+        this.global.createAlert('Houve algum erro ao carregar os recursos');
+      }
+    });
+  }
+
+  async removeResourceRoom(roomId, roomResourceId) {
+    const link = environment.apiCoreUrl + `rooms/${roomId}/resources`;
+
+    console.log(roomResourceId);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      }),
+      body: {
+        room_resource_id: `${roomResourceId}`,
+      }
+    };
+
+    console.log(httpOptions);
+
+    return await this.http.delete(link, httpOptions).toPromise().catch(error => {
+      console.log(error.status);
+      if (error.status === 200) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  async updateResourceRoom(resourceId, resourceAmount, roomId) {
+    const link = environment.apiCoreUrl + 'rooms/' + roomId + '/resources';
+
+    const resource = {
+      resource_id: `${resourceId}`,
+      resource_amount: resourceAmount,
+    };
+
+    return this.http.post(link, resource, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      if (error.status >= 400) {
+        this.global.createAlert('Houve algum erro ao alterar o recurso');
+      }
     });
   }
 }

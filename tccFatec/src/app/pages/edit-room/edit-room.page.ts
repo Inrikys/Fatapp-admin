@@ -17,6 +17,7 @@ export class EditRoomPage {
 
   private room: any = null;
   private roomId: any = null;
+  private resourcesRoom: any = null;
 
   constructor(
     private modalController: ModalController,
@@ -25,7 +26,7 @@ export class EditRoomPage {
     private apiCore: FatappCoreService,
   ) {
     this.getRoom();
-   }
+  }
 
 
   async getRoom() {
@@ -34,14 +35,35 @@ export class EditRoomPage {
         this.roomId = await this.route.snapshot.queryParams.id;
         const response = await this.apiCore.getRoomById(this.roomId);
         this.room = response;
-        console.log(this.room);
+        await this.getResourcesRoom();
       } else {
-
+        console.log('Parametro inválido!');
       }
     } catch (error) {
-
+      console.log(error);
     }
+  }
 
+  async getResourcesRoom() {
+    try {
+      const response = await this.apiCore.getResourceRoom(this.roomId);
+      this.resourcesRoom = response;
+      console.log(this.resourcesRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async removeResourceRoom(roomResourceId) {
+    try {
+      const response = await this.apiCore.removeResourceRoom(this.roomId, roomResourceId);
+      if (response) {
+        this.global.createToast('Recurso removido da sala!');
+        this.getResourcesRoom();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async goToRegisterResource() {
@@ -49,15 +71,22 @@ export class EditRoomPage {
       component: RegisterResourceModalComponent,
     });
     modal.present();
+    modal.onDidDismiss().then(() => {
+      this.getResourcesRoom();
+    });
+
   }
 
   async goToAddResource() {
     const modal = await this.modalController.create({
       component: AddResourcesModalComponent,
       componentProps: {
-       roomId: this.roomId,
+        roomId: this.roomId,
       }
     });
     modal.present();
+    modal.onDidDismiss().then(() => {
+      this.getResourcesRoom();
+    });
   }
 }
