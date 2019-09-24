@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddRoomModalComponent } from '../../components/modals/add-room-modal/add-room-modal.component';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
@@ -13,6 +13,7 @@ export class RoomPage {
 
   private rooms: any = null;
   private roomsSearch: any = null;
+  private resourcesRoom: any = null;
 
   constructor(
     private modalController: ModalController,
@@ -42,6 +43,16 @@ export class RoomPage {
     }
   }
 
+  async getResourcesRoom() {
+    try {
+      // const response = await this.apiCore.getResourceRoom();
+    //   this.resourcesRoom = response;
+    //   console.log(this.resourcesRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   filterRoom(type) {
     try {
       this.roomsSearch = [];
@@ -66,4 +77,7 @@ export class RoomPage {
     this.global.navigateByUrl('admin/edit-room?id=' + id);
   }
 
+  goToCalendar() {
+    this.global.navigateByUrl('admin/calendar-of-events');
+  }
 }

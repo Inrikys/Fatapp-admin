@@ -22,10 +22,12 @@
     <ion-grid class="box-secondary">
       <ion-row>
         <ion-col>
-           <ion-button (click)="goToRegisterResource()" color="tertiary">Cadastrar recurso</ion-button>
+          <ion-button (click)="goToRegisterResource()" color="tertiary">Cadastrar recurso</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+
 
     <div class="box">
       <ion-grid>
@@ -34,38 +36,37 @@
             <ion-item lines="none">
               <ion-icon name="construct" slot="start"></ion-icon>
               <ion-label>Recursos</ion-label>
-              <ion-button (click)="goToAddResource()" fill="outline" slot="end">Adicionar</ion-button>
+              <ion-button (click)="goToAddResource()" fill="outline" slot="end">Adicionar/Alterar</ion-button>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <div class="resource-item">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="12">
-              <ion-item lines="none">
-                <ion-label>Computador</ion-label>
-                <ion-button fill="outline" slot="end">Remover</ion-button>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-item>
-                <ion-label>Quantidade:</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-              <ion-item lines="none">
-                <ion-button fill="outline" slot="end">Alterar</ion-button>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+
+
+      <div *ngIf="resourcesRoom">
+        <div class="resource-item" *ngFor="let resource of resourcesRoom">
+          <ion-grid class="ion-padding-top">
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label>{{resource.resource.name}}</ion-label>
+                  <ion-button (click)="removeResourceRoom(resource.id)" fill="outline" slot="end">Remover</ion-button>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label>Quantidade: <span>{{resource.resourceAmmount}}</span></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
 
     </div>
+
   </div>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddResourceValidatorService } from 'src/app/services/validators/add-resource/add-resource-validator.service';
-import { NavParams } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 
@@ -24,6 +24,7 @@ export class AddResourcesModalComponent {
     private navParams: NavParams,
     private apiCore: FatappCoreService,
     private global: GlobalsService,
+    private modalController: ModalController,
   ) {
     this.passedRoomId = this.navParams.get('roomId');
     this.addResourceForm = this.addResourceValidator.getAddResourceForm();
@@ -33,18 +34,22 @@ export class AddResourcesModalComponent {
 
 
   async submit() {
-    if (!this.addResourceForm.valid) {
-      this.addResourceValidator.validateAllFormFields();
-    } else {
-      this.resource = await this.resources.filter(collection => {
-        return collection.name === this.addResourceForm.value.name;
-      });
-      console.log(this.resource[0].id);
-      console.log(this.addResourceForm.value.resource_amount);
-      console.log(this.passedRoomId);
-      const response = await this.apiCore.addResourceRoom(this.resource[0].id,
-        this.addResourceForm.value.resource_amount, this.passedRoomId);
+    try {
+      if (!this.addResourceForm.valid) {
+        this.addResourceValidator.validateAllFormFields();
+      } else {
+        this.resource = await this.resources.filter(collection => {
+          return collection.name === this.addResourceForm.value.name;
+        });
+        const response = await this.apiCore.addResourceRoom(this.resource[0].id,
+          this.addResourceForm.value.resource_amount, this.passedRoomId);
+        this.global.createToast('Recurso adicionado à sala');
+        this.modalController.dismiss();
+      }
+    } catch (error) {
+      console.log(error);
     }
+
   }
 
   async getAllResources() {
