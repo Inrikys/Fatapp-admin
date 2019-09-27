@@ -6,9 +6,10 @@
     <div *ngIf="room" class="box">
       <ion-grid>
         <ion-row>
-          <ion-col size="10">
+          <ion-col size="12">
             <ion-item lines="none">
               <h1 class="page-title"><span>{{room.type}}</span><span>{{room.name}}</span></h1>
+              <ion-button (click)="removeRoom()" fill="outline" slot="end">Remover Sala</ion-button>
             </ion-item>
             <ion-item>
               <h2 class="page-title">Capacidade: <span>{{room.capacity}}</span></h2>

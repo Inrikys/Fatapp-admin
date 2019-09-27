@@ -52,9 +52,13 @@
                             atividade</ion-button>
                     </ion-item>
                     <ion-card-content>
-                        <div> <span></span></div>
-                        <div> <span></span></div>
                         <div>
+                            <div>
+                                <div *ngFor="let resource of room.resources">
+                                    <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
+                                            <span>{{resource.resourceAmmount}}</span></span>
+                                </div>
+                            </div>
                             <span (click)="goToEditRoom(room.id)" float-right>
                                 <ion-icon class="edit-room" name="create"></ion-icon>
                             </span>
@@ -76,6 +80,12 @@
                     </ion-item>
                     <ion-card-content>
                         <div>
+                            <div>
+                                <div *ngFor="let resource of room.resources">
+                                    <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
+                                            <span>{{resource.resourceAmmount}}</span></span>
+                                </div>
+                            </div>
                             <span (click)="goToEditRoom(room.id)" float-right>
                                 <ion-icon class="edit-room" name="create"></ion-icon>
                             </span>

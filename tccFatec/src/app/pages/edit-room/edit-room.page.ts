@@ -48,7 +48,6 @@ export class EditRoomPage {
     try {
       const response = await this.apiCore.getResourceRoom(this.roomId);
       this.resourcesRoom = response;
-      console.log(this.resourcesRoom);
     } catch (error) {
       console.log(error);
     }

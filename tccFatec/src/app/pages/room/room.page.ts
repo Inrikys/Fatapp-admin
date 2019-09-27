@@ -13,7 +13,6 @@ export class RoomPage {
 
   private rooms: any = null;
   private roomsSearch: any = null;
-  private resourcesRoom: any = null;
 
   constructor(
     private modalController: ModalController,
@@ -36,7 +35,7 @@ export class RoomPage {
       await loading.present();
       const response = await this.apiCore.getAllRooms();
       this.rooms = response;
-      console.log(response);
+      await this.getResourcesRoom();
       await loading.dismiss();
     } catch (error) {
       console.log(error);
@@ -45,9 +44,14 @@ export class RoomPage {
 
   async getResourcesRoom() {
     try {
-      // const response = await this.apiCore.getResourceRoom();
-    //   this.resourcesRoom = response;
-    //   console.log(this.resourcesRoom);
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.rooms.length; i++) {
+        let resources: any = await this.apiCore.getResourceRoom(this.rooms[i].id);
+        let objResources = {
+          resources,
+        };
+        Object.assign(this.rooms[i], objResources);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -57,10 +61,8 @@ export class RoomPage {
     try {
       this.roomsSearch = [];
       const roomsToFilter = this.rooms;
-      console.log(roomsToFilter);
 
       const keyword = type;
-      console.log(keyword);
 
       this.roomsSearch = roomsToFilter.filter(collection => {
 

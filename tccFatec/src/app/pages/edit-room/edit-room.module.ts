@@ -9,6 +9,7 @@ import { EditRoomPage } from './edit-room.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { AddResourcesModalModule } from 'src/app/components/modals/add-resources/add-resources-modal.module';
 import { RegisterResourceModalModule } from 'src/app/components/modals/register-resource/register-resource-modal.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    FontAwesomeModule,
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
