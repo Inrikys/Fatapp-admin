@@ -1,3 +1,250 @@
-<p>
-  register-activity-modal works!
-</p>
+<modal-header title="Registrar atividade"></modal-header>
+<ion-content color="tertiary">
+    <div class="container">
+        <form [formGroup]="activityForm">
+            <ion-grid class="box">
+                <ion-row>
+                    <ion-col>
+                        <div class="ion-text-center">
+                            <img class="page-icon" src="../../../../assets/imgs/speaker.png">
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col>
+                        <div>Dados do palestrador</div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label class="ion-padding-right">Nome: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input formControlName="speakerName"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.speakerName">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerName').hasError(validation.type) && (activityForm.get('speakerName').dirty || activityForm.get('speakerName').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label class="ion-padding-right">E-mail: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input formControlName="speakerEmail"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.speakerEmail">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label class="ion-padding-right">Telefone: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input formControlName="speakerPhone"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.speakerPhone">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerPhone').hasError(validation.type) && (activityForm.get('speakerPhone').dirty || activityForm.get('speakerPhone').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label class="ion-padding-right">Resumo CV: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <textarea formControlName="speakerCurriculum"></textarea>
+                        <ng-container *ngFor="let validation of validationMessages.speakerCurriculum">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerCurriculum').hasError(validation.type) && (activityForm.get('speakerCurriculum').dirty || activityForm.get('speakerCurriculum').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+
+            <ion-grid class="box">
+                <ion-row>
+                    <ion-col>
+                        <div>Dados da atividade</div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Título: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input formControlName="title"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.title">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('title').hasError(validation.type) && (activityForm.get('title').dirty || activityForm.get('title').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col class="ion-padding" size="6">
+                        <ion-label>Tipo:</ion-label>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Palestra" type="radio" name="type">
+                            <label>Palest1ra</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Mesa redonda" type="radio" name="type">
+                            <label>Mesa redonda</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Workshop" type="radio" name="type">
+                            <label>Workshop</label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Minicurso" type="radio" name="type">
+                            <label>Minicurso</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Outro" type="radio" name="type">
+                            <label>Outro</label>
+                        </div>
+                    </ion-col>
+                    <ng-container *ngFor="let validation of validationMessages.email">
+                        <div class="error-message"
+                            *ngIf="activityForm.get('email').hasError(validation.type) && (activityForm.get('email').dirty || activityForm.get('email').touched)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col class="ion-padding" size="6">
+                        <ion-label>Público alvo:</ion-label>
+                        <div class="ion-padding-top">
+                            <input formControlName="targetAudience" [value]="ADS" type="checkbox" name="targetAudience">
+                            <label>ADS</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="targetAudience" value="Jogos" type="checkbox" name="targetAudience">
+                            <label>Jogos</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="targetAudience" value="COMEX" type="checkbox" name="targetAudience">
+                            <label>COMEX</label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="ion-padding-top">
+                            <input formControlName="targetAudience" value="Minicurso" type="checkbox" name="targetAudience">
+                            <label>Gestão Empresarial</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="targetAudience" value="Outro" type="checkbox" name="targetAudience">
+                            <label>SI</label>
+                        </div>
+                        <ng-container *ngFor="let validation of validationMessages.email">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('email').hasError(validation.type) && (activityForm.get('email').dirty || activityForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>De: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-datetime formControlName="initialTime" cancel-text="Cancelar" done-text="OK" placeholder="horas:minutos"
+                            displayFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
+                        <ng-container *ngFor="let validation of validationMessages.initialTime">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('initialTime').hasError(validation.type) && (activityForm.get('initialTime').dirty || activityForm.get('initialTime').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Até: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-datetime formControlName="finalTime" cancel-text="Cancelar" done-text="OK" placeholder="horas:minutos"
+                            displayFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
+                        <ng-container *ngFor="let validation of validationMessages.finalTime">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('finalTime').hasError(validation.type) && (activityForm.get('finalTime').dirty || activityForm.get('finalTime').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Descrição: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <textarea formControlName="description"></textarea>
+                        <ng-container *ngFor="let validation of validationMessages.description">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('description').hasError(validation.type) && (activityForm.get('description').dirty || activityForm.get('description').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+            </ion-grid>
+            <div class="ion-padding-bottom">
+                <ion-button (click)="submit()">Publicar</ion-button>
+            </div>
+        </form>
+    </div>
+
+
+</ion-content>

@@ -7,7 +7,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { IonicModule } from '@ionic/angular';
 
 import { CalendarOfEventsPage } from './calendar-of-events.page';
-import {ComponentsModule} from "../../components/components.module";
+import {ComponentsModule} from '../../components/components.module';
+import { RegisterActivityModalModule } from 'src/app/components/modals/register-activity-modal/register-activity-modal.module';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ComponentsModule,
         FontAwesomeModule,
+        RegisterActivityModalModule,
     ],
   declarations: [CalendarOfEventsPage]
 })

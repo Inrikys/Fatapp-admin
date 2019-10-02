@@ -1,14 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterActivityValidatorService } from 'src/app/services/validators/register-activity/register-activity-validator.service';
 
 @Component({
   selector: 'app-register-activity-modal',
   templateUrl: './register-activity-modal.component.html',
   styleUrls: ['./register-activity-modal.component.scss'],
 })
-export class RegisterActivityModalComponent implements OnInit {
+export class RegisterActivityModalComponent {
 
-  constructor() { }
+  public activityForm;
+  public validationMessages;
 
-  ngOnInit() {}
+  constructor(
+    private activityValidator: RegisterActivityValidatorService,
+  ) {
+    this.activityForm = this.activityValidator.getActivityForm();
+    this.validationMessages = this.activityValidator.getActivityFormValidationsMessages();
+  }
+
+  submit() {
+    console.log(this.activityForm);
+    if (!this.activityForm.valid) {
+      this.activityValidator.validateAllFormFields();
+    } else {
+
+    }
+  }
 
 }
