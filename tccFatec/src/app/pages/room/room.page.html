@@ -37,6 +37,11 @@
             </ion-grid>
         </ion-radio-group>
 
+        <div class="ion-text-center ion-padding-top" *ngIf="!roomsSearch || roomsSearch == ''">
+            <div *ngIf="!rooms || rooms == ''">
+                Não há salas registradas.
+            </div>
+        </div>
 
         <div *ngIf="rooms">
             <div *ngIf="!roomsSearch || roomsSearch == ''">
@@ -47,16 +52,17 @@
                         </ion-icon>
                         <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
                         </ion-icon>
-                        <ion-label>{{room.name}}</ion-label>
+                        <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
                         <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
                             atividade</ion-button>
                     </ion-item>
                     <ion-card-content>
                         <div>
                             <div>
+                                <div><span>Capacidade: </span>{{room.capacity}}</div>
                                 <div *ngFor="let resource of room.resources">
                                     <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
-                                            <span>{{resource.resourceAmmount}}</span></span>
+                                        <span>{{resource.resourceAmmount}}</span></span>
                                 </div>
                             </div>
                             <span (click)="goToEditRoom(room.id)" float-right>
@@ -74,16 +80,17 @@
                         </ion-icon>
                         <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
                         </ion-icon>
-                        <ion-label>{{room.name}}</ion-label>
+                        <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
                         <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
                             atividade</ion-button>
                     </ion-item>
                     <ion-card-content>
                         <div>
                             <div>
+                                <div><span>Capacidade: </span>{{room.capacity}}</div>
                                 <div *ngFor="let resource of room.resources">
                                     <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
-                                            <span>{{resource.resourceAmmount}}</span></span>
+                                        <span>{{resource.resourceAmmount}}</span></span>
                                 </div>
                             </div>
                             <span (click)="goToEditRoom(room.id)" float-right>

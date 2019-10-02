@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { AddResourcesModalComponent } from 'src/app/components/modals/add-resources/add-resources-modal.component';
 import { RegisterResourceModalComponent } from 'src/app/components/modals/register-resource/register-resource-modal.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 
@@ -24,10 +24,13 @@ export class EditRoomPage {
     private route: ActivatedRoute,
     private global: GlobalsService,
     private apiCore: FatappCoreService,
+    private router: Router,
   ) {
-    this.getRoom();
   }
 
+  ionViewDidEnter() {
+    this.getRoom();
+  }
 
   async getRoom() {
     try {
@@ -39,6 +42,16 @@ export class EditRoomPage {
       } else {
         console.log('Parametro inválido!');
       }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async removeRoom() {
+    try {
+      await this.apiCore.removeRoom(this.roomId);
+      await this.global.createToast('Sala removida!');
+      await this.router.navigate(['admin/room']);
     } catch (error) {
       console.log(error);
     }
@@ -87,5 +100,9 @@ export class EditRoomPage {
     modal.onDidDismiss().then(() => {
       this.getResourcesRoom();
     });
+  }
+
+  goBack() {
+    this.global.navigateByUrl('admin/room');
   }
 }

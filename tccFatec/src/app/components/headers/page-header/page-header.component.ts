@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NavController} from "@ionic/angular";
+import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'page-header',
@@ -11,12 +11,12 @@ export class PageHeaderComponent implements OnInit {
   public headerTitle = '';
 
   constructor(
-      private navController: NavController,
+    private navController: NavController,
   ) { }
-  ngOnInit() {}
+  ngOnInit() { }
 
-  @Input() set title (val: string){
-    this.headerTitle = (val !== undefined && val !== null)? val : null;
+  @Input() set title(val: string) {
+    this.headerTitle = (val !== undefined && val !== null) ? val : null;
   }
 
   goBack() {

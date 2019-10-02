@@ -19,14 +19,20 @@ export class RoomPage {
     private apiCore: FatappCoreService,
     private global: GlobalsService,
   ) {
-    this.getAllRooms();
+  }
+
+  async ionViewDidEnter() {
+    await this.getAllRooms();
   }
 
   async goToAddRoomModal() {
     const modal = await this.modalController.create({
       component: AddRoomModalComponent,
     });
-    modal.present();
+    await modal.present();
+    await modal.onDidDismiss().then(() => {
+      this.getAllRooms();
+    });
   }
 
   async getAllRooms() {
@@ -35,6 +41,7 @@ export class RoomPage {
       await loading.present();
       const response = await this.apiCore.getAllRooms();
       this.rooms = response;
+      console.log(response);
       await this.getResourcesRoom();
       await loading.dismiss();
     } catch (error) {

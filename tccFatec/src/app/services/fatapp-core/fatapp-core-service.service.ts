@@ -55,6 +55,13 @@ export class FatappCoreService {
     });
   }
 
+  async removeRoom(id) {
+    const link = environment.apiCoreUrl + 'rooms/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Falha ao remover a sala');
+    });
+  }
 
 
 
