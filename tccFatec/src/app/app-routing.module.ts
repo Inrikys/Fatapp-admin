@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'present-list', loadChildren: './pages/present-list/present-list.module#PresentListPageModule' },
       { path: 'edit-room', loadChildren: './pages/edit-room/edit-room.module#EditRoomPageModule' },
       { path: 'qr-code', loadChildren: './pages/room/qr-code/qr-code.module#QrCodePageModule' },
+      { path: 'register-event', loadChildren: './pages/register-event/register-event.module#RegisterEventPageModule' },
     ]
   },
 

@@ -24,6 +24,16 @@ export class FatappCoreService {
     };
   }
 
+  // EVENT
+
+  async getAllEvents() {
+
+  }
+
+  async registerEvent(data) {
+    console.log(data);
+  }
+
   // ROOMS
 
   async getAllRooms() {
@@ -144,8 +154,6 @@ export class FatappCoreService {
         room_resource_id: `${roomResourceId}`,
       }
     };
-
-    console.log(httpOptions);
 
     return await this.http.delete(link, httpOptions).toPromise().catch(error => {
       console.log(error.status);
