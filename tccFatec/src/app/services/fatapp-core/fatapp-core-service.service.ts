@@ -34,6 +34,14 @@ export class FatappCoreService {
     console.log(data);
   }
 
+  async removeEvent(id) {
+    console.log(id);
+  }
+
+  async updateEvent(data) {
+    console.log(data);
+  }
+
   // ROOMS
 
   async getAllRooms() {

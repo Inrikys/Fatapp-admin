@@ -23,6 +23,7 @@ export class AppComponent {
         { title: 'Controle de acesso', url: '/admin/access-control' },
         { title: 'Salas', url: '/admin/room' },
         { title: 'Cadastrar evento', url: '/admin/register-event' },
+        { title: 'Editar eventos', url: '/admin/edit-event' },
         { title: 'Lista de presença', url: '/admin/present-list' }
     ];
     public generalLinks = [

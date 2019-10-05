@@ -1,8 +1,9 @@
 <main-header></main-header>
 
 <ion-content color="tertiary">
+
   <div class="container">
-    <h1 class="page-title">Cadatrar evento</h1>
+      <h1 class="page-title">Editar evento</h1>
     <form [formGroup]="formEvent">
       <ion-grid class="box">
         <div text-center>
@@ -11,8 +12,11 @@
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
-              <ion-label position="fixed">Título: </ion-label>
-              <ion-input formControlName="title" placeholder="Título do evento"></ion-input>
+              <ion-label position="fixed">Evento: </ion-label>
+              <ion-select formControlName="title" placeholder="Eventos">
+                <ion-select-option>ADS DAY</ion-select-option>
+                <ion-select-option>Fatecnologia</ion-select-option>
+              </ion-select>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.title">
               <div class="error-message"
@@ -44,8 +48,7 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">De: </ion-label>
-              <ion-datetime formControlName="initialDate" placeholder="Escolha a data" displayFormat="DD MM YYYY"
-                min="2019-06-04" max="2050-01-01">
+              <ion-datetime formControlName="initialDate" placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.initialDate">
@@ -60,8 +63,7 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Até: </ion-label>
-              <ion-datetime formControlName="finalDate" placeholder="Escolha a data" displayFormat="DD MM YYYY"
-                min="2019-06-04" max="2050-01-01">
+              <ion-datetime formControlName="finalDate" placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.finalDate">
@@ -87,9 +89,22 @@
           </ion-col>
         </ion-row>
         <div text-center>
-          <ion-button class="btn-block btn-register" (click)="register()">Cadastrar</ion-button>
+          <ion-button class="btn-block btn-register" (click)="upload()">Editar</ion-button>
         </div>
       </ion-grid>
     </form>
+
+    <div>Recursos já cadastrados</div>
+    <div color="white">
+      <ion-list>
+        <ion-item>
+          <ion-label>Título: <span>ADS DAY</span> Edição: <span>v3</span></ion-label>
+          <ion-icon (click)="removeEvent()" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+          </ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
+
   </div>
+
 </ion-content>

@@ -19,8 +19,10 @@ const routes: Routes = [
       { path: 'edit-room', loadChildren: './pages/edit-room/edit-room.module#EditRoomPageModule' },
       { path: 'qr-code', loadChildren: './pages/room/qr-code/qr-code.module#QrCodePageModule' },
       { path: 'register-event', loadChildren: './pages/register-event/register-event.module#RegisterEventPageModule' },
+      { path: 'edit-event', loadChildren: './pages/edit-event/edit-event.module#EditEventPageModule' },
     ]
   },
+
 
 
 ];
