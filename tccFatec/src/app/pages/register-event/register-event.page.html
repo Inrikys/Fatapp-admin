@@ -1,0 +1,94 @@
+<page-header title="Cadastrar evento"></page-header>
+
+<ion-content color="tertiary">
+  <div class="container">
+    <form [formGroup]="formEvent">
+      <ion-grid class="box">
+        <div text-center>
+          <img class="page-icon" src="../../../assets/imgs/event.png">
+        </div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Título: </ion-label>
+              <ion-input formControlName="title" placeholder="Título do evento"></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.title">
+                <div class="error-message"
+                  *ngIf="formEvent.get('title').hasError(validation.type) && (formEvent.get('title').dirty || formEvent.get('title').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Edição: </ion-label>
+              <ion-input formControlName="edition" placeholder="Edição"></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.edition">
+                <div class="error-message"
+                  *ngIf="formEvent.get('edition').hasError(validation.type) && (formEvent.get('edition').dirty || formEvent.get('edition').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+          </ion-col>
+        </ion-row>
+
+        
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">De: </ion-label>
+              <ion-datetime formControlName="initialDate" placeholder="Escolha a data" displayFormat="DD MM YYYY"
+                min="2019-06-04" max="2050-01-01">
+              </ion-datetime>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.initialDate">
+              <div class="error-message"
+                *ngIf="formEvent.get('initialDate').hasError(validation.type) && (formEvent.get('initialDate').dirty || formEvent.get('initialDate').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Até: </ion-label>
+              <ion-datetime formControlName="finalDate" placeholder="Escolha a data" displayFormat="DD MM YYYY"
+                min="2019-06-04" max="2050-01-01">
+              </ion-datetime>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.finalDate">
+              <div class="error-message"
+                *ngIf="formEvent.get('finalDate').hasError(validation.type) && (formEvent.get('finalDate').dirty || formEvent.get('finalDate').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label class="banner">Banner: </ion-label>
+            </ion-item>
+            <input formControlName="banner" type="file">
+            <ng-container *ngFor="let validation of validationMessages.banner">
+              <div class="error-message"
+                *ngIf="formEvent.get('banner').hasError(validation.type) && (formEvent.get('banner').dirty || formEvent.get('banner').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <div text-center>
+          <ion-button class="btn-block btn-register" (click)="register()">Cadastrar</ion-button>
+        </div>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
