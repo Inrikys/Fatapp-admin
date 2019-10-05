@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PresentListPage } from './present-list.page';
-import {ComponentsModule} from "../../components/components.module";
+import {ComponentsModule} from '../../components/components.module';
+import { SendEmailModalModule } from 'src/app/components/modals/send-email/send-email-modal.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
+        SendEmailModalModule,
         RouterModule.forChild(routes),
         ComponentsModule
     ],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ForgetPasswordValidatorService } from 'src/app/services/validators/forget-password/forget-password-validator.service';
 import { UsersService } from 'src/app/services/firebase/users/users.service';
 

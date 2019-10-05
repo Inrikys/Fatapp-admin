@@ -8,11 +8,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // Headers
 import { ModalHeaderComponent } from './headers/modal-header/modal-header.component';
 import { PageHeaderComponent } from './headers/page-header/page-header.component';
+import { MainHeaderComponent } from './headers/main-header/main-header.component';
 
 
 // Exception
 import { ExceptionComponent } from './exception/exception.component';
-
 
 
 @NgModule({
@@ -25,11 +25,13 @@ import { ExceptionComponent } from './exception/exception.component';
     ModalHeaderComponent,
     PageHeaderComponent,
     ExceptionComponent,
+    MainHeaderComponent,
   ],
   exports: [
     ModalHeaderComponent,
     PageHeaderComponent,
     ExceptionComponent,
+    MainHeaderComponent,
   ],
 })
 export class ComponentsModule { }
