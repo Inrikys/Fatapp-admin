@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, AlertController } from '@ionic/angular';
 import { AddResourcesModalComponent } from 'src/app/components/modals/add-resources/add-resources-modal.component';
 import { RegisterResourceModalComponent } from 'src/app/components/modals/register-resource/register-resource-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +25,7 @@ export class EditRoomPage {
     private global: GlobalsService,
     private apiCore: FatappCoreService,
     private router: Router,
+    private alertController: AlertController,
   ) {
   }
 
@@ -49,9 +50,35 @@ export class EditRoomPage {
 
   async removeRoom() {
     try {
-      await this.apiCore.removeRoom(this.roomId);
-      await this.global.createToast('Sala removida!');
-      await this.router.navigate(['admin/room']);
+      let option = null;
+      const alert = await this.alertController.create({
+        message: 'Deseja mesmo remover?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            handler: () => {
+              option = false;
+            }
+          }, {
+            text: 'Ok',
+            handler: () => {
+              option = true;
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+
+      alert.onDidDismiss().then(async () => {
+        if (option) {
+          await this.apiCore.removeRoom(this.roomId);
+          await this.global.createToast('Sala removida!');
+          await this.router.navigate(['admin/room']);
+        }
+      });
+
     } catch (error) {
       console.log(error);
     }
@@ -68,11 +95,38 @@ export class EditRoomPage {
 
   async removeResourceRoom(roomResourceId) {
     try {
-      const response = await this.apiCore.removeResourceRoom(this.roomId, roomResourceId);
-      if (response) {
-        this.global.createToast('Recurso removido da sala!');
-        this.getResourcesRoom();
-      }
+      let option = null;
+      const alert = await this.alertController.create({
+        message: 'Deseja mesmo remover?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            handler: () => {
+              option = false;
+            }
+          }, {
+            text: 'Ok',
+            handler: () => {
+              option = true;
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+
+      alert.onDidDismiss().then(async () => {
+
+        if (option) {
+          const response = await this.apiCore.removeResourceRoom(this.roomId, roomResourceId);
+          if (response) {
+            this.global.createToast('Recurso removido da sala!');
+            this.getResourcesRoom();
+          }
+        }
+      });
+
     } catch (error) {
       console.log(error);
     }
