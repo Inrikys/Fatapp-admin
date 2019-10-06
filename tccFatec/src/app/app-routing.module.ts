@@ -20,9 +20,10 @@ const routes: Routes = [
       { path: 'qr-code', loadChildren: './pages/room/qr-code/qr-code.module#QrCodePageModule' },
       { path: 'register-event', loadChildren: './pages/register-event/register-event.module#RegisterEventPageModule' },
       { path: 'edit-event', loadChildren: './pages/edit-event/edit-event.module#EditEventPageModule' },
+      { path: 'register-speaker', loadChildren: './pages/register-speaker/register-speaker.module#RegisterSpeakerPageModule' },
+
     ]
   },
-  { path: 'register-speaker', loadChildren: './pages/register-speaker/register-speaker.module#RegisterSpeakerPageModule' },
 
 
 

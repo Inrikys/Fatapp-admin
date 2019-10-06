@@ -24,7 +24,8 @@ export class AppComponent {
         { title: 'Salas', url: '/admin/room' },
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
-        { title: 'Lista de presença', url: '/admin/present-list' }
+        { title: 'Lista de presença', url: '/admin/present-list' },
+        { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
     ];
     public generalLinks = [
         { title: 'Sobre', url: '/about' },
