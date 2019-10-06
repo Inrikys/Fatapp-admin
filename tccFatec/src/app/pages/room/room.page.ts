@@ -41,7 +41,6 @@ export class RoomPage {
       await loading.present();
       const response = await this.apiCore.getAllRooms();
       this.rooms = response;
-      console.log(response);
       await this.getResourcesRoom();
       await loading.dismiss();
     } catch (error) {
