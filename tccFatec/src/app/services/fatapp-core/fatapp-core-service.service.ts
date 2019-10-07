@@ -42,6 +42,25 @@ export class FatappCoreService {
     console.log(data);
   }
 
+  // SPEAKER
+
+  async getAllSpeakers() {
+
+  }
+
+  async registerSpeaker(data) {
+
+  }
+
+  async removeSpeaker(id) {
+
+
+  }
+
+  async uploadSpeaker(data) {
+
+  }
+
   // ROOMS
 
   async getAllRooms() {

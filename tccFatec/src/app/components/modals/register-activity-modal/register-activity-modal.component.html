@@ -2,99 +2,31 @@
 <ion-content color="tertiary">
     <div class="container">
         <form [formGroup]="activityForm">
+        
             <ion-grid class="box">
                 <ion-row>
                     <ion-col>
-                        <div class="ion-text-center">
-                            <img class="page-icon" src="../../../../assets/imgs/speaker.png">
-                        </div>
+                        <div>Dados da atividade</div>
                     </ion-col>
                 </ion-row>
-
-
-                <ion-row>
-                    <ion-col>
-                        <div>Dados do palestrador</div>
-                    </ion-col>
-                </ion-row>
-
                 <ion-row>
                     <ion-col size="4">
                         <ion-item lines="none">
-                            <ion-label class="ion-padding-right">Nome: </ion-label>
+                            <ion-label>Palestrador: </ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-input formControlName="speakerName"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.speakerName">
-                            <div class="error-message"
-                                *ngIf="activityForm.get('speakerName').hasError(validation.type) && (activityForm.get('speakerName').dirty || activityForm.get('speakerName').touched)">
-                                {{ validation.message }}
-                            </div>
-                        </ng-container>
-                    </ion-col>
-                </ion-row>
-
-
-                <ion-row>
-                    <ion-col size="4">
-                        <ion-item lines="none">
-                            <ion-label class="ion-padding-right">E-mail: </ion-label>
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="8">
-                        <ion-input formControlName="speakerEmail"></ion-input>
+    
+                        <ion-select formControlName="speakerEmail">
+                            <ion-select-option>testerson@gmail.com.br.comdskahsddsa</ion-select-option>
+                        </ion-select>
+                        <div class="info">Certifique-se de que o palestrador já está cadastrado</div>
                         <ng-container *ngFor="let validation of validationMessages.speakerEmail">
                             <div class="error-message"
                                 *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
-                    </ion-col>
-                </ion-row>
-
-
-                <ion-row>
-                    <ion-col size="4">
-                        <ion-item lines="none">
-                            <ion-label class="ion-padding-right">Telefone: </ion-label>
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="8">
-                        <ion-input formControlName="speakerPhone"></ion-input>
-                        <ng-container *ngFor="let validation of validationMessages.speakerPhone">
-                            <div class="error-message"
-                                *ngIf="activityForm.get('speakerPhone').hasError(validation.type) && (activityForm.get('speakerPhone').dirty || activityForm.get('speakerPhone').touched)">
-                                {{ validation.message }}
-                            </div>
-                        </ng-container>
-                    </ion-col>
-                </ion-row>
-
-
-                <ion-row>
-                    <ion-col size="4">
-                        <ion-item lines="none">
-                            <ion-label class="ion-padding-right">Resumo CV: </ion-label>
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="8">
-                        <textarea formControlName="speakerCurriculum"></textarea>
-                        <ng-container *ngFor="let validation of validationMessages.speakerCurriculum">
-                            <div class="error-message"
-                                *ngIf="activityForm.get('speakerCurriculum').hasError(validation.type) && (activityForm.get('speakerCurriculum').dirty || activityForm.get('speakerCurriculum').touched)">
-                                {{ validation.message }}
-                            </div>
-                        </ng-container>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-
-
-            <ion-grid class="box">
-                <ion-row>
-                    <ion-col>
-                        <div>Dados da atividade</div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -153,25 +85,25 @@
                     <ion-col class="ion-padding" size="6">
                         <ion-label>Público alvo:</ion-label>
                         <div class="ion-padding-top">
-                            <input formControlName="targetAudience" [value]="ADS" type="checkbox" name="targetAudience">
+                            <input (click)="selectCategory('ads')" class="ads" formControlName="targetAudience" value="ADS" type="checkbox" name="targetAudience">
                             <label>ADS</label>
                         </div>
                         <div class="ion-padding-top">
-                            <input formControlName="targetAudience" value="Jogos" type="checkbox" name="targetAudience">
+                            <input class="checkbox" formControlName="targetAudience" value="Jogos" type="checkbox" name="targetAudience">
                             <label>Jogos</label>
                         </div>
                         <div class="ion-padding-top">
-                            <input formControlName="targetAudience" value="COMEX" type="checkbox" name="targetAudience">
+                            <input class="checkbox" formControlName="targetAudience" value="COMEX" type="checkbox" name="targetAudience">
                             <label>COMEX</label>
                         </div>
                     </ion-col>
                     <ion-col size="6">
                         <div class="ion-padding-top">
-                            <input formControlName="targetAudience" value="Minicurso" type="checkbox" name="targetAudience">
+                            <input  class="checkbox" formControlName="targetAudience" value="Minicurso" type="checkbox" name="targetAudience">
                             <label>Gestão Empresarial</label>
                         </div>
                         <div class="ion-padding-top">
-                            <input formControlName="targetAudience" value="Outro" type="checkbox" name="targetAudience">
+                            <input class="checkbox" formControlName="targetAudience" value="Outro" type="checkbox" name="targetAudience">
                             <label>SI</label>
                         </div>
                         <ng-container *ngFor="let validation of validationMessages.email">

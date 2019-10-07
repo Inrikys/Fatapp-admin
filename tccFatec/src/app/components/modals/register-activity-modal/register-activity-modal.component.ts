@@ -26,5 +26,9 @@ export class RegisterActivityModalComponent {
 
     }
   }
+  selectCategory(query) {
+    const element = document.querySelectorAll(`.${query}`);
+    element.classList.add('active');
+  }
 
 }
