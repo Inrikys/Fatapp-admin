@@ -53,7 +53,7 @@
                         <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
                         </ion-icon>
                         <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
-                        <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
+                        <ion-button class="btn-option" (click)="goToCalendar(room.id)" fill="outline" slot="end">Agendar
                             atividade</ion-button>
                     </ion-item>
                     <ion-card-content>
@@ -81,7 +81,7 @@
                         <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
                         </ion-icon>
                         <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
-                        <ion-button class="btn-option" (click)="goToCalendar()" fill="outline" slot="end">Agendar
+                        <ion-button class="btn-option" (click)="goToCalendar(room.id)" fill="outline" slot="end">Agendar
                             atividade</ion-button>
                     </ion-item>
                     <ion-card-content>

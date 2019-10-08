@@ -23,6 +23,7 @@ export class RegisterSpeakerValidatorService {
       speakerName: [null, Validators.compose([Validators.required])],
       speakerEmail: [null, Validators.compose([Validators.required, Validators.email])],
       speakerPhone: [null, Validators.compose([Validators.required])],
+      speakerPhone2: [null],
       speakerCurriculum: [null, Validators.compose([Validators.required])],
     });
   }

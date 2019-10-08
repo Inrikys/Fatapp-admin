@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterSpeakerValidatorService } from 'src/app/services/validators/register-speaker/register-speaker-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 
 @Component({
   selector: 'app-register-speaker',
@@ -9,25 +10,52 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 })
 export class RegisterSpeakerPage {
 
+  public nameSpeaker;
+  public phoneSpeaker;
+  public phoneSpeaker2;
+  public curriculumSpeaker;
+
   public speakerForm;
   public validationMessages;
 
   constructor(
     private speakerValidator: RegisterSpeakerValidatorService,
     private apiCore: FatappCoreService,
+    private global: GlobalsService,
   ) {
     this.speakerForm = this.speakerValidator.getSpeakerForm();
     this.validationMessages = this.speakerValidator.getSpeakerFormValidationsMessages();
   }
 
-  submit() {
-    console.log(this.speakerForm);
-    if (!this.speakerForm.valid) {
-      this.speakerValidator.validateAllFormFields();
-    } else {
-      this.apiCore.registerSpeaker(this.speakerForm.value);
+  async submit() {
+    try {
+      if (!this.speakerForm.valid) {
+        this.speakerValidator.validateAllFormFields();
+      } else {
+        const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
+        console.log(response);
+        if (response.speakerName) {
+          this.global.createAlert('Palestrante cadastrado com sucesso!');
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
+  }
+
+  async getSpeaker() {
+    try {
+      if (this.speakerForm.value.speakerEmail !== '') {
+        const loading = await this.global.createLoading('Carregando...');
+        await loading.present();
+        const response = await this.apiCore.getSpeaker(this.speakerForm.value.speakerEmail);
+        console.log(response);
+        await loading.dismiss();
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  }
+}

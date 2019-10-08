@@ -45,11 +45,51 @@ export class FatappCoreService {
   // SPEAKER
 
   async getAllSpeakers() {
+    const link = environment.apiCoreUrl + 'speakers';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      }),
+      body: {
+        speakerEmail: '',
+      }
+    };
+
+    return this.http.get(link, httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
 
   }
 
-  async registerSpeaker(data) {
+  getSpeaker(email) {
+    console.log(email);
+    const link = environment.apiCoreUrl + 'speakers';
 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      }),
+      body: {
+        speakerEmail: `${email}`,
+      }
+    };
+
+    return this.http.get(link, httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async registerSpeaker(data) {
+    const link = environment.apiCoreUrl + 'speakers';
+    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Erro ao cadastrar palestrante');
+    });
   }
 
   async removeSpeaker(id) {

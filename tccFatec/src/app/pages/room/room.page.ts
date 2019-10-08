@@ -85,7 +85,7 @@ export class RoomPage {
     this.global.navigateByUrl('admin/edit-room?id=' + id);
   }
 
-  goToCalendar() {
-    this.global.navigateByUrl('admin/calendar-of-events');
+  goToCalendar(id) {
+    this.global.navigateByUrl('admin/calendar-of-events?id=' + id);
   }
 }
