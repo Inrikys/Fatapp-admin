@@ -1,0 +1,43 @@
+<page-header title="Palestradores"></page-header>
+
+<ion-content color="tertiary">
+  <div class="container">
+    <h1 class="page-title">Palestradores</h1>
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <ion-label position="fixed">Pesquisar:</ion-label>
+            <ion-input></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="ion-text-center">
+        <ion-button class="btn-speakers" (click)="getUserSearch()">Pesquisar</ion-button>
+      </div>
+  </div>
+  <br>
+  <div class="container">
+    <ion-grid class="box">
+      <ion-row class="row header speakers">
+        <ion-col class="col" size="4">Nome</ion-col>
+        <ion-col class="col" size="4">E-mail</ion-col>
+        <ion-col class="col" size="4">Telefone</ion-col>
+      </ion-row>
+      <ion-row (click)="goToChangePerfilModal()" class="row speakers">
+
+        <ion-col class="col" size="4">João da Silva</ion-col>
+        <ion-col class="col" size="4">joaõ@silva.com</ion-col>
+        <ion-col class="col" size="4">102030</ion-col>
+      </ion-row>
+
+      <!-- <span *ngIf="userSearch">
+        <ion-row (click)="goToChangePerfilModal(row)" class="row speakers" *ngFor="let row of userSearch">
+          <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
+          <ion-col class="col" size="3">{{row.cpf}}</ion-col>
+          <ion-col class="col" size="3">{{row.email}}</ion-col>
+          <ion-col class="col" size="3">{{row.user_type}}</ion-col>
+        </ion-row>
+      </span> -->
+    </ion-grid>
+  </div>
+</ion-content>

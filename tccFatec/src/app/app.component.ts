@@ -21,11 +21,13 @@ export class AppComponent {
         { title: 'Home', url: '/home' },
         { title: 'Cadastrar usuário', url: '/admin/user-register' },
         { title: 'Controle de acesso', url: '/admin/access-control' },
-        { title: 'Salas', url: '/admin/room' },
+    ];
+    public eventMenu = [
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
-        { title: 'Lista de presença', url: '/admin/present-list' },
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
+        { title: 'Salas', url: '/admin/room' },
+        { title: 'Lista de presença', url: '/admin/present-list' },
     ];
     public generalLinks = [
         { title: 'Sobre', url: '/about' },

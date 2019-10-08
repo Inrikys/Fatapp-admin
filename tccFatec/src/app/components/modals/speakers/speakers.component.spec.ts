@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterActivityModalComponent } from './register-activity-modal.component';
+import { SpeakersComponent } from './speakers.component';
 
-describe('RegisterActivityModalComponent', () => {
-  let component: RegisterActivityModalComponent;
-  let fixture: ComponentFixture<RegisterActivityModalComponent>;
+describe('SpeakersComponent', () => {
+  let component: SpeakersComponent;
+  let fixture: ComponentFixture<SpeakersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterActivityModalComponent ],
+      declarations: [ SpeakersComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterActivityModalComponent);
+    fixture = TestBed.createComponent(SpeakersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-<modal-header title="Registrar atividade"></modal-header>
+<page-header title="Registrar atividade"></page-header>
 <ion-content color="tertiary">
     <div class="container">
         <form [formGroup]="activityForm">
@@ -16,10 +16,7 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-    
-                        <ion-select formControlName="speakerEmail">
-                            <ion-select-option>testerson@gmail.com.br.comdskahsddsa</ion-select-option>
-                        </ion-select>
+                        <ion-input formControlName="speakerEmail"></ion-input>
                         <div class="info">Certifique-se de que o palestrador já está cadastrado</div>
                         <ng-container *ngFor="let validation of validationMessages.speakerEmail">
                             <div class="error-message"
@@ -27,6 +24,11 @@
                                 {{ validation.message }}
                             </div>
                         </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button (click)="openSpeakersModal()">Consultar palestradores</ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -73,9 +75,9 @@
                             <label>Outro</label>
                         </div>
                     </ion-col>
-                    <ng-container *ngFor="let validation of validationMessages.email">
+                    <ng-container *ngFor="let validation of validationMessages.type">
                         <div class="error-message"
-                            *ngIf="activityForm.get('email').hasError(validation.type) && (activityForm.get('email').dirty || activityForm.get('email').touched)">
+                            *ngIf="activityForm.get('type').hasError(validation.type) && (activityForm.get('type').dirty || activityForm.get('type').touched)">
                             {{ validation.message }}
                         </div>
                     </ng-container>
@@ -84,31 +86,14 @@
                 <ion-row>
                     <ion-col class="ion-padding" size="6">
                         <ion-label>Público alvo:</ion-label>
-                        <div class="ion-padding-top">
-                            <input (click)="selectCategory('ads')" class="ads" formControlName="targetAudience" value="ADS" type="checkbox" name="targetAudience">
-                            <label>ADS</label>
-                        </div>
-                        <div class="ion-padding-top">
-                            <input class="checkbox" formControlName="targetAudience" value="Jogos" type="checkbox" name="targetAudience">
-                            <label>Jogos</label>
-                        </div>
-                        <div class="ion-padding-top">
-                            <input class="checkbox" formControlName="targetAudience" value="COMEX" type="checkbox" name="targetAudience">
-                            <label>COMEX</label>
-                        </div>
-                    </ion-col>
-                    <ion-col size="6">
-                        <div class="ion-padding-top">
-                            <input  class="checkbox" formControlName="targetAudience" value="Minicurso" type="checkbox" name="targetAudience">
-                            <label>Gestão Empresarial</label>
-                        </div>
-                        <div class="ion-padding-top">
-                            <input class="checkbox" formControlName="targetAudience" value="Outro" type="checkbox" name="targetAudience">
-                            <label>SI</label>
-                        </div>
-                        <ng-container *ngFor="let validation of validationMessages.email">
+                        <ion-select multiple='true' formControlName="targetAudience">
+                            <ion-select-option value="1" >ADS</ion-select-option>
+                            <ion-select-option>SEG</ion-select-option>
+                            <ion-select-option>COMEX</ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.targetAudience">
                             <div class="error-message"
-                                *ngIf="activityForm.get('email').hasError(validation.type) && (activityForm.get('email').dirty || activityForm.get('email').touched)">
+                                *ngIf="activityForm.get('targetAudience').hasError(validation.type) && (activityForm.get('targetAudience').dirty || activityForm.get('targetAudience').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
