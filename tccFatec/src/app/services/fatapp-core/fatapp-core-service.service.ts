@@ -27,19 +27,35 @@ export class FatappCoreService {
   // EVENT
 
   async getAllEvents() {
+    const link = environment.apiCoreUrl + 'events/';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
 
+  async getEvent(id) {
+    const link = environment.apiCoreUrl + 'events/' + id;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
   }
 
   async registerEvent(data) {
-    console.log(data);
+    const link = environment.apiCoreUrl + 'events/';
+    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
   }
 
   async removeEvent(id) {
     console.log(id);
   }
 
-  async updateEvent(data) {
-    console.log(data);
+  async updateEvent(data, id) {
+    const link = environment.apiCoreUrl + 'events/' + id;
+    return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
   }
 
   // SPEAKER

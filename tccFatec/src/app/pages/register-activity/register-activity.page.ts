@@ -13,6 +13,7 @@ export class RegisterActivityPage {
 
   public activityForm;
   public validationMessages;
+  public speakerEmail = '';
 
   constructor(
     private activityValidator: RegisterActivityValidatorService,
@@ -42,5 +43,11 @@ export class RegisterActivityPage {
       component: SpeakersComponent,
     });
     modal.present();
+
+    modal.onDidDismiss()
+      .then((data: any) => {
+        this.speakerEmail = data.data;
+        console.log(this.speakerEmail);
+      });
   }
 }

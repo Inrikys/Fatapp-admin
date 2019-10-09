@@ -31,10 +31,10 @@ export class RegisterEventPage implements OnInit {
     if (!this.formEvent.valid) {
       this.eventValidator.validateAllFormFields();
     } else {
-      this.apiCore.registerEvent(this.formEvent.value);
-      this.global.createToast('Evento cadastrado com sucesso!');
+      const response = await this.apiCore.registerEvent(this.formEvent.value);
+      console.log(response);
+      await this.global.createToast('Evento cadastrado com sucesso!');
       this.navController.back();
     }
-
   }
 }
