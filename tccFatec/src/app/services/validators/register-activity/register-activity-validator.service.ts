@@ -21,6 +21,7 @@ export class RegisterActivityValidatorService {
   createForm() {
     return this.activityForm = this.formBuilder.group({
       speakerEmail: [null, Validators.compose([Validators.required])],
+      eventTitle: [null, Validators.compose([Validators.required])],
       title: [null, Validators.compose([Validators.required])],
       type: [false, Validators.compose([Validators.required])],
       targetAudience: [null, Validators.compose([Validators.required])],
@@ -40,6 +41,9 @@ export class RegisterActivityValidatorService {
     return {
       speakerEmail: [
         { type: 'required', message: 'Email obrigatório' },
+      ],
+      eventTitle: [
+        { type: 'required', message: 'Título obrigatório' },
       ],
       title: [
         { type: 'required', message: 'Título obrigatório' },

@@ -61,17 +61,14 @@ export class FatappCoreService {
   // SPEAKER
 
   async getAllSpeakers() {
-    const link = environment.apiCoreUrl + 'speakers';
+    const link = environment.apiCoreUrl + 'speakers/';
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         // tslint:disable-next-line:object-literal-key-quotes
         'token': environment.apiCoreToken,
-      }),
-      body: {
-        speakerEmail: '',
-      }
+      })
     };
 
     return this.http.get(link, httpOptions).toPromise().catch(error => {
@@ -82,21 +79,19 @@ export class FatappCoreService {
 
   getSpeaker(email) {
     console.log(email);
-    const link = environment.apiCoreUrl + 'speakers';
+    const link = environment.apiCoreUrl + 'speakers?email=' + email;
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         // tslint:disable-next-line:object-literal-key-quotes
         'token': environment.apiCoreToken,
-      }),
-      body: {
-        speakerEmail: `${email}`,
-      }
+      })
     };
 
     return this.http.get(link, httpOptions).toPromise().catch(error => {
       console.log(error);
+      this.global.createAlert('Erro ao carregar palestrante');
     });
   }
 

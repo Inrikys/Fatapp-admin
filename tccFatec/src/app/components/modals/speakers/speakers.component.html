@@ -1,45 +1,49 @@
-<modal-header title="Palestradores"></modal-header>
+<modal-header title="Palestrantes"></modal-header>
 
 <ion-content color="tertiary">
   <div class="container">
-    <h1 class="page-title">Palestrantes</h1>
-    <ion-grid class="box">
-      <ion-row>
-        <ion-col>
-          <ion-label position="fixed">Pesquisar:</ion-label>
-          <ion-input></ion-input>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <h1 class="page-title">Pesquisar palestrantes</h1>
+    <form [formGroup]="speakerSearchForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <ion-label position="fixed">Pesquisar:</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
     <div class="ion-text-center">
-      <ion-button class="btn-speakers" (click)="getSpeakersSearch()">Pesquisar</ion-button>
+      <ion-button class="btn-speakers" (click)="getSpeakerSearch()">Pesquisar</ion-button>
     </div>
   </div>
   <br>
   <div class="container">
+    <div>Clique no palestrante para selecioná-lo</div>
     <ion-grid class="box">
       <ion-row class="row header speakers">
-        <ion-col class="col" size="3">Nome</ion-col>
-        <ion-col class="col" size="3">E-mail</ion-col>
-        <ion-col class="col" size="3">Telefone</ion-col>
+        <ion-col class="col" size="4">Nome</ion-col>
+        <ion-col class="col" size="4">E-mail</ion-col>
+        <ion-col class="col" size="4">Telefone</ion-col>
       </ion-row>
 
-      <span>
-        <ion-row (click)="selectSpeaker()" class="row speakers">
-          <ion-col class="col" size="4">João da Silva</ion-col>
-          <ion-col class="col" size="4">joaõ@silva.com</ion-col>
-          <ion-col class="col" size="4">102030</ion-col>
-        </ion-row>
+      <span *ngIf="speakers">
+        <span *ngIf="!speakerSearch || speakerSearch == ''">
+          <ion-row *ngFor="let row of speakers" (click)="selectSpeaker(row)" class="row speakers">
+            <ion-col class="col" size="4">{{row.speakerName}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerEmail}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerPhone}}</ion-col>
+          </ion-row>
+        </span>
       </span>
 
-      <!-- <span *ngIf="speakerSearch">
-        <ion-row (click)="goToChangePerfilModal(row)" class="row speakers" *ngFor="let row of userSearch">
-          <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
-          <ion-col class="col" size="3">{{row.cpf}}</ion-col>
-          <ion-col class="col" size="3">{{row.email}}</ion-col>
-          <ion-col class="col" size="3">{{row.user_type}}</ion-col>
+      <span *ngIf="speakerSearch">
+        <ion-row *ngFor="let row of speakerSearch" (click)="selectSpeaker(row)" class="row speakers">
+          <ion-col class="col" size="4">{{row.speakerName}}</ion-col>
+          <ion-col class="col" size="4">{{row.speakerEmail}}</ion-col>
+          <ion-col class="col" size="4">{{row.speakerPhone}}</ion-col>
         </ion-row>
-      </span> -->
+      </span>
     </ion-grid>
   </div>
 </ion-content>

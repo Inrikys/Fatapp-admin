@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterActivityPage } from './register-activity.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { SpeakersModule } from 'src/app/components/modals/speakers/speakers.module';
+import { EventsModule } from 'src/app/components/modals/events/events.module';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     ComponentsModule,
     ReactiveFormsModule,
     SpeakersModule,
+    EventsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [RegisterActivityPage]
