@@ -5,7 +5,10 @@ ion-content {
   .info{
       font-size:12px;
   }
-  ion-button{
-      width: 100%;
+  .btn-submit{
+    width: 100%;
+  }
+  .btn-search-speaker{
+    float: right;
   }
 }

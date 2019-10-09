@@ -2,7 +2,7 @@
 <ion-content color="tertiary">
     <div class="container">
         <form [formGroup]="activityForm">
-        
+
             <ion-grid class="box">
                 <ion-row>
                     <ion-col>
@@ -16,7 +16,7 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-input formControlName="speakerEmail"></ion-input>
+                        <ion-input [(ngModel)]="this.speakerEmail" formControlName="speakerEmail"></ion-input>
                         <div class="info">Certifique-se de que o palestrador já está cadastrado</div>
                         <ng-container *ngFor="let validation of validationMessages.speakerEmail">
                             <div class="error-message"
@@ -28,7 +28,7 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-button (click)="openSpeakersModal()">Consultar palestradores</ion-button>
+                        <ion-button class="btn-search-speaker" (click)="openSpeakersModal()">Consultar</ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -54,7 +54,7 @@
                         <ion-label>Tipo:</ion-label>
                         <div class="ion-padding-top">
                             <input formControlName="type" value="Palestra" type="radio" name="type">
-                            <label>Palest1ra</label>
+                            <label>Palestra</label>
                         </div>
                         <div class="ion-padding-top">
                             <input formControlName="type" value="Mesa redonda" type="radio" name="type">
@@ -84,10 +84,14 @@
                 </ion-row>
 
                 <ion-row>
-                    <ion-col class="ion-padding" size="6">
-                        <ion-label>Público alvo:</ion-label>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Público alvo: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col class="ion-padding" size="8">
                         <ion-select multiple='true' formControlName="targetAudience">
-                            <ion-select-option value="1" >ADS</ion-select-option>
+                            <ion-select-option value="1">ADS</ion-select-option>
                             <ion-select-option>SEG</ion-select-option>
                             <ion-select-option>COMEX</ion-select-option>
                         </ion-select>
@@ -107,8 +111,9 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-datetime formControlName="initialTime" cancel-text="Cancelar" done-text="OK" placeholder="horas:minutos"
-                            displayFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
+                        <ion-datetime formControlName="initialTime" cancel-text="Cancelar" done-text="OK"
+                            placeholder="horas:minutos" displayFormat="HH:mm"
+                            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
                         <ng-container *ngFor="let validation of validationMessages.initialTime">
                             <div class="error-message"
                                 *ngIf="activityForm.get('initialTime').hasError(validation.type) && (activityForm.get('initialTime').dirty || activityForm.get('initialTime').touched)">
@@ -126,8 +131,9 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-datetime formControlName="finalTime" cancel-text="Cancelar" done-text="OK" placeholder="horas:minutos"
-                            displayFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
+                        <ion-datetime formControlName="finalTime" cancel-text="Cancelar" done-text="OK"
+                            placeholder="horas:minutos" displayFormat="HH:mm"
+                            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
                         <ng-container *ngFor="let validation of validationMessages.finalTime">
                             <div class="error-message"
                                 *ngIf="activityForm.get('finalTime').hasError(validation.type) && (activityForm.get('finalTime').dirty || activityForm.get('finalTime').touched)">
@@ -158,7 +164,7 @@
 
             </ion-grid>
             <div class="ion-padding-bottom">
-                <ion-button (click)="submit()">Publicar</ion-button>
+                <ion-button class="btn-submit" (click)="submit()">Publicar</ion-button>
             </div>
         </form>
     </div>

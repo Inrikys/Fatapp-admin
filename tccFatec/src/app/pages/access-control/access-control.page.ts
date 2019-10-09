@@ -34,7 +34,6 @@ export class AccessControlPage implements AfterViewInit {
 
   private createForm() {
     this.accessControlForm = this.formBuilder.group({
-      cpf: this.formBuilder.control(''),
       name: this.formBuilder.control(''),
     });
   }
