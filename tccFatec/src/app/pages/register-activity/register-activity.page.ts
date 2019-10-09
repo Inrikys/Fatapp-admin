@@ -13,7 +13,9 @@ export class RegisterActivityPage {
 
   public activityForm;
   public validationMessages;
+  public speaker = null;
   public speakerEmail = '';
+  public eventId = '';
 
   constructor(
     private activityValidator: RegisterActivityValidatorService,
@@ -30,6 +32,7 @@ export class RegisterActivityPage {
       this.activityValidator.validateAllFormFields();
     } else {
       console.log(this.activityForm.value);
+      console.log(this.speaker);
     }
   }
 
@@ -46,8 +49,27 @@ export class RegisterActivityPage {
 
     modal.onDidDismiss()
       .then((data: any) => {
-        this.speakerEmail = data.data;
-        console.log(this.speakerEmail);
+        if (data.data) {
+          this.speaker = data.data;
+          this.speakerEmail = this.speaker.speakerEmail;
+          console.log(this.speakerEmail);
+        }
+      });
+  }
+
+  async openEventsModal() {
+    const modal = await this.modalController.create({
+      component: EventsComponent,
+    });
+    modal.present();
+
+    modal.onDidDismiss()
+      .then((data: any) => {
+        if (data.data) {
+          this.speaker = data.data;
+          this.speakerEmail = this.speaker.speakerEmail;
+          console.log(this.speakerEmail);
+        }
       });
   }
 }

@@ -22,6 +22,7 @@ export class SpeakersComponent {
     private modalController: ModalController,
   ) {
     this.createForm();
+    this.getSpeakers();
   }
 
   private createForm() {
@@ -35,6 +36,7 @@ export class SpeakersComponent {
       const loading = await this.global.createLoading('Carregando...');
       await loading.present();
       this.speakers = await this.apiCore.getAllSpeakers();
+      console.log(this.speakers);
       await loading.dismiss();
     } catch (error) {
 
@@ -64,8 +66,8 @@ export class SpeakersComponent {
     }
   }
 
-  async selectSpeaker(email) {
-    this.modalController.dismiss(email);
+  async selectSpeaker(speaker) {
+    this.modalController.dismiss(speaker);
   }
 
 
