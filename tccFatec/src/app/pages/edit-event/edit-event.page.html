@@ -45,7 +45,7 @@
             <ion-item lines="none">
               <ion-label position="fixed">De: </ion-label>
               <ion-datetime disabled class="edit-form" [(ngModel)]="initialDate" formControlName="initialDate" placeholder="Escolha a data"
-                displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
+                displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.initialDate">
@@ -61,7 +61,7 @@
             <ion-item lines="none">
               <ion-label position="fixed">Até: </ion-label>
               <ion-datetime disabled class="edit-form" [(ngModel)]="finalDate" formControlName="finalDate" placeholder="Escolha a data"
-                displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
+                displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.finalDate">
@@ -113,7 +113,7 @@
           <ion-item *ngFor="let event of events">
             <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
               <span>{{event.edition}}</span></ion-label>
-            <ion-icon (click)="removeEvent()" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+            <ion-icon (click)="removeEvent(event.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
             </ion-icon>
           </ion-item>
         </ion-list>
@@ -121,7 +121,7 @@
           <ion-item *ngFor="let event of eventSearch">
             <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
               <span>{{event.edition}}</span></ion-label>
-            <ion-icon (click)="removeEvent()" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+            <ion-icon (click)="removeEvent(event.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
             </ion-icon>
           </ion-item>
         </ion-list>

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './edit-event.page.html',
   styleUrls: ['./edit-event.page.scss'],
 })
-export class EditEventPage implements OnInit {
+export class EditEventPage {
 
   public formEvent;
   public validationMessages;
@@ -33,13 +33,15 @@ export class EditEventPage implements OnInit {
     private navController: NavController,
     private alertController: AlertController,
     private formBuilder: FormBuilder,
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
     this.getAllEvents();
     this.createForm();
+  }
+
+  async ionViewDidEnter() {
+    await this.getAllEvents();
   }
 
   async getAllEvents() {
@@ -61,9 +63,7 @@ export class EditEventPage implements OnInit {
       this.edition = await response.edition;
       this.initialDate = await response.initialDate;
       this.finalDate = await response.finalDate;
-      this.banner = await response.banner;
       this.eventId = await response.id;
-      console.log(this.eventId);
       this.removeDisable();
     } catch (error) {
       console.log(error);
@@ -103,7 +103,7 @@ export class EditEventPage implements OnInit {
     }
   }
 
-  async removeEvent() {
+  async removeEvent(id) {
     try {
       let option = null;
       const alert = await this.alertController.create({
@@ -129,8 +129,11 @@ export class EditEventPage implements OnInit {
       alert.onDidDismiss().then(async () => {
 
         if (option) {
-          this.apiCore.removeEvent(this.eventId);
+          const loading = await this.global.createLoading('Carregando...');
+          await loading.present();
+          const response = await this.apiCore.removeEvent(id);
           this.global.createToast('Evento excluído com sucesso!');
+          await loading.dismiss();
           this.getAllEvents();
         }
       });

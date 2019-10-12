@@ -12,7 +12,7 @@
                 <ion-row>
                     <ion-col size="4">
                         <ion-item lines="none">
-                            <ion-label>Palestrador: </ion-label>
+                            <ion-label>Palestrante: </ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
@@ -28,7 +28,7 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-button class="btn-search" (click)="openSpeakersModal()">Consultar</ion-button>
+                        <ion-button class="btn-search" (click)="openSpeakersModal()">Consultar palestrante</ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -40,7 +40,7 @@
                         <ion-col size="8">
                             <ion-input [(ngModel)]="this.eventTitle" formControlName="eventTitle"></ion-input>
                             <div class="info">Certifique-se de que o evento já está cadastrado</div>
-                            <ng-container *ngFor="let validation of validationMessages.speakerEmail">
+                            <ng-container *ngFor="let validation of validationMessages.title">
                                 <div class="error-message"
                                     *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
                                     {{ validation.message }}
@@ -50,7 +50,7 @@
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <ion-button class="btn-search" (click)="openSpeakersModal()">Consultar</ion-button>
+                            <ion-button class="btn-search" (click)="openEventsModal()">Consultar eventos</ion-button>
                         </ion-col>
                     </ion-row>
                 <ion-row>

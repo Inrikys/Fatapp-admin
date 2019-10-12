@@ -3,6 +3,7 @@ import { RegisterActivityValidatorService } from 'src/app/services/validators/re
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { ModalController } from '@ionic/angular';
 import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
+import { EventsComponent } from 'src/app/components/modals/events/events.component';
 
 @Component({
   selector: 'app-register-activity',
@@ -16,6 +17,7 @@ export class RegisterActivityPage {
   public speaker = null;
   public speakerEmail = '';
   public eventId = '';
+  public eventTitle = '';
 
   constructor(
     private activityValidator: RegisterActivityValidatorService,
@@ -66,9 +68,10 @@ export class RegisterActivityPage {
     modal.onDidDismiss()
       .then((data: any) => {
         if (data.data) {
-          this.speaker = data.data;
-          this.speakerEmail = this.speaker.speakerEmail;
-          console.log(this.speakerEmail);
+          const response = data.data;
+          this.eventTitle = response.title;
+          this.eventId = response.id;
+          console.log(this.eventId);
         }
       });
   }

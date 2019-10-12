@@ -9,10 +9,11 @@ import { NavController } from '@ionic/angular';
   templateUrl: './register-event.page.html',
   styleUrls: ['./register-event.page.scss'],
 })
-export class RegisterEventPage implements OnInit {
+export class RegisterEventPage {
 
   public formEvent;
   public validationMessages;
+  public banner;
 
 
   constructor(
@@ -20,9 +21,7 @@ export class RegisterEventPage implements OnInit {
     private apiCore: FatappCoreService,
     private global: GlobalsService,
     private navController: NavController,
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
   }
@@ -31,10 +30,18 @@ export class RegisterEventPage implements OnInit {
     if (!this.formEvent.valid) {
       this.eventValidator.validateAllFormFields();
     } else {
+      this.formEvent.value.banner = this.banner;
+      console.log(this.formEvent.value);
       const response = await this.apiCore.registerEvent(this.formEvent.value);
       console.log(response);
       await this.global.createToast('Evento cadastrado com sucesso!');
       this.navController.back();
     }
+  }
+
+  async selectBanner(event) {
+    console.log(event);
+    this.banner = await this.apiCore.toBase64(event.target.files[0]);
+    console.log(this.banner);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
+import { BannerService } from '../banner/banner.service';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class FatappCoreService {
   constructor(
     private http: HttpClient,
     private global: GlobalsService,
+    private banner: BannerService,
   ) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -22,6 +24,47 @@ export class FatappCoreService {
         'token': environment.apiCoreToken,
       })
     };
+  }
+
+  // Convert to Base 64
+  public toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  })
+
+  // Courses / Target Audience
+  async getAllCourses() {
+    const link = environment.apiCoreUrl + 'courses/';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+  async getCourse(id) {
+    const link = environment.apiCoreUrl + 'courses/' + id;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+  async registerCourse(data) {
+    const link = environment.apiCoreUrl + 'courses/';
+
+    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+  async updateCourse(data, id) {
+    const link = environment.apiCoreUrl + 'courses/' + id;
+    return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+  async removeCourse(id) {
+    const link = environment.apiCoreUrl + 'courses/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
   }
 
   // EVENT
@@ -42,13 +85,17 @@ export class FatappCoreService {
 
   async registerEvent(data) {
     const link = environment.apiCoreUrl + 'events/';
+
     return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
   }
 
   async removeEvent(id) {
-    console.log(id);
+    const link = environment.apiCoreUrl + 'events/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
   }
 
   async updateEvent(data, id) {
