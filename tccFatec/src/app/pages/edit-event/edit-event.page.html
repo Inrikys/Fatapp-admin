@@ -7,13 +7,14 @@
     <form [formGroup]="formEvent">
       <ion-grid class="box">
         <div text-center>
-          <img class="page-icon" src="../../../assets/imgs/event.png">
+          <img class="page-icon" src="../../../assets/imgs/edit-event.jpeg">
         </div>
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Evento: </ion-label>
-              <ion-input  disabled class="edit-form" [(ngModel)]="title" formControlName="title" placeholder="Título"></ion-input>
+              <ion-input disabled class="edit-form" [(ngModel)]="title" formControlName="title" placeholder="Título">
+              </ion-input>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.title">
               <div class="error-message"
@@ -28,7 +29,8 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Edição: </ion-label>
-              <ion-input disabled class="edit-form" [(ngModel)]="edition" formControlName="edition" placeholder="Edição"></ion-input>
+              <ion-input disabled class="edit-form" [(ngModel)]="edition" formControlName="edition"
+                placeholder="Edição"></ion-input>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.edition">
               <div class="error-message"
@@ -44,8 +46,8 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">De: </ion-label>
-              <ion-datetime disabled class="edit-form" [(ngModel)]="initialDate" formControlName="initialDate" placeholder="Escolha a data"
-                displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
+              <ion-datetime disabled class="edit-form" [(ngModel)]="initialDate" formControlName="initialDate"
+                placeholder="Escolha a data" displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.initialDate">
@@ -60,8 +62,8 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Até: </ion-label>
-              <ion-datetime disabled class="edit-form" [(ngModel)]="finalDate" formControlName="finalDate" placeholder="Escolha a data"
-                displayFormat="DD MM YYYY" min="2019-06-04" max="2050-01-01">
+              <ion-datetime disabled class="edit-form" [(ngModel)]="finalDate" formControlName="finalDate"
+                placeholder="Escolha a data" displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.finalDate">
@@ -92,42 +94,46 @@
       </ion-grid>
     </form>
 
+    <span *ngIf="!events || events == ''">
+      <div>Você ainda não cadastrou nenhum evento</div>
+    </span>
 
-    <h1 class="page-title">Eventos já cadastrados</h1>
-    <ion-grid class="box">
-      <form [formGroup]="eventSearchForm">
-        <ion-row>
-          <ion-col>
-            <ion-label position="fixed">Pesquisar:</ion-label>
-            <ion-input class="edit-form" formControlName="name"></ion-input>
-          </ion-col>
-        </ion-row>
-      </form>
-    </ion-grid>
-    <div class="ion-text-center">
-      <ion-button class="btn-speakers" (click)="getEventsSearch()">Pesquisar</ion-button>
-    </div>
-    <div class="ion-padding-top ion-padding-bottom ion-margin-bottom">
-      <div color="white">
-        <ion-list *ngIf="!eventSearch || eventSearch == ''">
-          <ion-item *ngFor="let event of events">
-            <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
-              <span>{{event.edition}}</span></ion-label>
-            <ion-icon (click)="removeEvent()" ios="ios-remove-circle" md="md-remove-circle" slot="end">
-            </ion-icon>
-          </ion-item>
-        </ion-list>
-        <ion-list *ngIf="eventSearch">
-          <ion-item *ngFor="let event of eventSearch">
-            <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
-              <span>{{event.edition}}</span></ion-label>
-            <ion-icon (click)="removeEvent()" ios="ios-remove-circle" md="md-remove-circle" slot="end">
-            </ion-icon>
-          </ion-item>
-        </ion-list>
+    <span *ngIf="events && events != ''">
+      <h1 class="page-title">Eventos já cadastrados</h1>
+      <ion-grid class="box">
+        <form [formGroup]="eventSearchForm">
+          <ion-row>
+            <ion-col>
+              <ion-label position="fixed">Pesquisar:</ion-label>
+              <ion-input class="edit-form" formControlName="name"></ion-input>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-grid>
+      <div class="ion-text-center">
+        <ion-button class="btn-speakers" (click)="getEventsSearch()">Pesquisar</ion-button>
       </div>
-    </div>
-
+      <div class="ion-padding-top ion-padding-bottom ion-margin-bottom">
+        <div color="white">
+          <ion-list *ngIf="!eventSearch || eventSearch == ''">
+            <ion-item *ngFor="let event of events">
+              <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
+                <span>{{event.edition}}</span></ion-label>
+              <ion-icon (click)="removeEvent(event.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngIf="eventSearch">
+            <ion-item *ngFor="let event of eventSearch">
+              <ion-label (click)="selectEvent(event.id)">Título: <span>{{event.title}}</span> Edição:
+                <span>{{event.edition}}</span></ion-label>
+              <ion-icon (click)="removeEvent(event.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </span>
   </div>
 
 </ion-content>
