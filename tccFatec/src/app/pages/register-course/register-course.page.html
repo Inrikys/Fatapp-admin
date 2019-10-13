@@ -1,35 +1,39 @@
-<main-header title="Cadastrar publico alvo"></main-header>
+<main-header></main-header>
 <ion-content color="tertiary">
   <div class="container">
-    <form class="box ion-padding-top">
+      <h1 class="page-title">Cadastrar público-alvo</h1>
+    <form [formGroup]="registerCourseForm" class="box ion-padding-top">
       <div text-center>
         <img class="page-icon" src="../../../../assets/imgs/course.png">
       </div>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-input placeholder="Público alvo / curso">
+            <ion-input formControlName="name" placeholder="Público alvo / curso">
             </ion-input>
-            <!-- <ng-container *ngFor="let validation of validationMessages.name">
+            <ng-container *ngFor="let validation of validationMessages.name">
               <div class="error-message"
-                *ngIf="registerResourceForm.get('name').hasError(validation.type) && (registerResourceForm.get('name').dirty || registerResourceForm.get('name').touched)">
+                *ngIf="registerCourseForm.get('name').hasError(validation.type) && (registerCourseForm.get('name').dirty || registerCourseForm.get('name').touched)">
                 {{ validation.message }}
               </div>
-            </ng-container> -->
+            </ng-container>
           </ion-col>
         </ion-row>
       </ion-grid>
       <div class="ion-padding-top ion-padding-bottom ion-text-center">
-        <ion-button text-center (click)="submit()">Cadastrar público alvo</ion-button>
+        <ion-button class="ion-text-center" (click)="submit()">Cadastrar público-alvo</ion-button>
       </div>
     </form>
 
-    <div class="ion-padding-top">
-      <div  class="page-title">Cursos já cadastrados</div>
-      <ion-list>
+    <div *ngIf="courses && courses != ''" class="ion-padding-top">
+      <div class="page-title">Públicos-alvo já cadastrados</div>
+      <ion-list *ngFor="let course of courses">
         <ion-item>
-          <ion-label>ADS</ion-label>
-          <ion-icon (click)="removeCourse(course.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end"></ion-icon>
+          <ion-label>{{course.name}}</ion-label>
+          <ion-icon  (click)="goToEditCourse(course)" slot="start" class="edit-room" name="create"></ion-icon>
+
+          <ion-icon (click)="removeCourse(course.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+          </ion-icon>
         </ion-item>
       </ion-list>
     </div>

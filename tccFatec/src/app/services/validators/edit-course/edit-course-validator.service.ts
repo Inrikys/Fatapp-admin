@@ -1,37 +1,36 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterCourseValidatorService {
-
-  registerCourseForm: FormGroup;
+export class EditCourseValidatorService {
+  editCourseForm: FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
   ) { }
 
-  getRegisterCourseForm() {
+  getEditCourseForm() {
     return this.createForm();
   }
 
 
   createForm() {
-    return this.registerCourseForm = this.formBuilder.group({
+    return this.editCourseForm = this.formBuilder.group({
       name: [null, Validators.compose([Validators.required])],
     });
   }
 
   validateAllFormFields() {
-    Object.keys(this.registerCourseForm
+    Object.keys(this.editCourseForm
       .controls).forEach(field => {
-        this.registerCourseForm
+        this.editCourseForm
           .get(field).markAsTouched({ onlySelf: true });
       });
   }
 
-  getRegisterCourseFormValidationsMessages() {
+  getEditCourseFormValidationsMessages() {
     return {
       name: [
         { type: 'required', message: 'Público alvo é obrigatório' },
