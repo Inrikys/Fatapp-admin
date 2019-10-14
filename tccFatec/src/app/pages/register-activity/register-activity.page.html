@@ -32,27 +32,27 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                        <ion-col size="4">
-                            <ion-item lines="none">
-                                <ion-label>Evento: </ion-label>
-                            </ion-item>
-                        </ion-col>
-                        <ion-col size="8">
-                            <ion-input [(ngModel)]="this.eventTitle" formControlName="eventTitle"></ion-input>
-                            <div class="info">Certifique-se de que o evento já está cadastrado</div>
-                            <ng-container *ngFor="let validation of validationMessages.title">
-                                <div class="error-message"
-                                    *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
-                                    {{ validation.message }}
-                                </div>
-                            </ng-container>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-button class="btn-search" (click)="openEventsModal()">Consultar eventos</ion-button>
-                        </ion-col>
-                    </ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Evento: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input [(ngModel)]="this.eventTitle" formControlName="eventTitle"></ion-input>
+                        <div class="info">Certifique-se de que o evento já está cadastrado</div>
+                        <ng-container *ngFor="let validation of validationMessages.title">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button class="btn-search" (click)="openEventsModal()">Consultar eventos</ion-button>
+                    </ion-col>
+                </ion-row>
                 <ion-row>
                     <ion-col size="4">
                         <ion-item lines="none">
@@ -113,9 +113,8 @@
                     </ion-col>
                     <ion-col class="ion-padding" size="8">
                         <ion-select multiple='true' formControlName="targetAudience">
-                            <ion-select-option value="1">ADS</ion-select-option>
-                            <ion-select-option>SEG</ion-select-option>
-                            <ion-select-option>COMEX</ion-select-option>
+                            <ion-select-option *ngFor="let target of targetAudience" value="target.id">{{target.name}}
+                            </ion-select-option>
                         </ion-select>
                         <ng-container *ngFor="let validation of validationMessages.targetAudience">
                             <div class="error-message"
@@ -134,7 +133,7 @@
                     </ion-col>
                     <ion-col size="8">
                         <ion-datetime formControlName="initialTime" cancel-text="Cancelar" done-text="OK"
-                            placeholder="horas:minutos" displayFormat="HH:mm"
+                            placeholder="DD/MM/YY HH:mm" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01"
                             minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
                         <ng-container *ngFor="let validation of validationMessages.initialTime">
                             <div class="error-message"
@@ -154,7 +153,7 @@
                     </ion-col>
                     <ion-col size="8">
                         <ion-datetime formControlName="finalTime" cancel-text="Cancelar" done-text="OK"
-                            placeholder="horas:minutos" displayFormat="HH:mm"
+                            placeholder="DD/MM/YY HH:mm" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01"
                             minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
                         <ng-container *ngFor="let validation of validationMessages.finalTime">
                             <div class="error-message"

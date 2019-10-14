@@ -52,12 +52,10 @@ export class EventsComponent {
 
       this.eventSearch = eventsToFilter.filter(collection => {
 
-        return collection.cpf.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.eventName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.eventPhone.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.eventPhone2.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.eventEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.eventCurriculum.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+        return collection.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.edition.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.initialDate.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.finalDate.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
 
     } catch (error) {

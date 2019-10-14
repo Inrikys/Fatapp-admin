@@ -26,6 +26,7 @@ export class AppComponent {
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
+        { title: 'Editar palestrante', url: '/admin/edit-speaker'},
         { title: 'Cadastrar salas e atividades', url: '/admin/room' },
         { title: 'Lista de presença', url: '/admin/present-list' },
         { title: 'Cadastrar público alvo', url: '/admin/register-course'}

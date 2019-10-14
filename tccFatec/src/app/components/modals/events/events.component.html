@@ -42,14 +42,14 @@
         </span>
       </span>
 
-      <!-- <span *ngIf="speakerSearch">
-            <ion-row *ngFor="let row of events" (click)="selectEvent(row)" class="row events">
+      <span *ngIf="eventSearch">
+            <ion-row *ngFor="let row of eventSearch" (click)="selectEvent(row)" class="row events">
               <ion-col class="col" size="3">{{row.title}}</ion-col>
               <ion-col class="col" size="3">{{row.edition}}</ion-col>
               <ion-col class="col" size="3">{{row.initialDate}}</ion-col>
               <ion-col class="col" size="3">{{row.finalDate}}</ion-col>
           </ion-row>
-        </span> -->
+        </span>
     </ion-grid>
   </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { GlobalsService } from '../globals.service';
 import { BannerService } from '../banner/banner.service';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,13 +27,6 @@ export class FatappCoreService {
     };
   }
 
-  // Convert to Base 64
-  public toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  })
 
   // Courses / Target Audience
   async getAllCourses() {
@@ -128,17 +122,8 @@ export class FatappCoreService {
     console.log(email);
     const link = environment.apiCoreUrl + 'speakers?email=' + email;
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        // tslint:disable-next-line:object-literal-key-quotes
-        'token': environment.apiCoreToken,
-      })
-    };
-
-    return this.http.get(link, httpOptions).toPromise().catch(error => {
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert('Erro ao carregar palestrante');
     });
   }
 
@@ -155,8 +140,8 @@ export class FatappCoreService {
 
   }
 
-  async uploadSpeaker(data) {
-
+  async updateSpeaker(data) {
+    console.log(data);
   }
 
   // ROOMS
