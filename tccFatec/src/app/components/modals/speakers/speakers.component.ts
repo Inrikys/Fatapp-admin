@@ -53,8 +53,7 @@ export class SpeakersComponent {
 
       this.speakerSearch = speakersToFilter.filter(collection => {
 
-        return collection.cpf.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+        return collection.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speakerPhone.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speakerPhone2.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1

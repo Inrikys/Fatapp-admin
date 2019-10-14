@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { EditEventPage } from './edit-event.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { EventsModule } from 'src/app/components/modals/events/events.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     ComponentsModule,
+    EventsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [EditEventPage]

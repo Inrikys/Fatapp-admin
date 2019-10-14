@@ -119,7 +119,6 @@ export class FatappCoreService {
   }
 
   getSpeaker(email) {
-    console.log(email);
     const link = environment.apiCoreUrl + 'speakers?email=' + email;
 
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
@@ -136,12 +135,20 @@ export class FatappCoreService {
   }
 
   async removeSpeaker(id) {
-
+    const link = environment.apiCoreUrl + 'speakers/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Erro ao remover palestrante');
+    });
 
   }
 
   async updateSpeaker(data) {
-    console.log(data);
+    const link = environment.apiCoreUrl + 'speakers';
+    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Erro ao alterar palestrante');
+    });
   }
 
   // ROOMS
