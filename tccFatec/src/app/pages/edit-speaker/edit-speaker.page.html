@@ -1,0 +1,150 @@
+<main-header></main-header>
+
+<ion-content color="tertiary">
+  <div class="container">
+    <h1 class="page-title"> Editar palestrante</h1>
+    <form [formGroup]="editSpeakerForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center">
+              <img class="page-icon" src="../../../../assets/imgs/edit-speaker.jpeg">
+            </div>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col>
+            <div>Dados do palestrante</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">E-mail: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="emailSpeaker" formControlName="speakerEmail"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerEmail">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerEmail').hasError(validation.type) && (editSpeakerForm.get('speakerEmail').dirty || editSpeakerForm.get('speakerEmail').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Nome: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="nameSpeaker" formControlName="speakerName"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerName">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerName').hasError(validation.type) && (editSpeakerForm.get('speakerName').dirty || editSpeakerForm.get('speakerName').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Telefone: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="phoneSpeaker" formControlName="speakerPhone"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerPhone">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerPhone').hasError(validation.type) && (editSpeakerForm.get('speakerPhone').dirty || editSpeakerForm.get('speakerPhone').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Telefone alternativo: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="phone2Speaker" formControlName="speakerPhone2"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Resumo CV: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <textarea disabled class="edit-form" [(ngModel)]="curriculumSpeaker" formControlName="speakerCurriculum" ></textarea>
+            <ng-container *ngFor="let validation of validationMessages.speakerCurriculum">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerCurriculum').hasError(validation.type) && (editSpeakerForm.get('speakerCurriculum').dirty || editSpeakerForm.get('speakerCurriculum').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <div class="ion-padding-bottom">
+          <ion-button (click)="submit()">Alterar</ion-button>
+        </div>
+      </ion-grid>
+    </form>
+
+    <span *ngIf="!speakers || speakers == ''">
+      <div>Você ainda não cadastrou nenhum evento</div>
+    </span>
+
+    <span *ngIf="speakers && speakers != ''">
+      <h1 class="page-title">Eventos já cadastrados</h1>
+      <ion-grid class="box">
+        <form [formGroup]="speakerSearchForm">
+          <ion-row>
+            <ion-col>
+              <ion-label position="fixed">Pesquisar:</ion-label>
+              <ion-input formControlName="name"></ion-input>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-grid>
+      <div class="ion-text-center">
+        <ion-button class="btn-speakers" (click)="getSpeakersSearch()">Pesquisar</ion-button>
+      </div>
+      <div class="ion-padding-top ion-padding-bottom ion-margin-bottom">
+        <div color="white">
+          <ion-list *ngIf="!speakerSearch || speakerSearch == ''">
+            <ion-item *ngFor="let speaker of speakers">
+              <ion-label (click)="selectSpeaker(speaker.speakerEmail)">Nome: <span>{{speaker.speakerName}}</span> E-mail:
+                <span>{{speaker.speakerEmail}}</span></ion-label>
+              <ion-icon (click)="removeSpeaker(speaker.speakerEmail)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngIf="speakerSearch">
+            <ion-item *ngFor="let speaker of speakerSearch">
+              <ion-label (click)="selectSpeaker(speaker.speakerEmail)">Nome: <span>{{speaker.speakerName}}</span> E-mail:
+                <span>{{speaker.speakerEmail}}</span></ion-label>
+              <ion-icon (click)="removeEvent(event.speakerEmail)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </span>
+
+  </div>
+</ion-content>

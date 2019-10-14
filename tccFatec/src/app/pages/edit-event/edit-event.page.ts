@@ -4,6 +4,7 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 import { GlobalsService } from 'src/app/services/globals.service';
 import { NavController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -33,6 +34,7 @@ export class EditEventPage {
     private navController: NavController,
     private alertController: AlertController,
     private formBuilder: FormBuilder,
+    private tools: ToolsService,
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
@@ -71,6 +73,7 @@ export class EditEventPage {
   }
 
 
+
   private createForm() {
     this.eventSearchForm = this.formBuilder.group({
       name: this.formBuilder.control(''),
@@ -79,17 +82,26 @@ export class EditEventPage {
 
   async upload() {
     try {
-
+      let validDate = false;
       if (!this.formEvent.valid) {
         this.eventValidator.validateAllFormFields();
       } else {
-        const response = await this.apiCore.updateEvent(this.formEvent.value, this.eventId);
-        console.log(response);
-        this.global.createToast('Evento alterado com sucesso!');
-        this.navController.back();
+        const loading = await this.global.createLoading('Carregando...');
+        await loading.present();
+        validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
+        if (validDate) {
+          const response = await this.apiCore.updateEvent(this.formEvent.value, this.eventId);
+          await loading.dismiss();
+          this.global.createToast('Evento alterado com sucesso!');
+          this.navController.back();
+        } else {
+          await loading.dismiss();
+          this.global.createAlert('Data inválida!');
+        }
       }
     } catch (error) {
       console.log(error);
+
     }
 
   }

@@ -3,6 +3,7 @@ import { RegisterEventValidatorService } from 'src/app/services/validators/regis
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { NavController } from '@ionic/angular';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-register-event',
@@ -21,27 +22,42 @@ export class RegisterEventPage {
     private apiCore: FatappCoreService,
     private global: GlobalsService,
     private navController: NavController,
+    private tools: ToolsService,
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
   }
 
   async register() {
-    if (!this.formEvent.valid) {
-      this.eventValidator.validateAllFormFields();
-    } else {
-      this.formEvent.value.banner = this.banner;
-      console.log(this.formEvent.value);
-      const response = await this.apiCore.registerEvent(this.formEvent.value);
-      console.log(response);
-      await this.global.createToast('Evento cadastrado com sucesso!');
-      this.navController.back();
+    try {
+      let validDate = false;
+      if (!this.formEvent.valid) {
+        this.eventValidator.validateAllFormFields();
+      } else {
+        const loading = await this.global.createLoading('Carregando...');
+        await loading.present();
+        this.formEvent.value.banner = this.banner;
+        console.log(this.formEvent.value);
+        validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
+        if (validDate) {
+          const response = await this.apiCore.registerEvent(this.formEvent.value);
+          console.log(response);
+          await loading.dismiss();
+          await this.global.createToast('Evento cadastrado com sucesso!');
+          this.navController.back();
+        } else {
+          await loading.dismiss();
+          this.global.createAlert('Data inválida');
+
+        }
+
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
   async selectBanner(event) {
-    console.log(event);
-    this.banner = await this.apiCore.toBase64(event.target.files[0]);
-    console.log(this.banner);
+    this.banner = await this.tools.toBase64(event.target.files[0]);
   }
 }

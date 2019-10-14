@@ -4,6 +4,7 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 import { ModalController } from '@ionic/angular';
 import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
 import { EventsComponent } from 'src/app/components/modals/events/events.component';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-register-activity',
@@ -18,29 +19,44 @@ export class RegisterActivityPage {
   public speakerEmail = '';
   public eventId = '';
   public eventTitle = '';
+  public targetAudience;
 
   constructor(
     private activityValidator: RegisterActivityValidatorService,
     private apiCore: FatappCoreService,
     private modalController: ModalController,
+    private tools: ToolsService,
   ) {
     this.activityForm = this.activityValidator.getActivityForm();
     this.validationMessages = this.activityValidator.getActivityFormValidationsMessages();
+    this.getTargetAudience();
   }
 
   submit() {
-    console.log(this.activityForm);
-    if (!this.activityForm.valid) {
-      this.activityValidator.validateAllFormFields();
-    } else {
-      console.log(this.activityForm.value);
-      console.log(this.speaker);
+    try {
+      if (!this.activityForm.valid) {
+        this.activityValidator.validateAllFormFields();
+      } else {
+        console.log(this.activityForm.value);
+        console.log(this.speaker);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
   getSpeaker() {
 
     console.log(this.activityForm.value.speakerEmail);
+  }
+
+  async getTargetAudience() {
+    try {
+      this.targetAudience = await this.apiCore.getAllCourses();
+      console.log(this.targetAudience);
+    } catch (error) {
+
+    }
   }
 
   async openSpeakersModal() {

@@ -52,13 +52,13 @@ export class RegisterActivityValidatorService {
         { type: 'required', message: 'Tipo obrigatório' },
       ],
       targetAudience: [
-        { type: 'required', message: 'Público alvo obrigatório' },
+        { type: 'required', message: 'Público-alvo obrigatório' },
       ],
       initialTime: [
-        { type: 'required', message: 'Hora obrigatória' },
+        { type: 'required', message: 'Data obrigatória' },
       ],
       finalTime: [
-        { type: 'required', message: 'Hora obrigatória' },
+        { type: 'required', message: 'Data obrigatória' },
       ],
       description: [
         { type: 'required', message: 'Descrição obrigatória' },
