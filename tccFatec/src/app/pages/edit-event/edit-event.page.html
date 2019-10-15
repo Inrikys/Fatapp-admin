@@ -12,9 +12,9 @@
 
         <ion-row>
           <ion-col>
-              <ion-button class="btn-search" (click)="openEventsModal()">Consultar evento</ion-button>
+            <ion-button class="btn-search" (click)="openEventsModal()">Consultar evento</ion-button>
           </ion-col>
-      </ion-row>
+        </ion-row>
 
         <ion-row>
           <ion-col size="12">
@@ -54,7 +54,7 @@
             <ion-item lines="none">
               <ion-label position="fixed">De: </ion-label>
               <ion-datetime disabled class="edit-form" [(ngModel)]="initialDate" formControlName="initialDate"
-                placeholder="Escolha a data" displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
+                placeholder="Escolha a data" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.initialDate">
@@ -70,7 +70,7 @@
             <ion-item lines="none">
               <ion-label position="fixed">Até: </ion-label>
               <ion-datetime disabled class="edit-form" [(ngModel)]="finalDate" formControlName="finalDate"
-                placeholder="Escolha a data" displayFormat="DD/MM/YYYY" min="2019-06-04" max="2050-01-01">
+                placeholder="Escolha a data" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01">
               </ion-datetime>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.finalDate">
@@ -95,9 +95,10 @@
             </ng-container>
           </ion-col>
         </ion-row>
-        <div text-center>
-          <ion-button disabled class="btn-block btn-register edit-form" (click)="upload()">Editar</ion-button>
-          <ion-button class="btn-block btn-register" (click)="resetInputs()">Limpar campos</ion-button>
+        <div>
+          <ion-button class="btn-block" (click)="upload()">Alterar evento</ion-button>
+          <ion-button class="btn-block" (click)="removeEvent()">Remover evento</ion-button>
+          <ion-button class="btn-block" (click)="resetInputs()">Limpar campos</ion-button>
         </div>
       </ion-grid>
     </form>

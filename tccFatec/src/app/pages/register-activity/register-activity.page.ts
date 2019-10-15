@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
 import { EventsComponent } from 'src/app/components/modals/events/events.component';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { GlobalsService } from 'src/app/services/globals.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register-activity',
@@ -17,38 +19,73 @@ export class RegisterActivityPage {
   public validationMessages;
   public speaker = null;
   public speakerEmail = '';
-  public eventId = '';
+  public event: any = null;
   public eventTitle = '';
   public targetAudience;
+  public roomId = '';
 
   constructor(
     private activityValidator: RegisterActivityValidatorService,
     private apiCore: FatappCoreService,
     private modalController: ModalController,
     private tools: ToolsService,
+    private global: GlobalsService,
+    private route: ActivatedRoute,
   ) {
     this.activityForm = this.activityValidator.getActivityForm();
     this.validationMessages = this.activityValidator.getActivityFormValidationsMessages();
     this.getTargetAudience();
+    this.initialize();
   }
 
-  submit() {
+  async initialize() {
     try {
-      if (!this.activityForm.valid) {
-        this.activityValidator.validateAllFormFields();
+      if (this.route.snapshot.queryParams.id) {
+        this.roomId = await this.route.snapshot.queryParams.id;
       } else {
-        console.log(this.activityForm.value);
-        console.log(this.speaker);
+        console.log('Parametro inválido!');
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  getSpeaker() {
-
-    console.log(this.activityForm.value.speakerEmail);
+  async submit() {
+    try {
+      let validDate = false;
+      if (!this.activityForm.valid) {
+        this.activityValidator.validateAllFormFields();
+      } else {
+        validDate = await this.tools.validateDate(this.activityForm.value.initialDate, this.activityForm.value.finalDate);
+        if (validDate) {
+          const initialDate = this.tools.formatDate(this.activityForm.value.initialDate);
+          const finalDate = this.tools.formatDate(this.activityForm.value.finalDate);
+          const objActivity = {
+            title: this.activityForm.value.title,
+            type: this.activityForm.value.type,
+            description: this.activityForm.value.description,
+            targetAudience: this.activityForm.value.targetAudience,
+            initialDate,
+            finalDate,
+            obsActivity: 'nenhuma',
+            obsResource: 'nenhuma',
+            isActive: true,
+            // tslint:disable-next-line:max-line-length
+            qrCode: `${this.activityForm.value.title}${this.activityForm.roomId}${this.activityForm.value.eventId}${this.activityForm.value.speakerId}${this.activityForm.value.initialDate}`,
+            roomId: this.roomId,
+            eventId: this.event.id,
+            speakerId: this.speaker.id
+          };
+          const response = await this.apiCore.registerActivity(objActivity);
+        } else {
+          this.global.createAlert('Data inválida!');
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
+
 
   async getTargetAudience() {
     try {
@@ -70,7 +107,6 @@ export class RegisterActivityPage {
         if (data.data) {
           this.speaker = data.data;
           this.speakerEmail = this.speaker.speakerEmail;
-          console.log(this.speakerEmail);
         }
       });
   }
@@ -86,8 +122,8 @@ export class RegisterActivityPage {
         if (data.data) {
           const response = data.data;
           this.eventTitle = response.title;
-          this.eventId = response.id;
-          console.log(this.eventId);
+          this.event = response;
+          console.log(this.event);
         }
       });
   }

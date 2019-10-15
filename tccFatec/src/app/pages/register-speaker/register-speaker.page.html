@@ -2,7 +2,7 @@
 
 <ion-content color="tertiary">
   <div class="container">
-    <h1 class="page-title"> Registrar palestrador</h1>
+    <h1 class="page-title"> Cadastrar palestrante</h1>
     <form [formGroup]="speakerForm">
       <ion-grid class="box">
         <ion-row>
@@ -16,7 +16,7 @@
 
         <ion-row>
           <ion-col>
-            <div>Dados do palestrador</div>
+            <div>Dados do palestrante</div>
           </ion-col>
         </ion-row>
 
@@ -27,7 +27,7 @@
             </ion-item>
           </ion-col>
           <ion-col size="8">
-            <ion-input (ionBlur)="getSpeaker()" formControlName="speakerEmail"></ion-input>
+            <ion-input formControlName="speakerEmail"></ion-input>
             <ng-container *ngFor="let validation of validationMessages.speakerEmail">
               <div class="error-message"
                 *ngIf="speakerForm.get('speakerEmail').hasError(validation.type) && (speakerForm.get('speakerEmail').dirty || speakerForm.get('speakerEmail').touched)">

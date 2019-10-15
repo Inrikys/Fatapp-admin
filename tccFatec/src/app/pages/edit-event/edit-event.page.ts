@@ -104,7 +104,7 @@ export class EditEventPage {
 
     // @ts-ignore
     for (const item of elements) {
-      item.setAttribute('disabled');
+      item.setAttribute('disabled', '');
     }
   }
 
@@ -136,7 +136,7 @@ export class EditEventPage {
         if (option) {
           const loading = await this.global.createLoading('Carregando...');
           await loading.present();
-          const response = await this.apiCore.removeEvent(id);
+          const response = await this.apiCore.removeEvent(this.eventId);
           this.global.createToast('Evento excluído com sucesso!');
           await loading.dismiss();
           this.getAllEvents();
@@ -168,5 +168,7 @@ export class EditEventPage {
 
   resetInputs() {
     this.formEvent.reset();
+    this.eventId = '';
+    this.setDisable();
   }
 }

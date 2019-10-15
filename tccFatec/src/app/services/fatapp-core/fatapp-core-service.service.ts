@@ -27,6 +27,43 @@ export class FatappCoreService {
     };
   }
 
+  // Activities
+
+  async getAllActivity() {
+    const link = environment.apiCoreUrl + 'activities/';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async getActivity(id) {
+    const link = environment.apiCoreUrl + 'activities/' + id;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async registerActivity(data) {
+    const link = environment.apiCoreUrl + 'activities/';
+
+    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async updateActivity(data, id) {
+    const link = environment.apiCoreUrl + 'activities/' + id;
+    return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async removeActivity(id) {
+    const link = environment.apiCoreUrl + 'activities/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
 
   // Courses / Target Audience
   async getAllCourses() {
@@ -118,7 +155,7 @@ export class FatappCoreService {
 
   }
 
-  getSpeaker(email) {
+  async getSpeaker(email) {
     const link = environment.apiCoreUrl + 'speakers?email=' + email;
 
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {

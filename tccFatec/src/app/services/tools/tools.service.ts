@@ -19,7 +19,6 @@ export class ToolsService {
   // Compare Dates
   async validateDate(initial, final) {
 
-    console.log(initial, final);
     const splitDateInitial = initial.split('-');
     const splitDateFinal = final.split('-');
     const splitDayInitial = splitDateInitial[2].split('T');
@@ -51,5 +50,15 @@ export class ToolsService {
     } else {
       return false;
     }
+  }
+
+
+  formatDate(data) {
+    const dateSplit = data.split('T');
+    const date = dateSplit[0];
+    const timeSplit = dateSplit[1].split('.');
+    const time = timeSplit[0];
+    const finalDate = `${date} ${time}`;
+    return finalDate;
   }
 }
