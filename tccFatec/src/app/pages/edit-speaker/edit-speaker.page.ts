@@ -3,7 +3,6 @@ import { EditSpeakerValidatorService } from 'src/app/services/validators/edit-sp
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { AlertController, ModalController } from '@ionic/angular';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
 
 @Component({
@@ -23,7 +22,6 @@ export class EditSpeakerPage {
   public validationMessages;
   public speakerId = '';
 
-  public speakers = null;
   public speakerSearch = new Array();
 
   constructor(
@@ -31,15 +29,10 @@ export class EditSpeakerPage {
     private apiCore: FatappCoreService,
     private global: GlobalsService,
     private alertController: AlertController,
-    private formBuilder: FormBuilder,
     private modalController: ModalController,
   ) {
     this.editSpeakerForm = this.editSpeakerValidator.getEditSpeakerForm();
     this.validationMessages = this.editSpeakerValidator.getEditSpeakerFormValidationsMessages();
-  }
-
-  async ionViewDidEnter() {
-    await this.getSpeakers();
   }
 
   async submit() {
@@ -49,18 +42,8 @@ export class EditSpeakerPage {
       } else {
         const response: any = await this.apiCore.updateSpeaker(this.editSpeakerForm.value);
         this.global.createAlert('Palestrante alterado com sucesso!');
+        this.resetInputs();
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getSpeakers() {
-    try {
-      const loading = await this.global.createLoading('Carregando...');
-      await loading.present();
-      this.speakers = await this.apiCore.getAllSpeakers();
-      await loading.dismiss();
     } catch (error) {
       console.log(error);
     }
@@ -112,9 +95,9 @@ export class EditSpeakerPage {
           if (this.speakerId !== '') {
             const response = await this.apiCore.removeSpeaker(this.speakerId);
             await this.global.createToast('Palestrante removido com sucesso!');
-            await this.getSpeakers();
+            this.resetInputs();
           } else {
-            this.global.createAlert('Selecione um palestrante');
+            this.global.createAlert('Consulte e selecione um palestrante');
           }
 
         }

@@ -16,7 +16,6 @@ export class EditEventPage {
 
   public formEvent;
   public validationMessages;
-  public events = null;
   public eventSearch = new Array();
   public title = '';
   public edition = '';
@@ -36,22 +35,6 @@ export class EditEventPage {
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
-    this.getAllEvents();
-  }
-
-  async ionViewDidEnter() {
-    await this.getAllEvents();
-  }
-
-  async getAllEvents() {
-    try {
-      const loading = await this.global.createLoading('Carregando...');
-      await loading.present();
-      this.events = await this.apiCore.getAllEvents();
-      await loading.dismiss();
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async selectEvent(id) {
@@ -78,7 +61,7 @@ export class EditEventPage {
           const response = await this.apiCore.updateEvent(this.formEvent.value, this.eventId);
           await loading.dismiss();
           this.global.createToast('Evento alterado com sucesso!');
-          this.navController.back();
+          this.resetInputs();
         } else {
           await loading.dismiss();
           this.global.createAlert('Data inválida!');
@@ -134,12 +117,16 @@ export class EditEventPage {
       alert.onDidDismiss().then(async () => {
 
         if (option) {
-          const loading = await this.global.createLoading('Carregando...');
-          await loading.present();
-          const response = await this.apiCore.removeEvent(this.eventId);
-          this.global.createToast('Evento excluído com sucesso!');
-          await loading.dismiss();
-          this.getAllEvents();
+          if (this.eventId !== '') {
+            const loading = await this.global.createLoading('Carregando...');
+            await loading.present();
+            const response = await this.apiCore.removeEvent(this.eventId);
+            this.global.createToast('Evento excluído com sucesso!');
+            this.resetInputs();
+            await loading.dismiss();
+          } else {
+            this.global.createAlert('Consulte e selecione um evento');
+          }
         }
       });
     } catch (error) {

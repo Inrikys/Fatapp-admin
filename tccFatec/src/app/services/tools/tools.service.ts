@@ -61,4 +61,19 @@ export class ToolsService {
     const finalDate = `${date} ${time}`;
     return finalDate;
   }
+
+  formatFrontDate(data) {
+    const splitDate = data.split('-');
+    const splitDay = splitDate[2].split('T');
+    const splitHour = splitDay[1].split(':');
+
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDay[0];
+    const hour = splitHour[0];
+    const minute = splitHour[1];
+
+    const result = dateFns.format(new Date(year, month, day, hour, minute), 'dd/MM/yyyy HH:mm');
+    return result;
+  }
 }

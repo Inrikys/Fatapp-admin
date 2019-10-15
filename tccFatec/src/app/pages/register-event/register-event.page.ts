@@ -44,7 +44,7 @@ export class RegisterEventPage {
           const response = await this.apiCore.registerEvent(this.formEvent.value);
           await loading.dismiss();
           await this.global.createToast('Evento cadastrado com sucesso!');
-          this.navController.back();
+          this.resetInputs();
         } else {
           await loading.dismiss();
           this.global.createAlert('Data inválida');
@@ -57,6 +57,9 @@ export class RegisterEventPage {
     }
   }
 
+  resetInputs() {
+    this.formEvent.reset();
+  }
   // async selectBanner(event) {
   //   this.banner = await this.tools.toBase64(event.target.files[0]);
   // }
