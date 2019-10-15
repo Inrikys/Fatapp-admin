@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RegisterSpeakerValidatorService } from 'src/app/services/validators/register-speaker/register-speaker-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-register-speaker',
@@ -18,7 +18,6 @@ export class RegisterSpeakerPage {
     private speakerValidator: RegisterSpeakerValidatorService,
     private apiCore: FatappCoreService,
     private global: GlobalsService,
-    private navController: NavController,
   ) {
     this.speakerForm = this.speakerValidator.getSpeakerForm();
     this.validationMessages = this.speakerValidator.getSpeakerFormValidationsMessages();
@@ -33,13 +32,16 @@ export class RegisterSpeakerPage {
         console.log(response);
         if (response.speakerName) {
           this.global.createAlert('Palestrante cadastrado com sucesso!');
-          this.navController.back();
+          this.resetInputs();
         }
       }
     } catch (error) {
       console.log(error);
     }
+  }
 
+  resetInputs() {
+    this.speakerForm.reset();
   }
 
 }

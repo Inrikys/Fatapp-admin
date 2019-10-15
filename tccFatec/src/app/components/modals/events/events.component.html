@@ -36,8 +36,8 @@
           <ion-row *ngFor="let row of events" (click)="selectEvent(row)" class="row events">
             <ion-col class="col" size="3">{{row.title}}</ion-col>
             <ion-col class="col" size="3">{{row.edition}}</ion-col>
-            <ion-col class="col" size="3">{{row.initialDate}}</ion-col>
-            <ion-col class="col" size="3">{{row.finalDate}}</ion-col>
+            <ion-col class="col" size="3">{{row.formatedInitialDate}}</ion-col>
+            <ion-col class="col" size="3">{{row.formatedFinalDate}}</ion-col>
           </ion-row>
         </span>
       </span>
@@ -46,8 +46,8 @@
             <ion-row *ngFor="let row of eventSearch" (click)="selectEvent(row)" class="row events">
               <ion-col class="col" size="3">{{row.title}}</ion-col>
               <ion-col class="col" size="3">{{row.edition}}</ion-col>
-              <ion-col class="col" size="3">{{row.initialDate}}</ion-col>
-              <ion-col class="col" size="3">{{row.finalDate}}</ion-col>
+              <ion-col class="col" size="3">{{row.formatedInitialDate}}</ion-col>
+              <ion-col class="col" size="3">{{row.formatedFinalDate}}</ion-col>
           </ion-row>
         </span>
     </ion-grid>
