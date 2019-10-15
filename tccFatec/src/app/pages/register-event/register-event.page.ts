@@ -36,12 +36,12 @@ export class RegisterEventPage {
       } else {
         const loading = await this.global.createLoading('Carregando...');
         await loading.present();
-        this.formEvent.value.banner = this.banner;
-        console.log(this.formEvent.value);
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
+          this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
+          this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
+          console.log(this.formEvent.value);
           const response = await this.apiCore.registerEvent(this.formEvent.value);
-          console.log(response);
           await loading.dismiss();
           await this.global.createToast('Evento cadastrado com sucesso!');
           this.navController.back();
@@ -57,7 +57,7 @@ export class RegisterEventPage {
     }
   }
 
-  async selectBanner(event) {
-    this.banner = await this.tools.toBase64(event.target.files[0]);
-  }
+  // async selectBanner(event) {
+  //   this.banner = await this.tools.toBase64(event.target.files[0]);
+  // }
 }

@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { EditSpeakerPage } from './edit-speaker.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { BrMaskerModule } from 'br-mask';
+import { SpeakersModule } from 'src/app/components/modals/speakers/speakers.module';
 
 const routes: Routes = [
   {
@@ -21,7 +23,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    BrMaskerModule,
     ComponentsModule,
+    SpeakersModule,
     RouterModule.forChild(routes)
   ],
   declarations: [EditSpeakerPage]

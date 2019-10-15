@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EditEventValidatorService } from 'src/app/services/validators/edit-event/edit-event-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { NavController, AlertController } from '@ionic/angular';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NavController, AlertController, ModalController } from '@ionic/angular';
+import { FormGroup } from '@angular/forms';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { EventsComponent } from 'src/app/components/modals/events/events.component';
 
 @Component({
   selector: 'app-edit-event',
@@ -24,22 +25,18 @@ export class EditEventPage {
   public banner = '';
   public eventId = '';
 
-  public eventSearchForm: FormGroup;
-
-
   constructor(
     private eventValidator: EditEventValidatorService,
     private apiCore: FatappCoreService,
     private global: GlobalsService,
     private navController: NavController,
     private alertController: AlertController,
-    private formBuilder: FormBuilder,
     private tools: ToolsService,
+    private modalController: ModalController,
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
     this.getAllEvents();
-    this.createForm();
   }
 
   async ionViewDidEnter() {
@@ -61,24 +58,12 @@ export class EditEventPage {
     try {
       console.log(id);
       const response: any = await this.apiCore.getEvent(id);
-      this.title = await response.title;
-      this.edition = await response.edition;
-      this.initialDate = await response.initialDate;
-      this.finalDate = await response.finalDate;
-      this.eventId = await response.id;
-      this.removeDisable();
+
     } catch (error) {
       console.log(error);
     }
   }
 
-
-
-  private createForm() {
-    this.eventSearchForm = this.formBuilder.group({
-      name: this.formBuilder.control(''),
-    });
-  }
 
   async upload() {
     try {
@@ -114,6 +99,14 @@ export class EditEventPage {
       item.removeAttribute('disabled');
     }
   }
+  setDisable() {
+    const elements = document.querySelectorAll(`.edit-form`);
+
+    // @ts-ignore
+    for (const item of elements) {
+      item.setAttribute('disabled', '');
+    }
+  }
 
   async removeEvent(id) {
     try {
@@ -143,7 +136,7 @@ export class EditEventPage {
         if (option) {
           const loading = await this.global.createLoading('Carregando...');
           await loading.present();
-          const response = await this.apiCore.removeEvent(id);
+          const response = await this.apiCore.removeEvent(this.eventId);
           this.global.createToast('Evento excluído com sucesso!');
           await loading.dismiss();
           this.getAllEvents();
@@ -154,21 +147,28 @@ export class EditEventPage {
     }
   }
 
-  async getEventsSearch() {
-    try {
-      this.eventSearch = [];
-      const eventsToFilter = this.events;
+  async openEventsModal() {
+    const modal = await this.modalController.create({
+      component: EventsComponent,
+    });
+    modal.present();
 
-      const keyword = this.eventSearchForm.value.name;
-      console.log(keyword);
-
-      this.eventSearch = eventsToFilter.filter(collection => {
-        console.log(collection);
-        return collection.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+    modal.onDidDismiss()
+      .then(async (data: any) => {
+        if (data.data) {
+          this.title = await data.data.title;
+          this.edition = await data.data.edition;
+          this.initialDate = await data.data.initialDate;
+          this.finalDate = await data.data.finalDate;
+          this.eventId = await data.data.id;
+          this.removeDisable();
+        }
       });
+  }
 
-    } catch (error) {
-      console.log(error);
-    }
+  resetInputs() {
+    this.formEvent.reset();
+    this.eventId = '';
+    this.setDisable();
   }
 }

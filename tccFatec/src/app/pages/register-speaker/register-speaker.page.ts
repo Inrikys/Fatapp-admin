@@ -42,18 +42,4 @@ export class RegisterSpeakerPage {
 
   }
 
-  async getSpeaker() {
-    try {
-      if (this.speakerForm.value.speakerEmail !== '') {
-        const loading = await this.global.createLoading('Carregando...');
-        await loading.present();
-        const response = await this.apiCore.getSpeaker(this.speakerForm.value.speakerEmail);
-        console.log(response);
-        await loading.dismiss();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
 }

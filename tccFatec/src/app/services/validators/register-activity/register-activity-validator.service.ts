@@ -25,8 +25,8 @@ export class RegisterActivityValidatorService {
       title: [null, Validators.compose([Validators.required])],
       type: [false, Validators.compose([Validators.required])],
       targetAudience: [null, Validators.compose([Validators.required])],
-      initialTime: [null, Validators.compose([Validators.required])],
-      finalTime: [null, Validators.compose([Validators.required])],
+      initialDate: [null, Validators.compose([Validators.required])],
+      finalDate: [null, Validators.compose([Validators.required])],
       description: [null, Validators.compose([Validators.required])],
     });
   }
@@ -54,10 +54,10 @@ export class RegisterActivityValidatorService {
       targetAudience: [
         { type: 'required', message: 'Público-alvo obrigatório' },
       ],
-      initialTime: [
+      initialDate: [
         { type: 'required', message: 'Data obrigatória' },
       ],
-      finalTime: [
+      finalDate: [
         { type: 'required', message: 'Data obrigatória' },
       ],
       description: [

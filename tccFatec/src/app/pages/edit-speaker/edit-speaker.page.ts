@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { EditSpeakerValidatorService } from 'src/app/services/validators/edit-speaker/edit-speaker-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
 
 @Component({
   selector: 'app-edit-speaker',
@@ -17,13 +18,13 @@ export class EditSpeakerPage {
   public phone2Speaker = '';
   public curriculumSpeaker = '';
   public emailSpeaker = '';
-
+  public passedSpeaker = null;
   public editSpeakerForm;
   public validationMessages;
+  public speakerId = '';
 
   public speakers = null;
   public speakerSearch = new Array();
-  public speakerSearchForm: FormGroup;
 
   constructor(
     private editSpeakerValidator: EditSpeakerValidatorService,
@@ -31,20 +32,14 @@ export class EditSpeakerPage {
     private global: GlobalsService,
     private alertController: AlertController,
     private formBuilder: FormBuilder,
+    private modalController: ModalController,
   ) {
     this.editSpeakerForm = this.editSpeakerValidator.getEditSpeakerForm();
     this.validationMessages = this.editSpeakerValidator.getEditSpeakerFormValidationsMessages();
-    this.createForm();
   }
 
   async ionViewDidEnter() {
     await this.getSpeakers();
-  }
-
-  private createForm() {
-    this.speakerSearchForm = this.formBuilder.group({
-      name: this.formBuilder.control(''),
-    });
   }
 
   async submit() {
@@ -71,22 +66,6 @@ export class EditSpeakerPage {
     }
   }
 
-  async selectSpeaker(email) {
-    try {
-      console.log(email);
-      const response: any = await this.apiCore.getSpeaker(email);
-      console.log(response);
-      this.emailSpeaker = await response.speakerEmail;
-      this.nameSpeaker = await response.speakerName;
-      this.phoneSpeaker = await response.speakerPhone;
-      this.phone2Speaker = await response.speakerPhone2;
-      this.curriculumSpeaker = await response.speakerCurriculum;
-      this.removeDisable();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   removeDisable() {
     const elements = document.querySelectorAll(`.edit-form`);
 
@@ -95,12 +74,20 @@ export class EditSpeakerPage {
       item.removeAttribute('disabled');
     }
   }
+  setDisable() {
+    const elements = document.querySelectorAll(`.edit-form`);
 
-  async removeSpeaker(id) {
+    // @ts-ignore
+    for (const item of elements) {
+      item.setAttribute('disabled', '');
+    }
+  }
+
+  async removeSpeaker() {
     try {
       let option = null;
       const alert = await this.alertController.create({
-        message: 'Deseja mesmo remover?',
+        message: 'Deseja mesmo remover o palestrante?',
         buttons: [
           {
             text: 'Cancelar',
@@ -122,6 +109,13 @@ export class EditSpeakerPage {
       alert.onDidDismiss().then(async () => {
 
         if (option) {
+          if (this.speakerId !== '') {
+            const response = await this.apiCore.removeSpeaker(this.speakerId);
+            await this.global.createToast('Palestrante removido com sucesso!');
+            await this.getSpeakers();
+          } else {
+            this.global.createAlert('Selecione um palestrante');
+          }
 
         }
       });
@@ -130,22 +124,34 @@ export class EditSpeakerPage {
     }
   }
 
-  async getSpeakersSearch() {
+  async openSpeakersModal() {
     try {
-      this.speakerSearch = [];
-      const speakersToFilter = this.speakers;
-
-      const keyword = this.speakerSearchForm.value.name;
-      console.log(keyword);
-
-      this.speakerSearch = speakersToFilter.filter(collection => {
-        console.log(collection);
-        return collection.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+      const modal = await this.modalController.create({
+        component: SpeakersComponent,
       });
+      modal.present();
 
+      modal.onDidDismiss()
+        .then(async (data: any) => {
+          if (data.data) {
+            this.passedSpeaker = data.data;
+            this.emailSpeaker = await this.passedSpeaker.speakerEmail;
+            this.nameSpeaker = await this.passedSpeaker.speakerName;
+            this.phoneSpeaker = await this.passedSpeaker.speakerPhone;
+            this.phone2Speaker = await this.passedSpeaker.speakerPhone2;
+            this.curriculumSpeaker = await this.passedSpeaker.speakerCurriculum;
+            this.speakerId = await this.passedSpeaker.id;
+            this.removeDisable();
+          }
+        });
     } catch (error) {
       console.log(error);
     }
   }
 
+  resetInputs() {
+    this.editSpeakerForm.reset();
+    this.speakerId = '';
+    this.setDisable();
+  }
 }
