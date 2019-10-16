@@ -21,7 +21,7 @@ export class RegisterEventValidatorService {
     return this.formEvent = this.formBuilder.group({
       title: [null, Validators.compose([Validators.required])],
       edition: [null, Validators.compose([Validators.required])],
-      initialDate: [null, Validators.compose([Validators.required])],
+      initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       finalDate: [null, Validators.compose([Validators.required])],
       banner: [null, Validators.compose([Validators.required])],
     });
@@ -43,9 +43,13 @@ export class RegisterEventValidatorService {
       ],
       initialDate: [
         {type: 'required', message: 'Data obrigatória'},
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
       ],
       finalDate: [
         {type: 'required', message: 'Data obrigatória'},
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
       ],
       banner: [
         {type: 'required', message: 'Imagem obrigatória'},

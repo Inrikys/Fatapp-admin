@@ -38,10 +38,11 @@ export class RegisterEventPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
-          this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
-          this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
+          this.formEvent.value.initialDate = this.tools.formatDate(this.formEvent.value.initialDate);
+          this.formEvent.value.finalDate =  this.tools.formatDate(this.formEvent.value.finalDate);
           console.log(this.formEvent.value);
           const response = await this.apiCore.registerEvent(this.formEvent.value);
+          console.log(response);
           await loading.dismiss();
           await this.global.createToast('Evento cadastrado com sucesso!');
           this.resetInputs();

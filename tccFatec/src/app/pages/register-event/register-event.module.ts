@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { RegisterEventPage } from './register-event.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { BrMaskerModule } from 'br-mask';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     FormsModule,
     ComponentsModule,
     IonicModule,
+    BrMaskerModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],

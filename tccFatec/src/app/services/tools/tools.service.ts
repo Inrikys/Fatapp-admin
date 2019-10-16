@@ -19,19 +19,20 @@ export class ToolsService {
   // Compare Dates
   async validateDate(initial, final) {
 
-    const splitDateInitial = initial.split('-');
-    const splitDateFinal = final.split('-');
-    const splitDayInitial = splitDateInitial[2].split('T');
-    const splitDayFinal = splitDateFinal[2].split('T');
-    const splitHourInitial = splitDayInitial[1].split(':');
-    const splitHourFinal = splitDayFinal[1].split(':');
+    const splitDateInitial = initial.split('/');
+    const splitDateFinal = final.split('/');
+    const splitYearInitial = splitDateInitial[2].split('-');
+    const splitYearFinal = splitDateFinal[2].split('-');
+    const splitHourInitial = splitYearInitial[1].split(':');
+    const splitHourFinal = splitYearFinal[1].split(':');
 
-    const yearInitial = splitDateInitial[0];
-    const yearFinal = splitDateFinal[0];
+    const yearInitial = splitYearInitial[0];
+    const yearFinal = splitYearFinal[0];
     const monthInitial = splitDateInitial[1];
     const monthFinal = splitDateFinal[1];
-    const dayInitial = splitDayInitial[0];
-    const dayFinal = splitDayFinal[0];
+    const dayInitial = splitDateInitial[0];
+    const dayFinal = splitDateFinal[0];
+
     const hourInitial = splitHourInitial[0];
     const hourFinal = splitHourFinal[0];
     const minuteInitial = splitHourInitial[1];
@@ -54,11 +55,16 @@ export class ToolsService {
 
 
   formatDate(data) {
-    const dateSplit = data.split('T');
-    const date = dateSplit[0];
-    const timeSplit = dateSplit[1].split('.');
-    const time = timeSplit[0];
-    const finalDate = `${date} ${time}`;
+    const dataSplit = data.split('-');
+    const date = dataSplit[0];
+    const time = dataSplit[1];
+    const dateSplit = date.split('/');
+    const day = dateSplit[0];
+    const month = dateSplit[1];
+    const year = dateSplit[2];
+
+    const finalDate = `${year}-${month}-${day} ${time}`;
+    console.log(finalDate);
     return finalDate;
   }
 
@@ -73,7 +79,7 @@ export class ToolsService {
     const hour = splitHour[0];
     const minute = splitHour[1];
 
-    const result = dateFns.format(new Date(year, month, day, hour, minute), 'dd/MM/yyyy HH:mm');
+    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy HH:mm');
     return result;
   }
 }

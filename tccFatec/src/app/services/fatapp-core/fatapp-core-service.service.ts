@@ -30,7 +30,14 @@ export class FatappCoreService {
   // Activities
 
   async getAllActivity() {
-    const link = environment.apiCoreUrl + 'activities/';
+    const link = environment.apiCoreUrl + 'activities?isActive=';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async getAllActiveActivity() {
+    const link = environment.apiCoreUrl + 'activities?isActive=1';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
@@ -48,6 +55,7 @@ export class FatappCoreService {
 
     return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
+      this.global.createAlert(error.error);
     });
   }
 
