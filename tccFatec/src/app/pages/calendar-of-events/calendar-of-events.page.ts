@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 
 
 @Component({
@@ -18,8 +19,10 @@ export class CalendarOfEventsPage {
     private global: GlobalsService,
     private modalController: ModalController,
     private route: ActivatedRoute,
+    private apiCore: FatappCoreService,
   ) {
     this.initialize();
+    this.getAllActivities();
   }
 
   async initialize() {
@@ -32,6 +35,11 @@ export class CalendarOfEventsPage {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async getAllActivities() {
+    const response = await this.apiCore.getAllActivity();
+    console.log(response);
   }
 
 
