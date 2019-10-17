@@ -44,7 +44,7 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">De: </ion-label>
-              <ion-input [brmasker]="{mask:'00/00/0000-00:00', len:16}" placeholder="Exemplo: 11/08/2019-07:00" formControlName="initialDate"></ion-input>
+              <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019-07:00" formControlName="initialDate"></ion-input>
             </ion-item>
             <ng-container *ngFor="let validation of validationMessages.initialDate">
               <div class="error-message"
@@ -58,7 +58,7 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Até: </ion-label>
-              <ion-input [brmasker]="{mask:'00/00/0000-00:00', len:16}" placeholder="Exemplo: 15/08/2019-22:00" formControlName="finalDate"></ion-input>
+              <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 15/08/2019-22:00" formControlName="finalDate"></ion-input>
             </ion-item>
 
             <ng-container *ngFor="let validation of validationMessages.finalDate">

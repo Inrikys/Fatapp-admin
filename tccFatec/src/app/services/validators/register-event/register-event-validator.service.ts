@@ -22,7 +22,7 @@ export class RegisterEventValidatorService {
       title: [null, Validators.compose([Validators.required])],
       edition: [null, Validators.compose([Validators.required])],
       initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
-      finalDate: [null, Validators.compose([Validators.required])],
+      finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       banner: [null, Validators.compose([Validators.required])],
     });
   }

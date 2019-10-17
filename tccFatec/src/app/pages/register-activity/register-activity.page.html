@@ -132,12 +132,10 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-datetime formControlName="initialDate" cancel-text="Cancelar" done-text="OK"
-                            placeholder="DD/MM/YY HH:mm" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01"
-                            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
-                        <ng-container *ngFor="let validation of validationMessages.initialTime">
+                        <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019 07:00" formControlName="initialDate"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.initialDate">
                             <div class="error-message"
-                                *ngIf="activityForm.get('initialTime').hasError(validation.type) && (activityForm.get('initialTime').dirty || activityForm.get('initialTime').touched)">
+                                *ngIf="activityForm.get('initialDate').hasError(validation.type) && (activityForm.get('initialDate').dirty || activityForm.get('initialDate').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>
@@ -152,12 +150,10 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="8">
-                        <ion-datetime formControlName="finalDate" cancel-text="Cancelar" done-text="OK"
-                            placeholder="DD/MM/YY HH:mm" displayFormat="DD/MM/YYYY HH:mm" min="2019-06-04" max="2050-01-01"
-                            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"></ion-datetime>
-                        <ng-container *ngFor="let validation of validationMessages.finalTime">
+                        <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019 07:00" formControlName="finalDate"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.finalDate">
                             <div class="error-message"
-                                *ngIf="activityForm.get('finalTime').hasError(validation.type) && (activityForm.get('finalTime').dirty || activityForm.get('finalTime').touched)">
+                                *ngIf="activityForm.get('finalDate').hasError(validation.type) && (activityForm.get('finalDate').dirty || activityForm.get('finalDate').touched)">
                                 {{ validation.message }}
                             </div>
                         </ng-container>

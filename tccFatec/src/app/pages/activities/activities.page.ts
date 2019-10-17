@@ -1,46 +1,25 @@
-import { Component } from '@angular/core';
-import { GlobalsService } from 'src/app/services/globals.service';
-import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
+import { Component, OnInit } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools/tools.service';
-
+import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 
 @Component({
-  selector: 'app-calendar-of-events',
-  templateUrl: './calendar-of-events.page.html',
-  styleUrls: ['./calendar-of-events.page.scss'],
+  selector: 'app-activities',
+  templateUrl: './activities.page.html',
+  styleUrls: ['./activities.page.scss'],
 })
-export class CalendarOfEventsPage {
+export class ActivitiesPage {
 
-  private roomId = null;
   private activities = null;
 
   constructor(
-    private global: GlobalsService,
-    private modalController: ModalController,
-    private route: ActivatedRoute,
-    private apiCore: FatappCoreService,
     private tools: ToolsService,
-  ) {
-    this.initialize();
-
-  }
+    private apiCore: FatappCoreService,
+    private global: GlobalsService,
+  ) { }
 
   ionViewDidEnter() {
     this.getAllActivities();
-  }
-
-  async initialize() {
-    try {
-      if (this.route.snapshot.queryParams.id) {
-        this.roomId = await this.route.snapshot.queryParams.id;
-      } else {
-        console.log('Parametro inválido!');
-      }
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async getAllActivities() {
@@ -64,7 +43,6 @@ export class CalendarOfEventsPage {
     await loading.dismiss();
   }
 
-
   async goToQrCode(qrcode) {
     try {
       this.global.navigateByUrl('admin/qr-code?id=' + qrcode);
@@ -73,12 +51,4 @@ export class CalendarOfEventsPage {
     }
   }
 
-  async goToRegisterActivity() {
-    try {
-      this.global.navigateByUrl('admin/register-activity?id=' + this.roomId);
-    } catch (error) {
-      console.log(error);
-    }
-
-  }
 }

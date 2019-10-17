@@ -145,8 +145,8 @@ export class EditEventPage {
         if (data.data) {
           this.title = await data.data.title;
           this.edition = await data.data.edition;
-          this.initialDate = await data.data.initialDate;
-          this.finalDate = await data.data.finalDate;
+          this.initialDate = await this.tools.formatFrontDate(data.data.initialDate);
+          this.finalDate = await this.tools.formatFrontDate(data.data.finalDate);
           this.eventId = await data.data.id;
           this.removeDisable();
         }

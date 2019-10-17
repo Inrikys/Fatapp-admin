@@ -9,6 +9,7 @@ import { RegisterActivityPage } from './register-activity.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { SpeakersModule } from 'src/app/components/modals/speakers/speakers.module';
 import { EventsModule } from 'src/app/components/modals/events/events.module';
+import { BrMaskerModule } from 'br-mask';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     ComponentsModule,
     ReactiveFormsModule,
     SpeakersModule,
+    BrMaskerModule,
     EventsModule,
     RouterModule.forChild(routes)
   ],

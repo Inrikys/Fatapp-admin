@@ -71,7 +71,7 @@ export class RegisterActivityPage {
             obsResource: 'nenhuma',
             isActive: true,
             // tslint:disable-next-line:max-line-length
-            qrCode: `${this.activityForm.value.title}${this.activityForm.roomId}${this.activityForm.value.eventId}${this.activityForm.value.speakerId}${this.activityForm.value.initialDate}`,
+            qrCode: `${this.activityForm.value.title}${this.activityForm.roomId}${this.activityForm.value.eventId}`,
             roomId: this.roomId,
             eventId: this.event.id,
             speakerId: this.speaker.id
@@ -90,7 +90,6 @@ export class RegisterActivityPage {
   async getTargetAudience() {
     try {
       this.targetAudience = await this.apiCore.getAllCourses();
-      console.log(this.targetAudience);
     } catch (error) {
 
     }
@@ -123,7 +122,6 @@ export class RegisterActivityPage {
           const response = data.data;
           this.eventTitle = response.title;
           this.event = response;
-          console.log(this.event);
         }
       });
   }

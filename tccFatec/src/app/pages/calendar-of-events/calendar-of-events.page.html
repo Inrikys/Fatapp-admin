@@ -7,7 +7,7 @@
                 <ion-col size="5">
                     <ion-item lines="none">
                         <ion-datetime placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04"
-                                      max="2050-01-01"></ion-datetime>
+                            max="2050-01-01"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col size="7">
@@ -18,12 +18,17 @@
 
 
         <div class="agenda-items">
-            <ion-item>
-                <ion-label>
-                    <span>11:00 </span><span> Palestra do fulano</span>
-                </ion-label>
-                <ion-button (click)="goToQrCode()" fill="outline" slot="end">QR-Code</ion-button>
-            </ion-item>
+            <div *ngFor="let activity of activities">
+                <ion-item>
+                    <ion-label>
+                        <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
+                        <div class="d-block">Palestrante: <span class="speaker-name">{{activity.speaker.speakerName}}</span></div>
+                        <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                        <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                    </ion-label>
+                    <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+                </ion-item>
+            </div>
             <ion-item lines="none">
                 <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
             </ion-item>

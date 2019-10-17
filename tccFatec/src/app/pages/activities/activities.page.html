@@ -1,0 +1,21 @@
+<main-header></main-header>
+<ion-content>
+<div class="container">
+    <div class="agenda-items">
+        <div *ngFor="let activity of activities">
+            <ion-item>
+                <ion-label>
+                    <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
+                    <div class="d-block">Palestrante: <span class="speaker-name">{{activity.speaker.speakerName}}</span></div>
+                    <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                    <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                </ion-label>
+                <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+            </ion-item>
+        </div>
+        <ion-item lines="none">
+            <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
+        </ion-item>
+    </div>
+</div>
+</ion-content>
