@@ -25,8 +25,8 @@ export class RegisterActivityValidatorService {
       title: [null, Validators.compose([Validators.required])],
       type: [false, Validators.compose([Validators.required])],
       targetAudience: [null, Validators.compose([Validators.required])],
-      initialDate: [null, Validators.compose([Validators.required])],
-      finalDate: [null, Validators.compose([Validators.required])],
+      initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
+      finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       description: [null, Validators.compose([Validators.required])],
     });
   }
@@ -56,9 +56,13 @@ export class RegisterActivityValidatorService {
       ],
       initialDate: [
         { type: 'required', message: 'Data obrigatória' },
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
       ],
       finalDate: [
         { type: 'required', message: 'Data obrigatória' },
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
       ],
       description: [
         { type: 'required', message: 'Descrição obrigatória' },

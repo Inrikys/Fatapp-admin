@@ -15,7 +15,7 @@ export const environment = {
   // apiUrl: 'https://myspotapp-1541881215537.appspot.com/api/' ,
   apiCoreUrl: 'http://localhost:3000/',
   // tslint:disable-next-line:max-line-length
-  apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxMTkwMzIxLCJleHAiOjE1NzExOTM5MjF9.5ri93T9yQAGROPhR0nQRjdTdvGU6zaXCRqHE8Lyim8I',
+  apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxMjc5NzU2LCJleHAiOjE1NzEyODMzNTZ9.n0NEiLZ3KOHiMccMC5J34xU0pSER2fK7D443cVtCHIs',
 };
 
 /*

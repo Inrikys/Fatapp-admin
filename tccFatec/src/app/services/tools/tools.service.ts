@@ -21,8 +21,8 @@ export class ToolsService {
 
     const splitDateInitial = initial.split('/');
     const splitDateFinal = final.split('/');
-    const splitYearInitial = splitDateInitial[2].split('-');
-    const splitYearFinal = splitDateFinal[2].split('-');
+    const splitYearInitial = splitDateInitial[2].split(' ');
+    const splitYearFinal = splitDateFinal[2].split(' ');
     const splitHourInitial = splitYearInitial[1].split(':');
     const splitHourFinal = splitYearFinal[1].split(':');
 
@@ -55,7 +55,7 @@ export class ToolsService {
 
 
   formatDate(data) {
-    const dataSplit = data.split('-');
+    const dataSplit = data.split(' ');
     const date = dataSplit[0];
     const time = dataSplit[1];
     const dateSplit = date.split('/');
@@ -64,7 +64,6 @@ export class ToolsService {
     const year = dateSplit[2];
 
     const finalDate = `${year}-${month}-${day} ${time}`;
-    console.log(finalDate);
     return finalDate;
   }
 
@@ -80,6 +79,21 @@ export class ToolsService {
     const minute = splitHour[1];
 
     const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy HH:mm');
+    return result;
+  }
+
+  formatFrontTimeDate(data) {
+    const splitDate = data.split('-');
+    const splitDay = splitDate[2].split('T');
+    const splitHour = splitDay[1].split(':');
+
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDay[0];
+    const hour = splitHour[0];
+    const minute = splitHour[1];
+
+    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'HH:mm');
     return result;
   }
 }
