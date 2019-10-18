@@ -5,13 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ActivitiesPage } from './activities.page';
+import { EditActivityPage } from './edit-activity.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { BrMaskerModule } from 'br-mask';
+import { ActivitiesModule } from 'src/app/components/modals/activities/activities.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: ActivitiesPage
+    component: EditActivityPage
   }
 ];
 
@@ -22,8 +24,10 @@ const routes: Routes = [
     IonicModule,
     ReactiveFormsModule,
     ComponentsModule,
+    BrMaskerModule,
+    ActivitiesModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ActivitiesPage]
+  declarations: [EditActivityPage]
 })
-export class ActivitiesPageModule {}
+export class EditActivityPageModule {}

@@ -26,12 +26,12 @@ export class AppComponent {
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
-        { title: 'Editar palestrante', url: '/admin/edit-speaker'},
-        { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course'},
+        { title: 'Editar palestrante', url: '/admin/edit-speaker' },
+        { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
         { title: 'Salas e atividades', url: '/admin/room' },
         { title: 'Lista de atividades', url: '/admin/activities' },
         { title: 'Lista de presença', url: '/admin/present-list' },
- 
+        { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];
     public generalLinks = [
         { title: 'Sobre', url: '/about' },
@@ -60,7 +60,7 @@ export class AppComponent {
         });
     }
 
-     initialize() {
+    initialize() {
         this.usersService.user.subscribe(data => {
             this.user = data;
         });
