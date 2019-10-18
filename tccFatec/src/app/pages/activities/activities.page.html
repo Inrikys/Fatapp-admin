@@ -1,21 +1,82 @@
 <main-header></main-header>
-<ion-content>
-<div class="container">
-    <div class="agenda-items">
-        <div *ngFor="let activity of activities">
-            <ion-item>
-                <ion-label>
-                    <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
-                    <div class="d-block">Palestrante: <span class="speaker-name">{{activity.speaker.speakerName}}</span></div>
-                    <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
-                    <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
-                </ion-label>
-                <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
-            </ion-item>
+<ion-content color="tertiary">
+    <div class="container">
+
+
+        <h1 class="page-title">Lista de atividades</h1>
+        <form [formGroup]="activitySearchForm">
+            <ion-grid class="box">
+                <ion-row>
+                    <ion-col>
+                        <ion-label position="fixed">Pesquisar:</ion-label>
+                        <ion-input formControlName="name"></ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+        <div class="ion-text-center">
+            <ion-button class="btn-events" (click)="getActivitySearch()">Pesquisar</ion-button>
         </div>
-        <ion-item lines="none">
-            <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
-        </ion-item>
+
+        <span *ngIf="activities">
+            <span *ngIf="!activitySearch || activitySearch == ''">
+                <div *ngFor="let activity of activities">
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-subtitle>{{activity.speaker.speakerName}}</ion-card-subtitle>
+                            <ion-card-title class="highlight">{{activity.title}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-item>
+                            <ion-label>
+                                <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                                <div class="d-block highlight">Evento: <span
+                                        class="speaker-name">{{activity.event.title}}</span>
+                                    {{activity.event.edition}}</div>
+                                <div class="d-block">Tipo: <span>{{activity.type}}</span></div>
+                                <br>
+                                <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
+                                <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
+                            </ion-label>
+                            <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code
+                            </ion-button>
+                        </ion-item>
+                        <ion-card-content>
+                            <span>Descrição: </span>
+                            {{activity.description}}
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+            </span>
+        </span>
+
+        <span *ngIf="activities">
+            <span *ngIf="activitySearch">
+                <div *ngFor="let activity of activitySearch">
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-subtitle>{{activity.speaker.speakerName}}</ion-card-subtitle>
+                            <ion-card-title class="highlight">{{activity.title}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-item>
+                            <ion-label>
+                                <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                                <div class="d-block highlight">Evento: <span>{{activity.event.title}}</span>
+                                    {{activity.event.edition}}</div>
+                                <div class="d-block">Tipo: <span>{{activity.type}}</span></div>
+                                <br>
+                                <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
+                                <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
+                            </ion-label>
+                            <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code
+                            </ion-button>
+                        </ion-item>
+                        <ion-card-content>
+                            <span>Descrição: </span>
+                            {{activity.description}}
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+            </span>
+        </span>
     </div>
-</div>
 </ion-content>

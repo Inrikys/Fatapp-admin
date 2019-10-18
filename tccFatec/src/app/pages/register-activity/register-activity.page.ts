@@ -56,6 +56,8 @@ export class RegisterActivityPage {
       if (!this.activityForm.valid) {
         this.activityValidator.validateAllFormFields();
       } else {
+        const loading = await this.global.createLoading('Cadastrando atividade...');
+        await loading.present();
         validDate = await this.tools.validateDate(this.activityForm.value.initialDate, this.activityForm.value.finalDate);
         if (validDate) {
           const initialDate = this.tools.formatDate(this.activityForm.value.initialDate);
@@ -71,12 +73,17 @@ export class RegisterActivityPage {
             obsResource: 'nenhuma',
             isActive: true,
             // tslint:disable-next-line:max-line-length
-            qrCode: `${this.activityForm.value.title}${this.activityForm.roomId}${this.activityForm.value.eventId}`,
+            qrCode: `${this.activityForm.value.title}${this.roomId}${this.event.id}`,
             roomId: this.roomId,
             eventId: this.event.id,
             speakerId: this.speaker.id
           };
-          const response = await this.apiCore.registerActivity(objActivity);
+          const response: any = await this.apiCore.registerActivity(objActivity);
+          await loading.dismiss();
+          if (response.title) {
+            this.global.createAlert('Atividade cadastrada com sucesso!');
+            this.resetInputs();
+          }
         } else {
           this.global.createAlert('Data inválida!');
         }
@@ -91,7 +98,7 @@ export class RegisterActivityPage {
     try {
       this.targetAudience = await this.apiCore.getAllCourses();
     } catch (error) {
-
+      console.log(error);
     }
   }
 
@@ -124,5 +131,13 @@ export class RegisterActivityPage {
           this.event = response;
         }
       });
+  }
+
+  resetInputs() {
+    this.activityForm.reset();
+    this.speaker = null;
+    this.event = null;
+    this.eventTitle = '';
+    this.speakerEmail = '';
   }
 }

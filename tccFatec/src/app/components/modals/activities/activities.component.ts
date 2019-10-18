@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
@@ -6,10 +6,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-activities',
-  templateUrl: './activities.page.html',
-  styleUrls: ['./activities.page.scss'],
+  templateUrl: './activities.component.html',
+  styleUrls: ['./activities.component.scss'],
 })
-export class ActivitiesPage {
+export class ActivitiesComponent {
 
   private activities = null;
   public activitySearchForm: FormGroup;
@@ -55,13 +55,6 @@ export class ActivitiesPage {
     await loading.dismiss();
   }
 
-  async goToQrCode(qrcode) {
-    try {
-      this.global.navigateByUrl('admin/qr-code?id=' + qrcode);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async getActivitySearch() {
     try {
