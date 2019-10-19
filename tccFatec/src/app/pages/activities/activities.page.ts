@@ -79,7 +79,9 @@ export class ActivitiesPage {
           || collection.event.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.event.edition.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speaker.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+          || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.room.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
       console.log(this.activitySearch);
 

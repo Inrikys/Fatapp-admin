@@ -9,6 +9,8 @@ import { EditActivityPage } from './edit-activity.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { BrMaskerModule } from 'br-mask';
 import { ActivitiesModule } from 'src/app/components/modals/activities/activities.module';
+import { EventsModule } from 'src/app/components/modals/events/events.module';
+import { SpeakersModule } from 'src/app/components/modals/speakers/speakers.module';
 
 const routes: Routes = [
   {
@@ -25,6 +27,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     ComponentsModule,
     BrMaskerModule,
+    EventsModule,
+    SpeakersModule,
     ActivitiesModule,
     RouterModule.forChild(routes)
   ],

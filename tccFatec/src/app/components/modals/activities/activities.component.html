@@ -27,8 +27,8 @@
       <ion-row class="row header activity">
         <ion-col class="col" size="3">Título</ion-col>
         <ion-col class="col" size="3">Palestrante</ion-col>
-        <ion-col class="col" size="3">De</ion-col>
-        <ion-col class="col" size="3">Até</ion-col>
+        <ion-col class="col" size="3">Data</ion-col>
+        <ion-col class="col" size="3">Local</ion-col>
       </ion-row>
 
       <span *ngIf="activities">
@@ -37,7 +37,7 @@
             <ion-col class="col" size="3">{{row.title}}</ion-col>
             <ion-col class="col" size="3">{{row.speaker.speakerName}}</ion-col>
             <ion-col class="col" size="3">{{row.formatedInitialTime}}</ion-col>
-            <ion-col class="col" size="3">{{row.formatedFinalTime}}</ion-col>
+            <ion-col class="col" size="3">{{row.room.type}}<span> {{row.room.name}}</span></ion-col>
           </ion-row>
         </span>
       </span>
@@ -47,7 +47,7 @@
               <ion-col class="col" size="3">{{row.title}}</ion-col>
               <ion-col class="col" size="3">{{row.speaker.speakerName}}</ion-col>
               <ion-col class="col" size="3">{{row.formatedInitialTime}}</ion-col>
-              <ion-col class="col" size="3">{{row.formatedFinalTime}}</ion-col>
+              <ion-col class="col" size="3">{{row.room.type}}<span> {{row.room.name}}</span></ion-col>
           </ion-row>
         </span>
     </ion-grid>

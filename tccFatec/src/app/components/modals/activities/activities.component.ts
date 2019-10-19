@@ -3,6 +3,7 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-activities',
@@ -20,6 +21,7 @@ export class ActivitiesComponent {
     private apiCore: FatappCoreService,
     private global: GlobalsService,
     private formBuilder: FormBuilder,
+    private modalController: ModalController,
   ) {
     this.createForm();
   }
@@ -72,13 +74,18 @@ export class ActivitiesComponent {
           || collection.event.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.event.edition.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speaker.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+          || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
       console.log(this.activitySearch);
 
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async selectActivity(activity) {
+    this.modalController.dismiss(activity);
   }
 
 }
