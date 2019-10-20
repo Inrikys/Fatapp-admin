@@ -96,4 +96,19 @@ export class ToolsService {
     const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'HH:mm');
     return result;
   }
+
+  formatFrontDateWithoutTime(data) {
+    const splitDate = data.split('-');
+    const splitDay = splitDate[2].split('T');
+    const splitHour = splitDay[1].split(':');
+
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDay[0];
+    const hour = splitHour[0];
+    const minute = splitHour[1];
+
+    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy');
+    return result;
+  }
 }

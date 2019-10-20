@@ -25,12 +25,18 @@ export class AppComponent {
     public eventMenu = [
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
+        { title: 'Lista de presença', url: '/admin/present-list' },
+    ];
+    public speakerMenu = [
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
         { title: 'Editar palestrante', url: '/admin/edit-speaker' },
+    ];
+    public targetAudienceMenu = [
         { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
+    ];
+    public roomActivityMenu = [
         { title: 'Salas e atividades', url: '/admin/room' },
         { title: 'Lista de atividades', url: '/admin/activities' },
-        { title: 'Lista de presença', url: '/admin/present-list' },
         { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];
     public generalLinks = [
