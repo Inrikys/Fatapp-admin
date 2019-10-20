@@ -55,7 +55,7 @@ export class FatappCoreService {
 
     return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert(error.error);
+      this.global.createAlert('Ocorreu algum erro ao cadastrar atividade, verifique se a data da atividade está dentro da data do evento');
     });
   }
 
@@ -63,6 +63,7 @@ export class FatappCoreService {
     const link = environment.apiCoreUrl + 'activities/' + id;
     return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
+      this.global.createAlert('Ocorreu algum erro ao alterar atividade, verifique se a data da atividade está dentro da data do evento');
     });
   }
 
@@ -70,6 +71,7 @@ export class FatappCoreService {
     const link = environment.apiCoreUrl + 'activities/' + id;
     return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
+      this.global.createAlert('Ocorreu algum erro ao remover atividade');
     });
   }
 

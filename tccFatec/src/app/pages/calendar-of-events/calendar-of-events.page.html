@@ -2,36 +2,59 @@
 
 <ion-content>
     <div class="contaner">
-        <ion-grid>
-            <ion-row>
-                <ion-col size="5">
-                    <ion-item lines="none">
-                        <ion-datetime placeholder="Escolha a data" displayFormat="DD MM YYYY" min="2019-06-04"
-                            max="2050-01-01"></ion-datetime>
-                    </ion-item>
-                </ion-col>
-                <ion-col size="7">
-                    <ion-button>Pesquisar</ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+        <form [formGroup]="activitySearchForm">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="5">
+                        <ion-item lines="none">
+                            <ion-input formControlName="name" placeholder="Escolha a data" [brmasker]="{mask:'00/00/0000', len:10}"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="7">
+                        <ion-button (click)="getActivitySearch()">Pesquisar</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
 
-
-        <div class="agenda-items">
-            <div *ngFor="let activity of activities">
-                <ion-item>
-                    <ion-label>
-                        <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
-                        <div class="d-block">Palestrante: <span class="speaker-name">{{activity.speaker.speakerName}}</span></div>
-                        <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
-                        <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
-                    </ion-label>
-                    <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
-                </ion-item>
-            </div>
-            <ion-item lines="none">
-                <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
-            </ion-item>
+        <div class="ion-margin-top" *ngIf="!activitiesRoom && pageLoaded || activitiesRoom == '' && pageLoaded">
+            <div class="exception-message" >Você ainda não cadastrou nenhuma atividade nessa sala.</div>
         </div>
+
+        <span *ngIf="activitiesRoom">
+            <div *ngIf="!activitySearch || activitySearch == ''" class="agenda-items">
+                <div *ngFor="let activity of activitiesRoom">
+                    <ion-item>
+                        <ion-label>
+                            <div class="d-block">{{activity.formatedDate}}</div>
+                            <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
+                            <div class="d-block">Palestrante: <span
+                                    class="speaker-name">{{activity.speaker.speakerName}}</span></div>
+                            <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                            <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                        </ion-label>
+                        <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+                    </ion-item>
+                </div>
+            </div>
+            <div *ngIf="activitySearch" class="agenda-items">
+                <div *ngFor="let activity of activitySearch">
+                    <ion-item>
+                        <ion-label>
+                            <div class="d-block">{{activity.formatedDate}}</div>
+                            <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
+                            <div class="d-block">Palestrante: <span
+                                    class="speaker-name">{{activity.speaker.speakerName}}</span></div>
+                            <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                            <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                        </ion-label>
+                        <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+                    </ion-item>
+                </div>
+            </div>
+        </span>
+        <ion-item lines="none">
+            <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
+        </ion-item>
     </div>
 </ion-content>

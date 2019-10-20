@@ -1,5 +1,5 @@
 <div>
-  <div class="exception-centralize" *ngIf="errorMessage">
+  <div *ngIf="errorMessage">
 
     <div class="ion-text-center" *ngIf="exceptionType == 'error_server'">
       <ion-item lines="none">
@@ -29,7 +29,7 @@
     <div class="ion-text-center" *ngIf="exceptionType == 'custom_message' && typeIcon == 'fa'">
       <ion-item lines="none">
         <div class="exception-icon">
-          <fa-icon [icon]="[classIcon, nameIcon]"></fa-icon>
+          <fa-icon color="tertiary" [icon]="[classIcon, nameIcon]"></fa-icon>
         </div>
       </ion-item>
     </div>
