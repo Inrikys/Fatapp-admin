@@ -1,0 +1,35 @@
+<page-header title="Lista de presença"></page-header>
+
+
+<ion-content>
+    <div class="aligner">
+        <div *ngIf="activity">
+            <div class="ion-text-center">{{activity.title}}</div>
+            <div class="ion-text-center">{{activity.speaker.speakerName}}</div>
+            <div class="ion-text-center">{{activity.formatedInitialTime}} - {{activity.formatedFinalTime}}</div>
+            <div class="ion-text-center">{{activity.room.type}} - {{activity.room.name}}</div>
+        </div>
+        <div class="ion-padding-top">
+            <div [innerHTML]="qrcode"></div>
+        </div>
+    </div>
+    <div class='container'>
+        <table class='box-present-list'>
+            <tr class="row header users-present-list">
+                <th class="col">Nome</th>
+                <th class="col">Turma</th>
+                <th class="col">RA</th>
+                <th class="col">RG</th>
+                <th class="col">Assinatura</th>
+            </tr>
+            <tr class="row users-present-list">
+                <td class="col">Henrique</td>
+                <td class="col">ADSMA6</td>
+                <td class="col">41872932187328</td>
+                <td class="col">535356948</td>
+                <td class="col"></td>
+            </tr>
+        </table>
+
+    </div>
+</ion-content>

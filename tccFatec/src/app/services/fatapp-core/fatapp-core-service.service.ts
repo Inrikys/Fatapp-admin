@@ -27,8 +27,17 @@ export class FatappCoreService {
     };
   }
 
-  // Activities
 
+  // Subscriptions
+  async getSubscriptions(activityId) {
+    const link = environment.apiCoreUrl + 'activities/' + activityId + 'subscriptions';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+
+  // Activities
   async getAllActivity() {
     const link = environment.apiCoreUrl + 'activities?isActive=';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
@@ -276,12 +285,12 @@ export class FatappCoreService {
 
   // ROOM RESOURCE
 
-  async addResourceRoom(resourceId, resourceAmount, roomId) {
+  async addResourceRoom(resourceId, amount, roomId) {
     const link = environment.apiCoreUrl + 'rooms/' + roomId + '/resources';
 
     const resource = {
-      resource_id: `${resourceId}`,
-      resource_amount: resourceAmount,
+      resourceId,
+      amount
     };
 
     return this.http.post(link, resource, this.httpOptions).toPromise().catch(error => {

@@ -1,8 +1,8 @@
 {
-  "name": "tccFatec",
+  "name": "Fatapp-Admin",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Henrique Pereira, Caio Monteiro, Guilherme Vireira, Jessica Holanda, Hugo Barros",
+  "homepage": "https://www.fatecsaocaetano.edu.br/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -78,7 +78,7 @@
     "tslint": "~5.17.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project",
+  "description": "Projeto de TCC",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},

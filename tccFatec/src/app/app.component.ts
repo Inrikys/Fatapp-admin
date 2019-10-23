@@ -35,7 +35,7 @@ export class AppComponent {
         { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
     ];
     public roomActivityMenu = [
-        { title: 'Salas e atividades', url: '/admin/room' },
+        { title: 'Cadastrar salas e atividades', url: '/admin/room' },
         { title: 'Lista de atividades', url: '/admin/activities' },
         { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];

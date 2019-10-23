@@ -38,7 +38,7 @@
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                             </ion-label>
-                            <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code
+                            <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code
                             </ion-button>
                         </ion-item>
                         <ion-card-content>
@@ -69,7 +69,7 @@
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                             </ion-label>
-                            <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code
+                            <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code
                             </ion-button>
                         </ion-item>
                         <ion-card-content>
