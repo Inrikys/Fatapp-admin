@@ -43,7 +43,6 @@ export class ActivitiesComponent {
     if (this.activities) {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.activities.length; i++) {
-        this.tools.formatFrontTimeDate(this.activities[i].initialDate);
         let formatedInitialTime = this.tools.formatFrontDate(this.activities[i].initialDate);
         let formatedFinalTime = this.tools.formatFrontDate(this.activities[i].finalDate);
         let formatedTime = {

@@ -1,26 +1,24 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
-import { GlobalsService } from 'src/app/services/globals.service';
-import { NavController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { GlobalsService } from 'src/app/services/globals.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-qr-code',
-  templateUrl: './qr-code.page.html',
-  styleUrls: ['./qr-code.page.scss'],
+  selector: 'app-activity-student',
+  templateUrl: './activity-student.page.html',
+  styleUrls: ['./activity-student.page.scss'],
 })
-export class QrCodePage {
+export class ActivityStudentPage {
 
-  private qrcode: string = null;
-  private activity = null;
+  private activity;
+  private qrcode;
 
   constructor(
-    private route: ActivatedRoute,
     private apiCore: FatappCoreService,
-    private global: GlobalsService,
-    private navController: NavController,
     private tools: ToolsService,
+    private global: GlobalsService,
+    private route: ActivatedRoute,
   ) {
     this.getQrCode();
   }
@@ -28,6 +26,7 @@ export class QrCodePage {
 
   async getQrCode() {
     try {
+      let success = true;
       const loading = await this.global.createLoading('Carregando Qr Code');
       loading.present();
       if (this.route.snapshot.queryParams.id) {
@@ -35,8 +34,8 @@ export class QrCodePage {
         this.activity = await this.apiCore.getActivity(id);
         if (!this.activity || this.activity === undefined || this.activity === '') {
           this.global.createAlert('Erro ao gerar QrCode');
+          success = false;
           loading.dismiss();
-          this.navController.back();
         } else {
           let formatedInitialTime = this.tools.formatFrontDate(this.activity.initialDate);
           let formatedFinalTime = this.tools.formatFrontTimeDate(this.activity.finalDate);
@@ -45,9 +44,11 @@ export class QrCodePage {
             formatedFinalTime,
           };
           Object.assign(this.activity, formatedTime);
-          const link = `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${this.activity.qrCode}`;
-          this.qrcode = `<img src="${link}">`;
-
+          if (success) {
+            const link = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${this.activity.qrCode}`;
+            this.qrcode = `<img src="${link}">`;
+            console.log("cheguei");
+          }
           console.log(this.activity);
 
         }
@@ -59,5 +60,6 @@ export class QrCodePage {
       console.log(error);
     }
   }
+
 
 }

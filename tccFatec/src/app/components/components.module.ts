@@ -11,8 +11,6 @@ import { PageHeaderComponent } from './headers/page-header/page-header.component
 import { MainHeaderComponent } from './headers/main-header/main-header.component';
 
 
-// Exception
-import { ExceptionComponent } from './exception/exception.component';
 
 
 @NgModule({
@@ -24,13 +22,11 @@ import { ExceptionComponent } from './exception/exception.component';
   declarations: [
     ModalHeaderComponent,
     PageHeaderComponent,
-    ExceptionComponent,
     MainHeaderComponent,
   ],
   exports: [
     ModalHeaderComponent,
     PageHeaderComponent,
-    ExceptionComponent,
     MainHeaderComponent,
   ],
 })

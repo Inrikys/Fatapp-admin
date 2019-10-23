@@ -26,8 +26,10 @@ const routes: Routes = [
       { path: 'edit-speaker', loadChildren: './pages/edit-speaker/edit-speaker.module#EditSpeakerPageModule' },
       { path: 'activities', loadChildren: './pages/activities/activities.module#ActivitiesPageModule' },
       { path: 'edit-activity', loadChildren: './pages/edit-activity/edit-activity.module#EditActivityPageModule' },
+      { path: 'activity-student', loadChildren: './pages/activity-student/activity-student.module#ActivityStudentPageModule' },
     ]
   },
+
 
 
 

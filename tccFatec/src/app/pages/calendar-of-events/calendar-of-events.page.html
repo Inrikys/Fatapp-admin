@@ -33,7 +33,7 @@
                             <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
                             <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
                         </ion-label>
-                        <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+                        <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
                     </ion-item>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                             <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
                             <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
                         </ion-label>
-                        <ion-button (click)="goToQrCode(activity.qrcode)" fill="outline" slot="end">QR-Code</ion-button>
+                        <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
                     </ion-item>
                 </div>
             </div>
