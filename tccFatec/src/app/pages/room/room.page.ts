@@ -41,6 +41,7 @@ export class RoomPage {
       await loading.present();
       const response = await this.apiCore.getAllRooms();
       this.rooms = response;
+      this.rooms = this.rooms.sort(this.compare);
       await this.getResourcesRoom();
       await loading.dismiss();
     } catch (error) {
@@ -87,5 +88,18 @@ export class RoomPage {
 
   goToCalendar(id) {
     this.global.navigateByUrl('admin/calendar-of-events?id=' + id);
+  }
+
+  compare(a, b) {
+    const numberA = a.name;
+    const numberB = b.name;
+
+    let comparison = 0;
+    if (numberA > numberB) {
+      comparison = 1;
+    } else if (numberA < numberB) {
+      comparison = -1;
+    }
+    return comparison;
   }
 }

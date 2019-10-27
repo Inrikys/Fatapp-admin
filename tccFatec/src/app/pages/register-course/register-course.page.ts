@@ -54,7 +54,6 @@ export class RegisterCoursePage {
       await loading.present();
       const response = await this.apiCore.getAllCourses();
       this.courses = response;
-      console.log(this.courses);
       await loading.dismiss();
     } catch (error) {
       console.log(error);

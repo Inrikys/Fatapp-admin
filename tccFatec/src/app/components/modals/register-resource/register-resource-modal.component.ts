@@ -33,8 +33,6 @@ export class RegisterResourceModalComponent {
       const loading = await this.global.createLoading('Carregando...');
       await loading.present();
       const response = await this.apiCore.registerResource(this.registerResourceForm.value.name);
-      console.log(this.registerResourceForm.value);
-      console.log(response);
       this.getAllResources();
       await loading.dismiss();
     }
@@ -46,7 +44,6 @@ export class RegisterResourceModalComponent {
       await loading.present();
       const response = await this.apiCore.getAllResources();
       this.resources = response;
-      console.log(this.resources);
       await loading.dismiss();
     } catch (error) {
       console.log(error);

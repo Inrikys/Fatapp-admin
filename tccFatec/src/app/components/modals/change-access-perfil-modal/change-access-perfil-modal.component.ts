@@ -31,7 +31,6 @@ export class ChangeAccessPerfilModalComponent implements OnInit {
       this.changeAccessPerfilValidator.validateAllFormFields();
     } else {
       // await this.userService.updateData(this.changeAccessPerfilForm.value);
-      console.log(this.changeAccessPerfilForm.value);
       this.usersService.updateAccessUser(this.changeAccessPerfilForm.value, this.passedUser);
     }
   }

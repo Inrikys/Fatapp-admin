@@ -115,7 +115,8 @@ export class FatappCoreService {
   // EVENT
 
   async getEventImage(file) {
-    const link = environment.apiCoreUrl + 'files/' + file;
+    const imgLink = decodeURIComponent(file);
+    const link = environment.apiCoreUrl + 'files/' + imgLink;
     const httpOptions = {
       headers: new HttpHeaders({
         // tslint:disable-next-line:object-literal-key-quotes
@@ -152,11 +153,10 @@ export class FatappCoreService {
     };
 
     const formData = new FormData();
-
     formData.append('title', data.title);
     formData.append('edition', data.edition);
-    formData.append('initialDate', data.initialDate);
-    formData.append('finalDate', data.finalDate);
+    formData.append('initialDate', `${data.initialDate}`);
+    formData.append('finalDate', `${data.finalDate}`);
     formData.append('banner', data.banner);
     formData.append('certificateId', '1');
 

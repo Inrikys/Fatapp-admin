@@ -39,7 +39,6 @@ export class EditEventPage {
 
   async selectEvent(id) {
     try {
-      console.log(id);
       const response: any = await this.apiCore.getEvent(id);
 
     } catch (error) {
@@ -145,14 +144,12 @@ export class EditEventPage {
     modal.onDidDismiss()
       .then(async (data: any) => {
         if (data.data) {
-          console.log(data.data);
           this.title = await data.data.title;
           this.edition = await data.data.edition;
           this.initialDate = await this.tools.formatFrontDate(data.data.initialDate);
           this.finalDate = await this.tools.formatFrontDate(data.data.finalDate);
           this.eventId = await data.data.id;
           this.banner = await this.apiCore.getEventImage(data.data.banner);
-          console.log(this.banner);
           this.removeDisable();
         }
       });
@@ -166,5 +163,11 @@ export class EditEventPage {
 
   selectBanner(event) {
     this.formEvent.value.banner = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      // The file's text will be printed here
+    };
+
+    reader.readAsText(this.formEvent.value.banner);
   }
 }

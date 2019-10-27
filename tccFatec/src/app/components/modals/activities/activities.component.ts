@@ -51,7 +51,6 @@ export class ActivitiesComponent {
         };
         Object.assign(this.activities[i], formatedTime);
       }
-      console.log(this.activities);
     }
     await loading.dismiss();
   }
@@ -76,7 +75,6 @@ export class ActivitiesComponent {
           || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
-      console.log(this.activitySearch);
 
     } catch (error) {
       console.log(error);

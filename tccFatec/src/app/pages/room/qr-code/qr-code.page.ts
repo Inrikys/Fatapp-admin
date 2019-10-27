@@ -48,8 +48,6 @@ export class QrCodePage {
           const link = `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${this.activity.qrCode}`;
           this.qrcode = `<img src="${link}">`;
 
-          console.log(this.activity);
-
         }
 
         loading.dismiss();

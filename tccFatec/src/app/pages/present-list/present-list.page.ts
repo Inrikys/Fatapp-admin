@@ -64,7 +64,6 @@ export class PresentListPage {
         };
         Object.assign(this.activities[i], formatedTime);
       }
-      console.log(this.activities);
     }
     await loading.dismiss();
   }
