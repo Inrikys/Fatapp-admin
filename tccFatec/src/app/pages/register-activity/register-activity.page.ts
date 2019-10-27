@@ -71,9 +71,7 @@ export class RegisterActivityPage {
             finalDate,
             obsActivity: 'nenhuma',
             obsResource: 'nenhuma',
-            isActive: true,
             // tslint:disable-next-line:max-line-length
-            qrCode: `${this.activityForm.value.title}${this.roomId}${this.event.id}`,
             roomId: this.roomId,
             eventId: this.event.id,
             speakerId: this.speaker.id

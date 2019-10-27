@@ -3,7 +3,7 @@
 <ion-content color="tertiary">
   <div class="container">
     <h1 class="page-title">Cadatrar evento</h1>
-    <form [formGroup]="formEvent">
+    <form [formGroup]="formEvent" enctype="multipart/form-data">
       <ion-grid class="box">
         <div text-center>
           <img class="page-icon" src="../../../assets/imgs/add-event.jpeg">
@@ -74,7 +74,7 @@
             <ion-item lines="none">
               <ion-label class="banner">Banner: </ion-label>
             </ion-item>
-            <input formControlName="banner" type="file">
+            <input formControlName="banner" (change)="selectBanner($event)" type="file">
             <ng-container *ngFor="let validation of validationMessages.banner">
               <div class="error-message"
                 *ngIf="formEvent.get('banner').hasError(validation.type) && (formEvent.get('banner').dirty || formEvent.get('banner').touched)">

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
 import { BannerService } from '../banner/banner.service';
+import { ToolsService } from '../tools/tools.service';
 
 
 
@@ -12,11 +13,12 @@ import { BannerService } from '../banner/banner.service';
 export class FatappCoreService {
 
   private httpOptions: any;
+  private httpOptionsFormData: any;
 
   constructor(
     private http: HttpClient,
     private global: GlobalsService,
-    private banner: BannerService,
+    private tools: ToolsService,
   ) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -39,14 +41,7 @@ export class FatappCoreService {
 
   // Activities
   async getAllActivity() {
-    const link = environment.apiCoreUrl + 'activities?isActive=';
-    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
-  }
-
-  async getAllActiveActivity() {
-    const link = environment.apiCoreUrl + 'activities?isActive=1';
+    const link = environment.apiCoreUrl + 'activities';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
@@ -119,6 +114,19 @@ export class FatappCoreService {
 
   // EVENT
 
+  async getEventImage(file) {
+    const link = environment.apiCoreUrl + 'files/' + file;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      })
+    };
+    return this.http.get(link, httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
   async getAllEvents() {
     const link = environment.apiCoreUrl + 'events/';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
@@ -136,7 +144,24 @@ export class FatappCoreService {
   async registerEvent(data) {
     const link = environment.apiCoreUrl + 'events/';
 
-    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      })
+    };
+
+    const formData = new FormData();
+
+    formData.append('title', data.title);
+    formData.append('edition', data.edition);
+    formData.append('initialDate', data.initialDate);
+    formData.append('finalDate', data.finalDate);
+    formData.append('banner', data.banner);
+    formData.append('certificateId', '1');
+
+
+    return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
     });
   }
@@ -150,7 +175,23 @@ export class FatappCoreService {
 
   async updateEvent(data, id) {
     const link = environment.apiCoreUrl + 'events/' + id;
-    return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      })
+    };
+
+    const formData = new FormData();
+
+    formData.append('title', data.title);
+    formData.append('edition', data.edition);
+    formData.append('initialDate', data.initialDate);
+    formData.append('finalDate', data.finalDate);
+    formData.append('banner', data.banner);
+    formData.append('certificateId', '1');
+
+    return this.http.put(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
     });
   }
@@ -160,18 +201,9 @@ export class FatappCoreService {
   async getAllSpeakers() {
     const link = environment.apiCoreUrl + 'speakers/';
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        // tslint:disable-next-line:object-literal-key-quotes
-        'token': environment.apiCoreToken,
-      })
-    };
-
-    return this.http.get(link, httpOptions).toPromise().catch(error => {
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
-
   }
 
   async getSpeaker(email) {
@@ -184,7 +216,25 @@ export class FatappCoreService {
 
   async registerSpeaker(data) {
     const link = environment.apiCoreUrl + 'speakers';
-    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      })
+    };
+    console.log(data);
+    const formData = new FormData();
+
+    formData.append('speakerName', data.speakerName);
+    formData.append('speakerEmail', data.speakerEmail);
+    formData.append('speakerPhone', data.speakerPhone);
+    formData.append('speakerPhone2', data.speakerPhone2);
+    formData.append('speakerCurriculum', data.speakerCurriculum);
+    formData.append('speakerPicture', data.speakerPicture);
+
+
+    return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
       this.global.createAlert('Erro ao cadastrar palestrante');
     });
@@ -197,14 +247,6 @@ export class FatappCoreService {
       this.global.createAlert('Erro ao remover palestrante');
     });
 
-  }
-
-  async updateSpeaker(data) {
-    const link = environment.apiCoreUrl + 'speakers';
-    return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
-      console.log(error);
-      this.global.createAlert('Erro ao alterar palestrante');
-    });
   }
 
   // ROOMS
@@ -312,23 +354,12 @@ export class FatappCoreService {
     });
   }
 
-  async removeResourceRoom(roomId, roomResourceId) {
-    const link = environment.apiCoreUrl + `rooms/${roomId}/resources`;
+  async removeResourceRoom(roomId, resourceId) {
+    console.log(resourceId);
+    const link = environment.apiCoreUrl + `rooms/${roomId}/resources/${resourceId}`;
 
-    console.log(roomResourceId);
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        // tslint:disable-next-line:object-literal-key-quotes
-        'token': environment.apiCoreToken,
-      }),
-      body: {
-        room_resource_id: `${roomResourceId}`,
-      }
-    };
-
-    return await this.http.delete(link, httpOptions).toPromise().catch(error => {
+    return await this.http.delete(link, this.httpOptions).toPromise().catch(error => {
       console.log(error.status);
       if (error.status === 200) {
         return true;
@@ -342,8 +373,8 @@ export class FatappCoreService {
     const link = environment.apiCoreUrl + 'rooms/' + roomId + '/resources';
 
     const resource = {
-      resource_id: `${resourceId}`,
-      resource_amount: resourceAmount,
+      resourceId: `${resourceId}`,
+      amount: resourceAmount,
     };
 
     return this.http.post(link, resource, this.httpOptions).toPromise().catch(error => {

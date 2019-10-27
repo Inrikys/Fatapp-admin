@@ -67,6 +67,7 @@ export class SpeakersComponent {
 
   async selectSpeaker(speaker) {
     this.modalController.dismiss(speaker);
+    console.log(speaker);
   }
 
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RegisterResourceValidatorService } from 'src/app/services/validators/register-resource/register-resource-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register-resource-modal',
@@ -18,6 +19,7 @@ export class RegisterResourceModalComponent {
     private registerResourceValidator: RegisterResourceValidatorService,
     private apiCore: FatappCoreService,
     private global: GlobalsService,
+    private alertController: AlertController,
   ) {
     this.getAllResources();
     this.registerResourceForm = this.registerResourceValidator.getRegisterResourceForm();
@@ -54,13 +56,38 @@ export class RegisterResourceModalComponent {
 
   async removeResource(id) {
     try {
-      const response = await this.apiCore.removeResource(id);
-      this.global.createAlert('Recurso removido com sucesso!');
-      this.getAllResources();
+      let option = null;
+      const alert = await this.alertController.create({
+        message: 'Deseja mesmo remover?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            handler: () => {
+              option = false;
+            }
+          }, {
+            text: 'Ok',
+            handler: () => {
+              option = true;
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+
+      alert.onDidDismiss().then(async () => {
+
+        if (option) {
+          const response = await this.apiCore.removeResource(id);
+          this.global.createAlert('Recurso removido com sucesso!');
+          this.getAllResources();
+        }
+      });
     } catch (error) {
       console.log(error);
       this.global.createAlert('Ocorreu um erro ao remover o recurso');
     }
-
   }
 }

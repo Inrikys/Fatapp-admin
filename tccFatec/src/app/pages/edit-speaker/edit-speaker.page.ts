@@ -4,6 +4,7 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 import { GlobalsService } from 'src/app/services/globals.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { SpeakersComponent } from 'src/app/components/modals/speakers/speakers.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-speaker',
@@ -21,6 +22,8 @@ export class EditSpeakerPage {
   public editSpeakerForm;
   public validationMessages;
   public speakerId = '';
+  public pictureSpeaker = null;
+  public img = null;
 
   public speakerSearch = new Array();
 
@@ -40,7 +43,7 @@ export class EditSpeakerPage {
       if (!this.editSpeakerForm.valid) {
         this.editSpeakerValidator.validateAllFormFields();
       } else {
-        const response: any = await this.apiCore.updateSpeaker(this.editSpeakerForm.value);
+        const response: any = await this.apiCore.registerSpeaker(this.editSpeakerForm.value);
         this.global.createAlert('Palestrante alterado com sucesso!');
         this.resetInputs();
       }
@@ -105,6 +108,8 @@ export class EditSpeakerPage {
     } catch (error) {
       console.log(error);
     }
+
+
   }
 
   async openSpeakersModal() {
@@ -123,6 +128,7 @@ export class EditSpeakerPage {
             this.phoneSpeaker = await this.passedSpeaker.speakerPhone;
             this.phone2Speaker = await this.passedSpeaker.speakerPhone2;
             this.curriculumSpeaker = await this.passedSpeaker.speakerCurriculum;
+            this.pictureSpeaker = await this.passedSpeaker.speakerPicture;
             this.speakerId = await this.passedSpeaker.id;
             this.removeDisable();
           }
@@ -136,5 +142,12 @@ export class EditSpeakerPage {
     this.editSpeakerForm.reset();
     this.speakerId = '';
     this.setDisable();
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.pictureSpeaker = file;
+    }
   }
 }

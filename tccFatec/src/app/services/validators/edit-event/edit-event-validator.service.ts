@@ -24,7 +24,7 @@ export class EditEventValidatorService {
       edition: [null, Validators.compose([Validators.required])],
       initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
-      banner: [null, Validators.compose([Validators.required])],
+      banner: [null],
     });
   }
 
