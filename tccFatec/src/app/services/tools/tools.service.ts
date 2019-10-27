@@ -54,17 +54,17 @@ export class ToolsService {
 
 
   async formatDate(data) {
-    const dataSplit =  data.split(' ');
-    const date =  dataSplit[0];
-    const time =  dataSplit[1];
-    const dateSplit =  date.split('/');
-    const day =  dateSplit[0];
-    const month =  dateSplit[1];
-    const year =  dateSplit[2];
+    const dataSplit = data.split(' ');
+    const date = dataSplit[0];
+    const time = dataSplit[1];
+    const dateSplit = date.split('/');
+    const day = dateSplit[0];
+    const month = dateSplit[1];
+    const year = dateSplit[2];
+    const timeSplit = time.split(':');
 
-    const finalDate = `${year}-${month}-${day} ${time}`;
-    // const result = dateFns.format(new Date(year, month -1, day, ))
-    return finalDate;
+    const result = `${year}-${month}-${day} ${time}`;
+    return result;
   }
 
   formatFrontDate(data) {

@@ -38,7 +38,7 @@ export class RegisterCourseValidatorService {
         { type: 'required', message: 'Público alvo é obrigatório' },
       ],
       acronym: [
-        { type: 'required', message: 'Sigla' },
+        { type: 'required', message: 'Sigla obrigatória' },
       ],
     };
   }

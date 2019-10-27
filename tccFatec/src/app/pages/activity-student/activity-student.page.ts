@@ -47,10 +47,7 @@ export class ActivityStudentPage {
           if (success) {
             const link = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${this.activity.qrCode}`;
             this.qrcode = `<img src="${link}">`;
-            console.log("cheguei");
           }
-          console.log(this.activity);
-
         }
 
         loading.dismiss();

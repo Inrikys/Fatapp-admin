@@ -50,7 +50,6 @@ export class ActivitiesPage {
         };
         Object.assign(this.activities[i], formatedTime);
       }
-      console.log(this.activities);
     }
     await loading.dismiss();
   }
@@ -83,8 +82,6 @@ export class ActivitiesPage {
           || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
-      console.log(this.activitySearch);
-
     } catch (error) {
       console.log(error);
     }

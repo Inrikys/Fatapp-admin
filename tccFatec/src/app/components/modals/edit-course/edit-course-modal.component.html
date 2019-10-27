@@ -8,11 +8,37 @@
       <ion-grid>
         <ion-row>
           <ion-col>
+            <ion-label>
+              Nome do público alvo/curso:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
             <ion-input [(ngModel)]="passedCourse.name" formControlName="name" placeholder="Público alvo / curso">
             </ion-input>
             <ng-container *ngFor="let validation of validationMessages.name">
               <div class="error-message"
                 *ngIf="editCourseForm.get('name').hasError(validation.type) && (editCourseForm.get('name').dirty || editCourseForm.get('name').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              Sigla:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input [(ngModel)]="passedCourse.acronym" formControlName="acronym" placeholder="Exemplo: ADS, se não houver sigla digite outros">
+            </ion-input>
+            <ng-container *ngFor="let validation of validationMessages.acronym">
+              <div class="error-message"
+                *ngIf="registerCourseForm.get('acronym').hasError(validation.type) && (registerCourseForm.get('acronym').dirty || registerCourseForm.get('acronym').touched)">
                 {{ validation.message }}
               </div>
             </ng-container>

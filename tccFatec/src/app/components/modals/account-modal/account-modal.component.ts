@@ -50,7 +50,6 @@ export class AccountModalComponent implements OnInit {
       await loading.present();
       const updateResponse = await this.usersService.updateUser(this.accountForm.value);
       await loading.dismiss();
-      console.log(updateResponse);
     }
   }
 

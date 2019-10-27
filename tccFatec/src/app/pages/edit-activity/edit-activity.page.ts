@@ -136,7 +136,6 @@ export class EditActivityPage {
     modal.onDidDismiss()
       .then(async (data: any) => {
         if (data.data) {
-          console.log(data.data);
           this.activityId = data.data.id;
           this.activityTitle = data.data.title;
           this.activityDescription = data.data.description;
@@ -165,7 +164,6 @@ export class EditActivityPage {
     const loading = await this.global.createLoading('Carregando...');
     await loading.present();
     const response = await this.apiCore.removeActivity(this.activityId);
-    console.log(response);
     await loading.dismiss();
   }
 

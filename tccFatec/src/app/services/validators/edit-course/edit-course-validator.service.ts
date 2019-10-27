@@ -19,6 +19,7 @@ export class EditCourseValidatorService {
   createForm() {
     return this.editCourseForm = this.formBuilder.group({
       name: [null, Validators.compose([Validators.required])],
+      acronym: [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -34,6 +35,9 @@ export class EditCourseValidatorService {
     return {
       name: [
         { type: 'required', message: 'Público alvo é obrigatório' },
+      ],
+      acronym: [
+        { type: 'required', message: 'Sigla obrigatória' },
       ],
     };
   }

@@ -29,7 +29,6 @@ export class RegisterSpeakerPage {
         this.speakerValidator.validateAllFormFields();
       } else {
         const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
-        console.log(response);
         if (response.speakerName) {
           this.global.createAlert('Palestrante cadastrado com sucesso!');
           this.resetInputs();

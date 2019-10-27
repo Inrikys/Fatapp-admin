@@ -26,7 +26,6 @@ export class HomePage {
 
   async getBanner(){
     this.banners = await this.bannerService.getMainBanner();
-    console.log(this.banners);
   }
 
 }

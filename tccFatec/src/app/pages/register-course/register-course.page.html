@@ -37,9 +37,9 @@
           <ion-col>
             <ion-input formControlName="acronym" placeholder="Exemplo: ADS, se não houver sigla digite outros">
             </ion-input>
-            <ng-container *ngFor="let validation of validationMessages.name">
+            <ng-container *ngFor="let validation of validationMessages.acronym">
               <div class="error-message"
-                *ngIf="registerCourseForm.get('name').hasError(validation.type) && (registerCourseForm.get('name').dirty || registerCourseForm.get('name').touched)">
+                *ngIf="registerCourseForm.get('acronym').hasError(validation.type) && (registerCourseForm.get('acronym').dirty || registerCourseForm.get('acronym').touched)">
                 {{ validation.message }}
               </div>
             </ng-container>
@@ -55,7 +55,7 @@
       <div class="page-title">Públicos-alvo já cadastrados</div>
       <ion-list *ngFor="let course of courses">
         <ion-item>
-          <ion-label>{{course.name}}</ion-label>
+          <ion-label>{{course.name}} {{course.acronym}}</ion-label>
           <ion-icon  (click)="goToEditCourse(course)" slot="start" class="edit-room" name="create"></ion-icon>
 
           <ion-icon (click)="removeCourse(course.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
