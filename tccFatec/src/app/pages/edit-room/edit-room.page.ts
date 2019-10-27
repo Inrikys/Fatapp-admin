@@ -93,7 +93,7 @@ export class EditRoomPage {
     }
   }
 
-  async removeResourceRoom(roomResourceId) {
+  async removeResourceRoom(resourceId) {
     try {
       let option = null;
       const alert = await this.alertController.create({
@@ -119,7 +119,7 @@ export class EditRoomPage {
       alert.onDidDismiss().then(async () => {
 
         if (option) {
-          const response = await this.apiCore.removeResourceRoom(this.roomId, roomResourceId);
+          const response = await this.apiCore.removeResourceRoom(this.roomId, resourceId);
           if (response) {
             this.global.createToast('Recurso removido da sala!');
             this.getResourcesRoom();

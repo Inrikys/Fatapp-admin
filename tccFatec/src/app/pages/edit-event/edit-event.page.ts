@@ -21,7 +21,7 @@ export class EditEventPage {
   public edition = '';
   public initialDate = '';
   public finalDate = '';
-  public banner = '';
+  public banner: any = null;
   public eventId = '';
 
   constructor(
@@ -58,6 +58,8 @@ export class EditEventPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
+          this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
+          this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
           const response = await this.apiCore.updateEvent(this.formEvent.value, this.eventId);
           await loading.dismiss();
           this.global.createToast('Evento alterado com sucesso!');
@@ -143,11 +145,14 @@ export class EditEventPage {
     modal.onDidDismiss()
       .then(async (data: any) => {
         if (data.data) {
+          console.log(data.data);
           this.title = await data.data.title;
           this.edition = await data.data.edition;
           this.initialDate = await this.tools.formatFrontDate(data.data.initialDate);
           this.finalDate = await this.tools.formatFrontDate(data.data.finalDate);
           this.eventId = await data.data.id;
+          this.banner = await this.apiCore.getEventImage(data.data.banner);
+          console.log(this.banner);
           this.removeDisable();
         }
       });
@@ -157,5 +162,9 @@ export class EditEventPage {
     this.formEvent.reset();
     this.eventId = '';
     this.setDisable();
+  }
+
+  selectBanner(event) {
+    this.formEvent.value.banner = event.target.files[0];
   }
 }

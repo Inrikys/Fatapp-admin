@@ -62,7 +62,7 @@
                                 <div><span>Capacidade: </span>{{room.capacity}}</div>
                                 <div *ngFor="let resource of room.resources">
                                     <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
-                                        <span>{{resource.resourceAmmount}}</span></span>
+                                        <span>{{resource.amount}}</span></span>
                                 </div>
                             </div>
                             <span (click)="goToEditRoom(room.id)" float-right>
@@ -90,7 +90,7 @@
                                 <div><span>Capacidade: </span>{{room.capacity}}</div>
                                 <div *ngFor="let resource of room.resources">
                                     <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
-                                        <span>{{resource.resourceAmmount}}</span></span>
+                                        <span>{{resource.amount}}</span></span>
                                 </div>
                             </div>
                             <span (click)="goToEditRoom(room.id)" float-right>
