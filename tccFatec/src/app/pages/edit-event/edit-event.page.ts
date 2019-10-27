@@ -23,6 +23,8 @@ export class EditEventPage {
   public finalDate = '';
   public banner: any = null;
   public eventId = '';
+  public certifieds;
+
 
   constructor(
     private eventValidator: EditEventValidatorService,
@@ -169,5 +171,8 @@ export class EditEventPage {
     };
 
     reader.readAsText(this.formEvent.value.banner);
+  }
+  async getAllCertifieds() {
+    this.certifieds = await this.apiCore.getAllCertifieds();
   }
 }
