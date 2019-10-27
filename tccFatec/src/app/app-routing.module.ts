@@ -27,8 +27,10 @@ const routes: Routes = [
       { path: 'activities', loadChildren: './pages/activities/activities.module#ActivitiesPageModule' },
       { path: 'edit-activity', loadChildren: './pages/edit-activity/edit-activity.module#EditActivityPageModule' },
       { path: 'activity-student', loadChildren: './pages/activity-student/activity-student.module#ActivityStudentPageModule' },
+      { path: 'certified', loadChildren: './pages/certified/certified.module#CertifiedPageModule' },
     ]
   },
+
 
 
 

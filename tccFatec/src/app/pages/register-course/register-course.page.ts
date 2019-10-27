@@ -97,7 +97,7 @@ export class RegisterCoursePage {
 
     } catch (error) {
       console.log(error);
-      this.global.createAlert('Ocorreu um erro ao remover o recurso');
+      this.global.createAlert('Ocorreu um erro ao remover o público-alvo');
     }
   }
 

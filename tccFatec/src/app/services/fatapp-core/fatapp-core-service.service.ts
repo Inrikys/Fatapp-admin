@@ -38,6 +38,42 @@ export class FatappCoreService {
     });
   }
 
+  //  Certifieds
+  async getAllCertifieds() {
+    const link = environment.apiCoreUrl + 'certificates';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Ocorreu algum erro ao carregar certificados');
+    });
+  }
+
+  async removeCertified(id) {
+    const link = environment.apiCoreUrl + 'certificates/' + id;
+    return this.http.delete(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Ocorreu algum erro ao remover certificado');
+    });
+  }
+
+  async registerCertified(data) {
+    const link = environment.apiCoreUrl + 'certificates';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line:object-literal-key-quotes
+        'token': environment.apiCoreToken,
+      })
+    };
+
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('certificate', data.certified);
+
+    return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Ocorreu algum erro ao cadastrar certificado');
+    });
+  }
+
 
   // Activities
   async getAllActivity() {
@@ -158,7 +194,7 @@ export class FatappCoreService {
     formData.append('initialDate', `${data.initialDate}`);
     formData.append('finalDate', `${data.finalDate}`);
     formData.append('banner', data.banner);
-    formData.append('certificateId', '1');
+    formData.append('certificateId', data.certified);
 
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
@@ -189,7 +225,7 @@ export class FatappCoreService {
     formData.append('initialDate', data.initialDate);
     formData.append('finalDate', data.finalDate);
     formData.append('banner', data.banner);
-    formData.append('certificateId', '1');
+    formData.append('certificateId', data.certified);
 
     return this.http.put(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);

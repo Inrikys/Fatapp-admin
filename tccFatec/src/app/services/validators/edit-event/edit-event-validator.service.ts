@@ -24,7 +24,8 @@ export class EditEventValidatorService {
       edition: [null, Validators.compose([Validators.required])],
       initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
-      banner: [null],
+      banner: [null, Validators.compose([Validators.required])],
+      certified: [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -54,6 +55,9 @@ export class EditEventValidatorService {
       ],
       banner: [
         {type: 'required', message: 'Imagem obrigatória'},
+      ],
+      certified: [
+        {type: 'required', message: 'Escolha um certificado referente ao evento'},
       ],
     };
   }

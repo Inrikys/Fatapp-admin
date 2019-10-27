@@ -24,6 +24,7 @@ export class RegisterEventValidatorService {
       initialDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       banner: [null, Validators.compose([Validators.required])],
+      certified: [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -43,16 +44,19 @@ export class RegisterEventValidatorService {
       ],
       initialDate: [
         {type: 'required', message: 'Data obrigatória'},
-        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
-        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy HH:mm'},
       ],
       finalDate: [
         {type: 'required', message: 'Data obrigatória'},
-        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
-        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy-HH:mm'},
+        {type: 'minlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy HH:mm'},
+        {type: 'maxlength', message: 'Digite a data e a hora. Exemplo: dd/mm/yyyy HH:mm'},
       ],
       banner: [
         {type: 'required', message: 'Imagem obrigatória'},
+      ],
+      certified: [
+        {type: 'required', message: 'Escolha um certificado referente ao evento'},
       ],
     };
   }

@@ -15,6 +15,7 @@ export class RegisterEventPage {
   public formEvent;
   public validationMessages;
   public banner;
+  public certifieds;
 
 
   constructor(
@@ -26,6 +27,7 @@ export class RegisterEventPage {
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
+    this.getAllCertifieds();
   }
 
   async register() {
@@ -38,6 +40,7 @@ export class RegisterEventPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
+          console.log(this.formEvent.value)
           this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
           this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
           this.formEvent.value.banner = this.banner;
@@ -65,5 +68,9 @@ export class RegisterEventPage {
 
   selectBanner(event) {
     this.banner = event.target.files[0];
+  }
+
+  async getAllCertifieds() {
+    this.certifieds = await this.apiCore.getAllCertifieds();
   }
 }
