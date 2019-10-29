@@ -8,8 +8,11 @@
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
+                <ion-button (click)="removeRoom()" fill="outline">Remover sala</ion-button>
+                <ion-button (click)="openEditRoomModal(room)" fill="outline">Editar sala</ion-button>
+            </ion-item>
+            <ion-item lines="none">
               <h1 class="page-title"><span>{{room.type}} </span><span>{{room.name}}</span></h1>
-              <ion-button (click)="removeRoom()" fill="outline" slot="end">Remover sala</ion-button>
             </ion-item>
             <ion-item>
               <h2 class="page-title">Capacidade: <span>{{room.capacity}}</span></h2>
@@ -35,9 +38,11 @@
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
+                <ion-button (click)="goToAddResource()" fill="outline" slot="start">Adicionar/Alterar</ion-button>
+            </ion-item>
+            <ion-item lines="none">
               <ion-icon name="construct" slot="start"></ion-icon>
               <ion-label>Recursos</ion-label>
-              <ion-button (click)="goToAddResource()" fill="outline" slot="end">Adicionar/Alterar</ion-button>
             </ion-item>
           </ion-col>
         </ion-row>

@@ -58,13 +58,16 @@ export class PresentListPage {
         this.tools.formatFrontTimeDate(this.activities[i].initialDate);
         let formatedInitialTime = this.tools.formatFrontDate(this.activities[i].initialDate);
         let formatedFinalTime = this.tools.formatFrontDate(this.activities[i].finalDate);
-        let formatedTime = {
+        let subscribers = await this.apiCore.getSubscriptions(this.activities[i].id);
+        let obj = {
           formatedInitialTime,
           formatedFinalTime,
+          subscribers,
         };
-        Object.assign(this.activities[i], formatedTime);
+        Object.assign(this.activities[i], obj);
       }
     }
+    console.log(this.activities);
     await loading.dismiss();
   }
 

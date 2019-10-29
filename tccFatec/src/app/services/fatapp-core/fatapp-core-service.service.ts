@@ -32,7 +32,7 @@ export class FatappCoreService {
 
   // Subscriptions
   async getSubscriptions(activityId) {
-    const link = environment.apiCoreUrl + 'activities/' + activityId + 'subscriptions';
+    const link = environment.apiCoreUrl + 'activities/' + activityId + '/subscriptions';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
@@ -313,6 +313,19 @@ export class FatappCoreService {
     return this.http.post(link, room, this.httpOptions).toPromise().catch(error => {
       console.log(error);
       this.global.createAlert('Falha ao registrar uma sala');
+    });
+  }
+
+  async updateRoom(data, id) {
+    const room = {
+      name: data.number,
+      type: data.type,
+      capacity: data.capacity,
+    };
+    const link = environment.apiCoreUrl + 'rooms/' + id;
+    return this.http.put(link, room, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert('Falha ao remover a sala');
     });
   }
 

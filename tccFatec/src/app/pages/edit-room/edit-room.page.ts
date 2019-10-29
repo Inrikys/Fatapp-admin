@@ -5,6 +5,7 @@ import { RegisterResourceModalComponent } from 'src/app/components/modals/regist
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
+import { EditRoomModalComponent } from 'src/app/components/modals/edit-room-modal/edit-room-modal.component';
 
 
 
@@ -130,6 +131,19 @@ export class EditRoomPage {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async openEditRoomModal(passedRoom) {
+    const modal = await this.modalController.create({
+      component: EditRoomModalComponent,
+      componentProps: {
+        room: passedRoom
+      }
+    });
+    modal.present();
+    modal.onDidDismiss().then(() => {
+      this.getRoom();
+    });
   }
 
   async goToRegisterResource() {

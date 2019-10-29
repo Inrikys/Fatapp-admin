@@ -13,6 +13,7 @@ export class ActivityStudentPage {
 
   private activity;
   private qrcode;
+  private subscribers = null;
 
   constructor(
     private apiCore: FatappCoreService,
@@ -23,6 +24,9 @@ export class ActivityStudentPage {
     this.getQrCode();
   }
 
+  ionViewDidEnter() {
+
+  }
 
   async getQrCode() {
     try {
@@ -45,7 +49,9 @@ export class ActivityStudentPage {
           };
           Object.assign(this.activity, formatedTime);
           if (success) {
-            const link = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${this.activity.qrCode}`;
+            this.getSubscribers(this.activity.id);
+            // const link = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${this.activity.qrCode}`;
+            const link = this.activity.qrCode;
             this.qrcode = `<img src="${link}">`;
           }
         }
@@ -56,6 +62,11 @@ export class ActivityStudentPage {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async getSubscribers(activityId) {
+    this.subscribers = await this.apiCore.getSubscriptions(activityId);
+    console.log(this.subscribers);
   }
 
 
