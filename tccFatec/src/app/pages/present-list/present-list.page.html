@@ -53,18 +53,20 @@
                                 <br>
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
+                                <br>
+                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos: <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span></div>
                             </ion-label>
-                            <ion-button (click)="goToActivityStudent(activity.id)" fill="outline" slot="end">Lista de
-                                presença manual
-                            </ion-button>
-                            <ion-button (click)="goToActivityStudent(activity.id)" fill="outline" slot="end">Lista de
-                                check-ins
-                            </ion-button>
                         </ion-item>
                         <ion-card-content>
                             <span>Descrição: </span>
                             {{activity.description}}
                         </ion-card-content>
+                        <ion-button (click)="goToActivityStudent(activity.id)" fill="outline">Lista de
+                                presença manual
+                            </ion-button>
+                            <ion-button (click)="goToActivityStudent(activity.id)" fill="outline">Lista de
+                                check-ins
+                            </ion-button>
                     </ion-card>
                 </div>
             </span>
@@ -89,6 +91,8 @@
                                 <br>
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
+                                <br>
+                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos: <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span></div>
                             </ion-label>
                             <ion-button (click)="goToActivityStudent(activity.id)" fill="outline" slot="end">Lista de
                                 presença manual

@@ -2,34 +2,63 @@
 
 
 <ion-content>
-    <div class="aligner">
-        <div *ngIf="activity">
-            <div class="ion-text-center">{{activity.title}}</div>
-            <div class="ion-text-center">{{activity.speaker.speakerName}}</div>
-            <div class="ion-text-center">{{activity.formatedInitialTime}} - {{activity.formatedFinalTime}}</div>
-            <div class="ion-text-center">{{activity.room.type}} - {{activity.room.name}}</div>
-        </div>
+    <div *ngIf="activity" class='container'>
         <div class="ion-padding-top">
             <div [innerHTML]="qrcode"></div>
         </div>
-    </div>
-    <div class='container'>
-        <table class='box-present-list'>
-            <tr class="row header users-present-list">
-                <th class="col">Nome</th>
-                <th class="col">Turma</th>
-                <th class="col">RA</th>
-                <th class="col">RG</th>
-                <th class="col">Assinatura</th>
-            </tr>
-            <tr class="row users-present-list">
-                <td class="col">Henrique</td>
-                <td class="col">ADSMA6</td>
-                <td class="col">41872932187328</td>
-                <td class="col">535356948</td>
-                <td class="col"></td>
-            </tr>
-        </table>
+        <ion-grid class='box-present-list'>
+            <div>Informações sobre a atividade</div>
+            <ion-row class="row header users-present-list">
+                <ion-col class="col">
+                    Atividade
+                </ion-col>
+                <ion-col class="col">
+                    Palestrante
+                </ion-col>
+                <ion-col class="col">
+                    Horário
+                </ion-col>
+                <ion-col class="col">
+                    Local
+                </ion-col>
+            </ion-row>
+            <ion-row class="row users-present-list">
+                <ion-col class="col">
+                    {{activity.title}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.speaker.speakerName}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.formatedInitialTime}} - {{activity.formatedFinalTime}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.room.type}} - {{activity.room.name}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class='box-present-list ion-margin-top'>
+            <div>Informações sobre inscritos</div>
+            <ion-row class="row header users-present-list">
+                <ion-col class="col">Nome</ion-col>
+                <ion-col class="col">RA</ion-col>
+                <ion-col class="col">RG</ion-col>
+                <ion-col class="col">Turma</ion-col>
+                <ion-col class="col">Assinatura</ion-col>
+            </ion-row>
+            <span *ngIf="subscribers">
+                <span *ngFor="let subscriber of subscribers.subscriptions">
+                    <ion-row class="row users-present-list">
+                        <ion-col class="col">{{subscriber.user.name}}</ion-col>
+                        <ion-col class="col"><span *ngIf="subscriber.user.student">{{subscriber.user.student.ra}}</span>
+                        </ion-col>
+                        <ion-col class="col"></ion-col>
+                        <ion-col class="col"></ion-col>
+                        <ion-col class="col"></ion-col>
+                    </ion-row>
+                </span>
+            </span>
+        </ion-grid>
 
     </div>
 </ion-content>

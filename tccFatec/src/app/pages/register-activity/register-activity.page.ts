@@ -60,8 +60,8 @@ export class RegisterActivityPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.activityForm.value.initialDate, this.activityForm.value.finalDate);
         if (validDate) {
-          const initialDate = this.tools.formatDate(this.activityForm.value.initialDate);
-          const finalDate = this.tools.formatDate(this.activityForm.value.finalDate);
+          const initialDate = await this.tools.formatDate(this.activityForm.value.initialDate);
+          const finalDate = await this.tools.formatDate(this.activityForm.value.finalDate);
           const objActivity = {
             title: this.activityForm.value.title,
             type: this.activityForm.value.type,
@@ -71,7 +71,6 @@ export class RegisterActivityPage {
             finalDate,
             obsActivity: 'nenhuma',
             obsResource: 'nenhuma',
-            // tslint:disable-next-line:max-line-length
             roomId: this.roomId,
             eventId: this.event.id,
             speakerId: this.speaker.id
