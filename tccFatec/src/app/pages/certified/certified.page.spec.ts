@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExceptionComponent } from './exception.component';
+import { CertifiedPage } from './certified.page';
 
-describe('ExceptionComponent', () => {
-  let component: ExceptionComponent;
-  let fixture: ComponentFixture<ExceptionComponent>;
+describe('CertifiedPage', () => {
+  let component: CertifiedPage;
+  let fixture: ComponentFixture<CertifiedPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExceptionComponent ],
+      declarations: [ CertifiedPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExceptionComponent);
+    fixture = TestBed.createComponent(CertifiedPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

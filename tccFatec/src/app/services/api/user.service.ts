@@ -38,7 +38,6 @@ export class UserService {
             await this.http.post(link, JSON.stringify(data), this.httpOptions).subscribe(async data => {
                 await this.setData(data);
                 await this.modalController.dismiss();
-                console.log(data);
             });
         } catch (error) {
             console.log(error);
@@ -92,9 +91,6 @@ export class UserService {
             });
 
             const link = environment.apiUrl + 'usuario/' + user.usuario._id;
-            console.log(link);
-            console.log(data);
-
             return this.http.put(link, JSON.stringify(data), this.httpOptions).toPromise().catch(error => {
                 console.log(error);
             });

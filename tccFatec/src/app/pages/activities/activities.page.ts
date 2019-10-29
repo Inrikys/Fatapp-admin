@@ -50,14 +50,13 @@ export class ActivitiesPage {
         };
         Object.assign(this.activities[i], formatedTime);
       }
-      console.log(this.activities);
     }
     await loading.dismiss();
   }
 
-  async goToQrCode(qrcode) {
+  async goToQrCode(activityId) {
     try {
-      this.global.navigateByUrl('admin/qr-code?id=' + qrcode);
+      this.global.navigateByUrl('admin/qr-code?id=' + activityId);
     } catch (error) {
       console.log(error);
     }
@@ -83,8 +82,6 @@ export class ActivitiesPage {
           || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
-      console.log(this.activitySearch);
-
     } catch (error) {
       console.log(error);
     }

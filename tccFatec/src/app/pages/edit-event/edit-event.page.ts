@@ -21,8 +21,10 @@ export class EditEventPage {
   public edition = '';
   public initialDate = '';
   public finalDate = '';
-  public banner = '';
+  public banner: any = null;
   public eventId = '';
+  public certifieds;
+
 
   constructor(
     private eventValidator: EditEventValidatorService,
@@ -39,7 +41,6 @@ export class EditEventPage {
 
   async selectEvent(id) {
     try {
-      console.log(id);
       const response: any = await this.apiCore.getEvent(id);
 
     } catch (error) {
@@ -58,6 +59,8 @@ export class EditEventPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
+          this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
+          this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
           const response = await this.apiCore.updateEvent(this.formEvent.value, this.eventId);
           await loading.dismiss();
           this.global.createToast('Evento alterado com sucesso!');
@@ -148,6 +151,7 @@ export class EditEventPage {
           this.initialDate = await this.tools.formatFrontDate(data.data.initialDate);
           this.finalDate = await this.tools.formatFrontDate(data.data.finalDate);
           this.eventId = await data.data.id;
+          this.banner = await this.apiCore.getEventImage(data.data.banner);
           this.removeDisable();
         }
       });
@@ -157,5 +161,18 @@ export class EditEventPage {
     this.formEvent.reset();
     this.eventId = '';
     this.setDisable();
+  }
+
+  selectBanner(event) {
+    this.formEvent.value.banner = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      // The file's text will be printed here
+    };
+
+    reader.readAsText(this.formEvent.value.banner);
+  }
+  async getAllCertifieds() {
+    this.certifieds = await this.apiCore.getAllCertifieds();
   }
 }

@@ -44,7 +44,6 @@ export class ToolsService {
       new Date(yearInitial, monthInitial, dayInitial, hourInitial, minuteInitial, 0),
 
     );
-    console.log(difference);
 
     if (difference >= 0) {
       return true;
@@ -54,7 +53,7 @@ export class ToolsService {
   }
 
 
-  formatDate(data) {
+  async formatDate(data) {
     const dataSplit = data.split(' ');
     const date = dataSplit[0];
     const time = dataSplit[1];
@@ -62,9 +61,10 @@ export class ToolsService {
     const day = dateSplit[0];
     const month = dateSplit[1];
     const year = dateSplit[2];
+    const timeSplit = time.split(':');
 
-    const finalDate = `${year}-${month}-${day} ${time}`;
-    return finalDate;
+    const result = `${year}-${month}-${day} ${time}`;
+    return result;
   }
 
   formatFrontDate(data) {

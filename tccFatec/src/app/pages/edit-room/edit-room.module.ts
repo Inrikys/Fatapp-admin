@@ -10,6 +10,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { AddResourcesModalModule } from 'src/app/components/modals/add-resources/add-resources-modal.module';
 import { RegisterResourceModalModule } from 'src/app/components/modals/register-resource/register-resource-modal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditRoomModalModule } from 'src/app/components/modals/edit-room-modal/edit-room-modal.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     ComponentsModule,
     AddResourcesModalModule,
     RegisterResourceModalModule,
+    EditRoomModalModule,
   ],
   declarations: [EditRoomPage]
 })

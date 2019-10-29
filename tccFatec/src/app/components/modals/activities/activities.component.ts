@@ -43,7 +43,6 @@ export class ActivitiesComponent {
     if (this.activities) {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.activities.length; i++) {
-        this.tools.formatFrontTimeDate(this.activities[i].initialDate);
         let formatedInitialTime = this.tools.formatFrontDate(this.activities[i].initialDate);
         let formatedFinalTime = this.tools.formatFrontDate(this.activities[i].finalDate);
         let formatedTime = {
@@ -52,7 +51,6 @@ export class ActivitiesComponent {
         };
         Object.assign(this.activities[i], formatedTime);
       }
-      console.log(this.activities);
     }
     await loading.dismiss();
   }
@@ -77,7 +75,6 @@ export class ActivitiesComponent {
           || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
-      console.log(this.activitySearch);
 
     } catch (error) {
       console.log(error);

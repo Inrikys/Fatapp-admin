@@ -54,7 +54,6 @@ export class RegisterCoursePage {
       await loading.present();
       const response = await this.apiCore.getAllCourses();
       this.courses = response;
-      console.log(this.courses);
       await loading.dismiss();
     } catch (error) {
       console.log(error);
@@ -98,7 +97,7 @@ export class RegisterCoursePage {
 
     } catch (error) {
       console.log(error);
-      this.global.createAlert('Ocorreu um erro ao remover o recurso');
+      this.global.createAlert('Ocorreu um erro ao remover o público-alvo');
     }
   }
 

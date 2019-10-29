@@ -29,7 +29,6 @@ export class RegisterSpeakerPage {
         this.speakerValidator.validateAllFormFields();
       } else {
         const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
-        console.log(response);
         if (response.speakerName) {
           this.global.createAlert('Palestrante cadastrado com sucesso!');
           this.resetInputs();
@@ -42,6 +41,13 @@ export class RegisterSpeakerPage {
 
   resetInputs() {
     this.speakerForm.reset();
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.speakerForm.get('speakerPicture').setValue(file);
+    }
   }
 
 }

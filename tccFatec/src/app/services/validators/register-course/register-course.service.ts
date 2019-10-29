@@ -20,6 +20,7 @@ export class RegisterCourseValidatorService {
   createForm() {
     return this.registerCourseForm = this.formBuilder.group({
       name: [null, Validators.compose([Validators.required])],
+      acronym: [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -35,6 +36,9 @@ export class RegisterCourseValidatorService {
     return {
       name: [
         { type: 'required', message: 'Público alvo é obrigatório' },
+      ],
+      acronym: [
+        { type: 'required', message: 'Sigla obrigatória' },
       ],
     };
   }

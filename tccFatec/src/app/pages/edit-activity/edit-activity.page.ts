@@ -54,8 +54,8 @@ export class EditActivityPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.activityForm.value.initialDate, this.activityForm.value.finalDate);
         if (validDate) {
-          const initialDate = this.tools.formatDate(this.activityForm.value.initialDate);
-          const finalDate = this.tools.formatDate(this.activityForm.value.finalDate);
+          const initialDate = await this.tools.formatDate(this.activityForm.value.initialDate);
+          const finalDate = await this.tools.formatDate(this.activityForm.value.finalDate);
           const objActivity = {
             title: this.activityForm.value.title,
             type: this.activityForm.value.type,
@@ -65,9 +65,6 @@ export class EditActivityPage {
             finalDate,
             obsActivity: 'nenhuma',
             obsResource: 'nenhuma',
-            isActive: true,
-            // tslint:disable-next-line:max-line-length
-            qrCode: `${this.activityForm.value.title}${this.roomId}${this.event.id}`,
             roomId: this.roomId,
             eventId: this.event.id,
             speakerId: this.speaker.id
@@ -136,7 +133,6 @@ export class EditActivityPage {
     modal.onDidDismiss()
       .then(async (data: any) => {
         if (data.data) {
-          console.log(data.data);
           this.activityId = data.data.id;
           this.activityTitle = data.data.title;
           this.activityDescription = data.data.description;
@@ -165,7 +161,6 @@ export class EditActivityPage {
     const loading = await this.global.createLoading('Carregando...');
     await loading.present();
     const response = await this.apiCore.removeActivity(this.activityId);
-    console.log(response);
     await loading.dismiss();
   }
 

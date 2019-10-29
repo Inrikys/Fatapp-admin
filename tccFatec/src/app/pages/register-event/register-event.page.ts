@@ -15,6 +15,7 @@ export class RegisterEventPage {
   public formEvent;
   public validationMessages;
   public banner;
+  public certifieds;
 
 
   constructor(
@@ -26,6 +27,7 @@ export class RegisterEventPage {
   ) {
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
+    this.getAllCertifieds();
   }
 
   async register() {
@@ -38,20 +40,22 @@ export class RegisterEventPage {
         await loading.present();
         validDate = await this.tools.validateDate(this.formEvent.value.initialDate, this.formEvent.value.finalDate);
         if (validDate) {
-          this.formEvent.value.initialDate = this.tools.formatDate(this.formEvent.value.initialDate);
-          this.formEvent.value.finalDate =  this.tools.formatDate(this.formEvent.value.finalDate);
-          console.log(this.formEvent.value);
-          const response = await this.apiCore.registerEvent(this.formEvent.value);
-          console.log(response);
+          console.log(this.formEvent.value)
+          this.formEvent.value.initialDate = await this.tools.formatDate(this.formEvent.value.initialDate);
+          this.formEvent.value.finalDate = await this.tools.formatDate(this.formEvent.value.finalDate);
+          this.formEvent.value.banner = this.banner;
+          const response: any = await this.apiCore.registerEvent(this.formEvent.value);
           await loading.dismiss();
-          await this.global.createToast('Evento cadastrado com sucesso!');
-          this.resetInputs();
+          if (response.title) {
+            await this.global.createToast('Evento cadastrado com sucesso!');
+            this.resetInputs();
+          } else {
+            this.global.createAlert('Erro ao cadastrar evento');
+          }
         } else {
           await loading.dismiss();
           this.global.createAlert('Data inválida');
-
         }
-
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +65,12 @@ export class RegisterEventPage {
   resetInputs() {
     this.formEvent.reset();
   }
-  // async selectBanner(event) {
-  //   this.banner = await this.tools.toBase64(event.target.files[0]);
-  // }
+
+  selectBanner(event) {
+    this.banner = event.target.files[0];
+  }
+
+  async getAllCertifieds() {
+    this.certifieds = await this.apiCore.getAllCertifieds();
+  }
 }

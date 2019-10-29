@@ -23,6 +23,7 @@ export class AppComponent {
         { title: 'Controle de acesso', url: '/admin/access-control' },
     ];
     public eventMenu = [
+        { title: 'Cadastrar certificado', url: '/admin/certified'},
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
         { title: 'Lista de presença', url: '/admin/present-list' },
@@ -35,7 +36,7 @@ export class AppComponent {
         { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
     ];
     public roomActivityMenu = [
-        { title: 'Salas e atividades', url: '/admin/room' },
+        { title: 'Cadastrar salas e atividades', url: '/admin/room' },
         { title: 'Lista de atividades', url: '/admin/activities' },
         { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];

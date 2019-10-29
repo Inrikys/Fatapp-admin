@@ -29,7 +29,6 @@ export class LoginModalComponent {
     }
 
     async submit() {
-        console.log(this.loginForm);
         const data = {
             email: this.loginForm.get('email').value,
             password: this.loginForm.get('password').value,

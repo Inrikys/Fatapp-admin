@@ -78,17 +78,31 @@
           </ion-col>
         </ion-row>
         <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none">
+                <ion-label position="fixed">Certificado </ion-label>
+                <div *ngIf="!certifieds || certifieds == ''">Cadastre antes um certificado para esse evento</div>
+                <ion-select *ngIf="certifieds" formControlName="certified">
+                  <ion-select-option value="{{certified.id}}" *ngFor="let certified of certifieds">
+                    {{certified.name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ng-container *ngFor="let validation of validationMessages.certified">
+                <div class="error-message"
+                  *ngIf="formEvent.get('certified').hasError(validation.type) && (formEvent.get('certified').dirty || formEvent.get('certified').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+        <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label class="banner">Banner: </ion-label>
             </ion-item>
-            <input disabled class="edit-form" [(ngModel)]="banner" formControlName="banner" type="file">
-            <ng-container *ngFor="let validation of validationMessages.banner">
-              <div class="error-message"
-                *ngIf="formEvent.get('banner').hasError(validation.type) && (formEvent.get('banner').dirty || formEvent.get('banner').touched)">
-                {{ validation.message }}
-              </div>
-            </ng-container>
+            <input disabled class="edit-form" formControlName="banner" (change)="selectBanner($event)" type="file">
           </ion-col>
         </ion-row>
         <div>
