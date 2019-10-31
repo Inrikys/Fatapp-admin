@@ -14,6 +14,7 @@ export class CertifiedPage {
   public certifiedForm;
   public validationMessages;
   public certifieds: any = null;
+  public certificate;
 
   constructor(
     private certifiedFormValidator: CertifiedValidatorService,
@@ -36,8 +37,14 @@ export class CertifiedPage {
       } else {
         const loading = await this.global.createLoading('Carregando...');
         await loading.present();
-        const response = await this.apiCore.registerCertified(this.certifiedForm.value);
-        this.getAllCertifieds();
+        this.certifiedForm.value.certified = this.certificate;
+        const response: any = await this.apiCore.registerCertified(this.certifiedForm.value);
+        if (response.id) {
+          this.getAllCertifieds();
+          this.global.createAlert('Certificado cadastrado com sucesso!');
+        } else {
+          this.global.createAlert('Ocorreu algum erro ao cadastrar certificado!');
+        }
         await loading.dismiss();
       }
     } catch (error) {
@@ -99,7 +106,7 @@ export class CertifiedPage {
     }
   }
 
-  selectBanner(event) {
-    this.certifiedForm.value.certified = event.target.files[0];
+  selectCertified(event) {
+    this.certificate = event.target.files[0];
   }
 }

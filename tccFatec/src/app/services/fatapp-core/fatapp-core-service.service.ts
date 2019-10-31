@@ -69,7 +69,7 @@ export class FatappCoreService {
   }
 
   async registerCertified(data) {
-    const link = environment.apiCoreUrl + 'certificates';
+    const link = environment.apiCoreUrl + 'certificates/';
     const httpOptions = {
       headers: new HttpHeaders({
         // tslint:disable-next-line:object-literal-key-quotes
