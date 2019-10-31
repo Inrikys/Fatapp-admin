@@ -35,6 +35,7 @@ export class EditEventPage {
     private tools: ToolsService,
     private modalController: ModalController,
   ) {
+    this.getAllCertifieds();
     this.formEvent = this.eventValidator.getFormEvent();
     this.validationMessages = this.eventValidator.getFormEventValidationsMessages();
   }
@@ -165,13 +166,8 @@ export class EditEventPage {
 
   selectBanner(event) {
     this.formEvent.value.banner = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      // The file's text will be printed here
-    };
-
-    reader.readAsText(this.formEvent.value.banner);
   }
+
   async getAllCertifieds() {
     this.certifieds = await this.apiCore.getAllCertifieds();
   }

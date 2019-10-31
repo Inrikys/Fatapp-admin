@@ -16,6 +16,7 @@ export const environment = {
   apiCoreUrl: 'http://localhost:3000/',
   // tslint:disable-next-line:max-line-length
   apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxNzU0NTg5fQ.tBo13Rj60g5zYn9tRzBg3HMg9C4is4mCY18Cezj-jf8',
+
 };
 
 /*

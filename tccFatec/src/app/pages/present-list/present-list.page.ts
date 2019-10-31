@@ -31,11 +31,13 @@ export class PresentListPage {
     this.getAllActivities();
   }
 
-  async goToSendEmail() {
+  async openSendEmailModal(activity) {
     const modal = await this.modalController.create({
       component: SendEmailModalComponent,
+      componentProps: {
+        activity,
+      }
     });
-
     await modal.present();
   }
 

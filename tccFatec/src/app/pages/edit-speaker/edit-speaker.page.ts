@@ -43,9 +43,15 @@ export class EditSpeakerPage {
       if (!this.editSpeakerForm.valid) {
         this.editSpeakerValidator.validateAllFormFields();
       } else {
+        this.editSpeakerForm.value.speakerPicture = this.pictureSpeaker;
         const response: any = await this.apiCore.registerSpeaker(this.editSpeakerForm.value);
-        this.global.createAlert('Palestrante alterado com sucesso!');
-        this.resetInputs();
+        if (response.id) {
+          this.global.createAlert('Palestrante alterado com sucesso!');
+          this.resetInputs();
+        } else {
+          this.global.createAlert('Erro ao alterar palestrante!');
+        }
+
       }
     } catch (error) {
       console.log(error);

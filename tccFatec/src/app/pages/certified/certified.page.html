@@ -32,7 +32,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <input formControlName="certified" (chenge)="selectCertified()" type="file"  accept=".docx" >
+            <input formControlName="certified" (change)="selectCertified($event)" type="file"  accept=".docx" >
             <ng-container *ngFor="let validation of validationMessages.certified">
               <div class="error-message"
                 *ngIf="certifiedForm.get('certified').hasError(validation.type) && (certifiedForm.get('certified').dirty || certifiedForm.get('certified').touched)">
