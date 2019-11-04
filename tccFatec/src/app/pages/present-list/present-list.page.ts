@@ -13,9 +13,9 @@ import { GlobalsService } from 'src/app/services/globals.service';
 })
 export class PresentListPage {
 
-  private activities = null;
+  public activities = null;
   public activitySearchForm: FormGroup;
-  private activitySearch = new Array();
+  public activitySearch = new Array();
 
   constructor(
     private tools: ToolsService,

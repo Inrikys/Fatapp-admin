@@ -11,11 +11,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {environment} from '../environments/environment';
 // HTTP
 import {HttpClientModule} from '@angular/common/http';
+
 // Firebase
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
-import { IonicStorageModule } from '@ionic/storage';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {IonicStorageModule } from '@ionic/storage';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 
 // Modals
 import {LoginModalModule} from './components/modals/login-modal/login-modal.module';
@@ -44,6 +45,7 @@ import { BrMaskerModule } from 'br-mask';
         BrMaskerModule,
         FontAwesomeModule,
         HttpClientModule,
+        AngularFireAuthModule,
         LoginModalModule,
         AccountModalModule,
         AngularFireModule.initializeApp(environment.firebase),

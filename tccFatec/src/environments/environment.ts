@@ -13,10 +13,12 @@ export const environment = {
   },
   apiUrl: 'http://localhost:8080/api/',
   // apiUrl: 'https://myspotapp-1541881215537.appspot.com/api/' ,
-  apiCoreUrl: 'http://localhost:3000/',
+  // apiCoreUrl: 'http://localhost:3000/',
+  apiCoreUrl: 'http://ec2-54-188-117-176.us-west-2.compute.amazonaws.com/',
   // tslint:disable-next-line:max-line-length
-  apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxNzU0NTg5fQ.tBo13Rj60g5zYn9tRzBg3HMg9C4is4mCY18Cezj-jf8',
-
+  // apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxNzU0NTg5fQ.tBo13Rj60g5zYn9tRzBg3HMg9C4is4mCY18Cezj-jf8',
+  // tslint:disable-next-line:max-line-length
+  apiCoreToken:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcyODI5NDEzfQ.nV6KnEtxgWONyukaQInhKpDa5Z00hYWo6kIz19F1rKE',
 };
 
 /*

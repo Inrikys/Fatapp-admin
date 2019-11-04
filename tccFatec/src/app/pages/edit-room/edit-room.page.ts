@@ -16,9 +16,9 @@ import { EditRoomModalComponent } from 'src/app/components/modals/edit-room-moda
 })
 export class EditRoomPage {
 
-  private room: any = null;
-  private roomId: any = null;
-  private resourcesRoom: any = null;
+  public room: any = null;
+  public roomId: any = null;
+  public resourcesRoom: any = null;
 
   constructor(
     private modalController: ModalController,

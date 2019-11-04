@@ -11,8 +11,8 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent {
-  private events = null;
-  private eventSearch = new Array();
+  public events = null;
+  public eventSearch = new Array();
   public eventSearchForm: FormGroup;
 
   public initialDate = '';
