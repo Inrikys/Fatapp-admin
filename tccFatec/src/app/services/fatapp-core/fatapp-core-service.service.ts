@@ -433,4 +433,20 @@ export class FatappCoreService {
       }
     });
   }
+
+  //reports
+
+  async getNoAttendedReport(id) {
+    const link = environment.apiCoreUrl + 'activities/' + id + '/reportNoAttended';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async getAttendedReport(id) {
+    const link = environment.apiCoreUrl + 'activities/' + id + '/reportAttended';
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
 }

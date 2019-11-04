@@ -33,13 +33,24 @@
                                         class="speaker-name">{{activity.event.title}}</span>
                                     {{activity.event.edition}}</div>
                                 <div class="d-block">Tipo: <span>{{activity.type}}</span></div>
-                                <div class="d-block">Local: <span>{{activity.room.type}}</span> {{activity.room.name}}</div>
+                                <div class="d-block">Local: <span>{{activity.room.type}}</span> {{activity.room.name}}
+                                </div>
                                 <br>
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                             </ion-label>
-                            <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code
-                            </ion-button>
+                            <ion-label text-right>
+                                <div class="d-block" align="ion-text-center">
+                                    <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end" expand="block">QR-Code
+                                    </ion-button>
+                                </div>
+                                
+                                <div class="d-block" align="ion-text-center">
+                                    <ion-button (click)="goToReport(activity.id)" fill="outline" slot="end" expand="block">Relatório
+                                    </ion-button>
+                                </div>
+                            </ion-label>
+
                         </ion-item>
                         <ion-card-content>
                             <span>Descrição: </span>
@@ -64,13 +75,23 @@
                                 <div class="d-block highlight">Evento: <span>{{activity.event.title}}</span>
                                     {{activity.event.edition}}</div>
                                 <div class="d-block">Tipo: <span>{{activity.type}}</span></div>
-                                <div class="d-block">Local: <span>{{activity.room.type}}</span> {{activity.room.name}}</div>
+                                <div class="d-block">Local: <span>{{activity.room.type}}</span> {{activity.room.name}}
+                                </div>
                                 <br>
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                             </ion-label>
-                            <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code
-                            </ion-button>
+                            <ion-label text-right>
+                                <div class="d-block" align="ion-text-center">
+                                    <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end" expand="block">QR-Code
+                                    </ion-button>
+                                </div>
+                                
+                                <div class="d-block" align="ion-text-center">
+                                    <ion-button (click)="goToReport(activity.id)" fill="outline" slot="end" expand="block">Relatório
+                                    </ion-button>
+                                </div>
+                            </ion-label>
                         </ion-item>
                         <ion-card-content>
                             <span>Descrição: </span>

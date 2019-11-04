@@ -61,6 +61,13 @@ export class ActivitiesPage {
       console.log(error);
     }
   }
+  async goToReport(activityId) {
+    try {
+      this.global.navigateByUrl('admin/report?id=' + activityId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async getActivitySearch() {
     try {
