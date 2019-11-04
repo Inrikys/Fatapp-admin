@@ -14,12 +14,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class CalendarOfEventsPage {
 
-  private roomId = null;
-  private activities = null;
-  private activitiesRoom = null;
+  public roomId = null;
+  public activities = null;
+  public activitiesRoom = null;
   public activitySearchForm: FormGroup;
-  private activitySearch = new Array();
-  private pageLoaded = false;
+  public activitySearch = new Array();
+  public pageLoaded = false;
 
   constructor(
     private global: GlobalsService,

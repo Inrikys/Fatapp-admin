@@ -23,8 +23,8 @@ export class AccessControlPage implements AfterViewInit {
     this.createForm();
   }
 
-  private users = new Array();
-  private userSearch = new Array();
+  public users = new Array();
+  public userSearch = new Array();
   public accessControlForm: FormGroup;
 
 

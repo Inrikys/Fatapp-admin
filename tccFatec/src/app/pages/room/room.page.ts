@@ -11,8 +11,8 @@ import { GlobalsService } from 'src/app/services/globals.service';
 })
 export class RoomPage {
 
-  private rooms: any = null;
-  private roomsSearch: any = null;
+  public rooms: any = null;
+  public roomsSearch: any = null;
 
   constructor(
     private modalController: ModalController,

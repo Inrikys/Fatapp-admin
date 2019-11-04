@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
-import { UserService } from '../../../services/api/user.service';
 import { User } from '../../../interfaces/user-interface';
 import { EditAccountValidatorService } from '../../../services/validators/edit-account-validator.service';
 import { GlobalsService } from '../../../services/globals.service';

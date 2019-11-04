@@ -8,7 +8,7 @@ import {BannerService} from '../services/banner/banner.service';
 })
 export class HomePage {
 
-  private banners: any;
+  public banners: any;
 
   sliderConfig = {
     spaceBetween: 1,
