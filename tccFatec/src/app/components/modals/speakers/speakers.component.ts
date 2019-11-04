@@ -11,8 +11,8 @@ import { LoadingController, ModalController } from '@ionic/angular';
 })
 export class SpeakersComponent {
 
-  private speakers;
-  private speakerSearch = new Array();
+  public speakers;
+  public speakerSearch: any = new Array();
   public speakerSearchForm: FormGroup;
 
   constructor(

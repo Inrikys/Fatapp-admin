@@ -14,7 +14,7 @@ import { UsersService } from 'src/app/services/firebase/users/users.service';
 })
 export class AccountModalComponent implements OnInit {
 
-  private user: User;
+  public user: User;
   accountForm;
   validationMessages;
 

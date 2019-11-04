@@ -95,7 +95,7 @@ export class EditEventPage {
     }
   }
 
-  async removeEvent(id) {
+  async removeEvent() {
     try {
       let option = null;
       const alert = await this.alertController.create({
