@@ -38,7 +38,7 @@
             </ion-input>
             <ng-container *ngFor="let validation of validationMessages.acronym">
               <div class="error-message"
-                *ngIf="registerCourseForm.get('acronym').hasError(validation.type) && (registerCourseForm.get('acronym').dirty || registerCourseForm.get('acronym').touched)">
+                *ngIf="editCourseForm.get('acronym').hasError(validation.type) && (editCourseForm.get('acronym').dirty || editCourseForm.get('acronym').touched)">
                 {{ validation.message }}
               </div>
             </ng-container>

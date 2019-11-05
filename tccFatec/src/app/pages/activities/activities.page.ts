@@ -11,9 +11,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ActivitiesPage {
 
-  private activities = null;
+  public activities = null;
   public activitySearchForm: FormGroup;
-  private activitySearch = new Array();
+  public activitySearch = new Array();
 
   constructor(
     private tools: ToolsService,

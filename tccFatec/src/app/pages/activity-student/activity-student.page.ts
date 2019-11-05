@@ -11,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ActivityStudentPage {
 
-  private activity;
-  private qrcode;
-  private subscribers = null;
+  public activity;
+  public qrcode;
+  public subscribers = null;
 
   constructor(
     private apiCore: FatappCoreService,

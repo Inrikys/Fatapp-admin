@@ -11,12 +11,12 @@ import { GlobalsService } from 'src/app/services/globals.service';
 })
 export class AddResourcesModalComponent {
 
-  private passedRoomId: any = null;
+  public passedRoomId: any = null;
   public addResourceForm;
   public validationMessages;
 
-  private resources: any = null;
-  private resource: any = null;
+  public resources: any = null;
+  public resource: any = null;
 
 
   constructor(

@@ -13,9 +13,9 @@ import { GlobalsService } from 'src/app/services/globals.service';
 })
 export class PresentListPage {
 
-  private activities = null;
+  public activities = null;
   public activitySearchForm: FormGroup;
-  private activitySearch = new Array();
+  public activitySearch = new Array();
 
   constructor(
     private tools: ToolsService,
@@ -31,11 +31,13 @@ export class PresentListPage {
     this.getAllActivities();
   }
 
-  async goToSendEmail() {
+  async openSendEmailModal(activity) {
     const modal = await this.modalController.create({
       component: SendEmailModalComponent,
+      componentProps: {
+        activity,
+      }
     });
-
     await modal.present();
   }
 

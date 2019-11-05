@@ -38,6 +38,19 @@ export class FatappCoreService {
     });
   }
 
+  // Send e-mail
+  async sendEmail(data, activityId) {
+    const link = environment.apiCoreUrl + 'activities/' + activityId + '/report';
+    const obj = {
+      emails: [data.email]
+    };
+
+    return this.http.post(link, obj, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+      this.global.createAlert(error.error.message);
+    });
+  }
+
   //  Certifieds
   async getAllCertifieds() {
     const link = environment.apiCoreUrl + 'certificates';
@@ -56,7 +69,7 @@ export class FatappCoreService {
   }
 
   async registerCertified(data) {
-    const link = environment.apiCoreUrl + 'certificates';
+    const link = environment.apiCoreUrl + 'certificates/';
     const httpOptions = {
       headers: new HttpHeaders({
         // tslint:disable-next-line:object-literal-key-quotes
@@ -95,7 +108,7 @@ export class FatappCoreService {
 
     return this.http.post(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert('Ocorreu algum erro ao cadastrar atividade, verifique se a data da atividade está dentro da data do evento');
+      this.global.createAlert(error.error.message);
     });
   }
 
@@ -103,7 +116,7 @@ export class FatappCoreService {
     const link = environment.apiCoreUrl + 'activities/' + id;
     return this.http.put(link, data, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert('Ocorreu algum erro ao alterar atividade, verifique se a data da atividade está dentro da data do evento');
+      this.global.createAlert(error.error.message);
     });
   }
 

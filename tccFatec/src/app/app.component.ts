@@ -45,7 +45,7 @@ export class AppComponent {
         { title: 'Política de privacidade', url: '/privacy-policy' },
     ];
 
-    private user: User = null;
+    public user: User = null;
 
     constructor(
         private platform: Platform,

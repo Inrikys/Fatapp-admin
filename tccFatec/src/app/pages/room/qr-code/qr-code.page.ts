@@ -12,8 +12,8 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 })
 export class QrCodePage {
 
-  private qrcode: string = null;
-  private activity = null;
+  public qrcode: string = null;
+  public activity = null;
 
   constructor(
     private route: ActivatedRoute,

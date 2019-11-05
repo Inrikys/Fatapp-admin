@@ -87,6 +87,7 @@ export class RegisterActivityPage {
       }
     } catch (error) {
       console.log(error);
+      this.global.createAlert('Erro ao cadastrar atividade, verifique se a data está dentro do range da data do evento');
     }
   }
 

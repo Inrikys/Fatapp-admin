@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/api/user.service';
 import { UserRegisterValidatorService } from '../../services/validators/user-register-validator.service';
 import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { GlobalsService } from 'src/app/services/globals.service';
