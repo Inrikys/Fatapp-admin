@@ -4,6 +4,11 @@ import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
 import { BannerService } from '../banner/banner.service';
 import { ToolsService } from '../tools/tools.service';
+import { map } from "rxjs/operators";
+
+
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
 
 
@@ -14,6 +19,7 @@ export class FatappCoreService {
 
   private httpOptions: any;
   private httpOptionsFormData: any;
+  private sanitizer: DomSanitizer
 
   constructor(
     private http: HttpClient,
@@ -162,19 +168,21 @@ export class FatappCoreService {
   }
 
   // EVENT
-
   async getEventImage(file) {
-    const imgLink = decodeURIComponent(file);
-    const link = environment.apiCoreUrl + 'files/' + imgLink;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        // tslint:disable-next-line:object-literal-key-quotes
-        'token': environment.apiCoreToken,
-      })
-    };
-    return this.http.get(link, httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
+    this.http
+      .get(file, { responseType: 'blob' })
+      .pipe(map(async val => {
+        let mySrc;
+        const reader = new FileReader();
+        reader.readAsDataURL(val);
+        reader.onloadend = await function () {
+          // result includes identifier 'data:image/png;base64,' plus the base64 data
+          mySrc = reader.result;
+          console.log('bora tesstar sapoha final' + mySrc);
+        }
+        
+        return mySrc //this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(val));
+      }));   
   }
 
   async getAllEvents() {
