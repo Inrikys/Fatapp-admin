@@ -4,7 +4,8 @@
 <ion-content>
     <div *ngIf="activity" class='container'>
         <div class="ion-padding-top">
-            <div [innerHTML]="qrcode"></div>
+            <img [attr.src]="ImgVar | secureimages | async" />
+            <!--<img [attr.src]="blob"/>-->
         </div>
         <ion-grid class='box-present-list'>
             <div>Informações sobre a atividade</div>
@@ -50,10 +51,10 @@
                 <span *ngFor="let subscriber of subscribers.subscriptions">
                     <ion-row class="row users-present-list">
                         <ion-col class="col">{{subscriber.user.name}}</ion-col>
-                        <ion-col class="col"><span *ngIf="subscriber.user.student.ra">{{subscriber.user.student.ra}}</span>
+                        <ion-col class="col"><span *ngIf="subscriber.user.student">{{subscriber.user.student.ra}}</span>
                         </ion-col>
                         <ion-col class="col"></ion-col>
-                        <ion-col class="col"><span *ngIf="subscriber.user.student.course.acronym">{{subscriber.user.student.course.acronym}}</span></ion-col>
+                        <ion-col class="col"><span *ngIf="subscriber.user.student">{{subscriber.user.student.course.acronym}}</span></ion-col>
                         <ion-col class="col"><span *ngIf="subscriber.attended">via Fatapp</span></ion-col>
                     </ion-row>
                 </span>
