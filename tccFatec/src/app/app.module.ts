@@ -11,6 +11,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {environment} from '../environments/environment';
 // HTTP
 import {HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 // Firebase
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -33,9 +35,11 @@ library.add(fas, far, fab);
 // BrMasker
 import { BrMaskerModule } from 'br-mask';
 
+import { YourInterceptor } from '../app/services/Interceptor/interceptor';
+
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent /*, SecureImagesPipe*/],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -49,13 +53,15 @@ import { BrMaskerModule } from 'br-mask';
         LoginModalModule,
         AccountModalModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
+        AngularFireDatabaseModule
+                //SecureimagesPipe
     ],
     providers: [
         StatusBar,
         SplashScreen,
         AngularFireAuth,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {provide: HTTP_INTERCEPTORS,useClass: YourInterceptor,multi: true}
     ],
     bootstrap: [AppComponent]
 })
