@@ -35,6 +35,14 @@ export class PresentListPage {
 
   }
 
+  async goToReport(activityId) {
+    try {
+      this.global.navigateByUrl('admin/report?id=' + activityId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async openSendEmailModal(activity) {
     const modal = await this.modalController.create({
       component: SendEmailModalComponent,
@@ -102,6 +110,7 @@ export class PresentListPage {
       this.activitySearch = activitiesToFilter.filter(collection => {
         return collection.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.description.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speaker.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
