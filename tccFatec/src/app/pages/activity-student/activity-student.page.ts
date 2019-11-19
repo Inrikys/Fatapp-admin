@@ -69,7 +69,6 @@ export class ActivityStudentPage {
 
   async getSubscribers(activityId) {
     this.subscribers = await this.apiCore.getSubscriptions(activityId);
-    console.log(this.subscribers);
   }
 
 
