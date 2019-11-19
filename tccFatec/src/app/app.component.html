@@ -97,26 +97,6 @@
 
                     <ion-card *ngIf="user">
                         <ion-card-header>
-                            <ion-card-subtitle>Público-alvo</ion-card-subtitle>
-                        </ion-card-header>
-                        <ion-card-content>
-    
-                            <ion-list lines="none">
-                                <ion-menu-toggle auto-hide="false" *ngFor="let p of targetAudienceMenu">
-                                    <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
-                                        <ion-label>
-                                            {{p.title}}
-                                        </ion-label>
-                                    </ion-item>
-                                </ion-menu-toggle>
-                            </ion-list>
-    
-    
-                        </ion-card-content>
-                    </ion-card>
-
-                    <ion-card *ngIf="user">
-                        <ion-card-header>
                             <ion-card-subtitle>Salas e atividades</ion-card-subtitle>
                         </ion-card-header>
                         <ion-card-content>

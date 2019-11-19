@@ -1,4 +1,4 @@
-<main-header title="Lista de check-in"></main-header>
+<page-header title="Lista de presença"></page-header>
 
 <ion-content color="tertiary">
     <div class="container">
@@ -49,6 +49,8 @@
                             </ion-button>
                             <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por e-mail
                             </ion-button>
+                            <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
+                            </ion-button>
                     </ion-card>
                 </div>
             </span>
@@ -83,6 +85,8 @@
                             presença manual
                         </ion-button>
                         <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por e-mail
+                        </ion-button>
+                        <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
                         </ion-button>
                     </ion-card>
                 </div>

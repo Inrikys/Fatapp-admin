@@ -32,12 +32,9 @@ export class AppComponent {
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },
         { title: 'Editar palestrante', url: '/admin/edit-speaker' },
     ];
-    public targetAudienceMenu = [
-        { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
-    ];
     public roomActivityMenu = [
+        { title: 'Cadastrar e editar público-alvo', url: '/admin/register-course' },
         { title: 'Cadastrar salas e atividades', url: '/admin/room' },
-        { title: 'Lista de atividades', url: '/admin/activities' },
         { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];
     public generalLinks = [
