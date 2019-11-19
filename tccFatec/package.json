@@ -1,5 +1,5 @@
 {
-  "name": "Fatapp-Admin",
+  "name": "FatappAdmin",
   "version": "0.0.1",
   "author": "Henrique Pereira, Caio Monteiro, Guilherme Vireira, Jessica Holanda, Hugo Barros",
   "homepage": "https://www.fatecsaocaetano.edu.br/",
@@ -43,8 +43,7 @@
     "date-fns": "^2.4.1",
     "firebase": "^6.3.1",
     "firebase-admin": "^8.5.0",
-    "ionic-angular": "^3.9.9",
-    "ionic-image-loader": "^6.3.3",
+    "ionic": "^5.4.5",
     "node-sass": "^4.12.0",
     "paulstelzer-ionic-angular-toolkit": "^2.0.0",
     "rxjs": "~6.5.1",

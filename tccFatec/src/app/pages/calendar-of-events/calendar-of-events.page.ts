@@ -87,9 +87,9 @@ export class CalendarOfEventsPage {
   }
 
 
-  async goToQrCode(qrcode) {
+  async goToQrCode(activityId) {
     try {
-      this.global.navigateByUrl('admin/qr-code?id=' + qrcode);
+      this.global.navigateByUrl('admin/qr-code?id=' + activityId);
     } catch (error) {
       console.log(error);
     }
