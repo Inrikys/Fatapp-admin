@@ -24,6 +24,7 @@ export class EditEventPage {
   public banner: any = null;
   public eventId = '';
   public certifieds;
+  public description = '';
 
 
   constructor(
@@ -152,7 +153,8 @@ export class EditEventPage {
           this.initialDate = await this.tools.formatFrontDate(data.data.initialDate);
           this.finalDate = await this.tools.formatFrontDate(data.data.finalDate);
           this.eventId = await data.data.id;
-          this.banner = await this.apiCore.getEventImage(data.data.banner);
+          this.banner = '';
+          this.description = await data.data.description;
           this.removeDisable();
         }
       });

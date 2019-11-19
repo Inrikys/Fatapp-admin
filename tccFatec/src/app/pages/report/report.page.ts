@@ -45,7 +45,6 @@ export class ReportPage {
         report = await this.apiCore.getReport(id, 'attended');
         const labels = [];
         const data = [];
-        console.log(report);
         // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < report.length; i++) {
           labels.push(report[i].acronym);

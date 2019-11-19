@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
-import { BannerService } from '../banner/banner.service';
 import { ToolsService } from '../tools/tools.service';
 
 
@@ -161,21 +160,6 @@ export class FatappCoreService {
     });
   }
 
-  // EVENT
-
-  async getEventImage(file) {
-    const imgLink = decodeURIComponent(file);
-    const link = environment.apiCoreUrl + 'files/' + imgLink;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        // tslint:disable-next-line:object-literal-key-quotes
-        'token': environment.apiCoreToken,
-      })
-    };
-    return this.http.get(link, httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
-  }
 
   async getAllEvents() {
     const link = environment.apiCoreUrl + 'events/';
@@ -186,6 +170,13 @@ export class FatappCoreService {
 
   async getEvent(id) {
     const link = environment.apiCoreUrl + 'events/' + id;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async getEventActivities(id) {
+    const link = environment.apiCoreUrl + 'events/' + id + '/activities';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
@@ -208,6 +199,7 @@ export class FatappCoreService {
     formData.append('finalDate', `${data.finalDate}`);
     formData.append('banner', data.banner);
     formData.append('certificateId', data.certified);
+    formData.append('description', data.description);
 
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
@@ -239,6 +231,7 @@ export class FatappCoreService {
     formData.append('finalDate', data.finalDate);
     formData.append('banner', data.banner);
     formData.append('certificateId', data.certified);
+    formData.append('description', data.description);
 
     return this.http.put(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
@@ -447,10 +440,17 @@ export class FatappCoreService {
     });
   }
 
-  //reports
-  
+  // Reports
   async getReport(id, type) {
     const link = environment.apiCoreUrl + 'activities/' + id + '/report?type=' + type;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  // Email Excel
+  async sendPresentList(id){
+    const link = environment.apiCoreUrl + 'activities/' + id + '/excel';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });

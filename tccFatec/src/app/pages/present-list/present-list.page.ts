@@ -5,6 +5,7 @@ import { SendEmailModalComponent } from 'src/app/components/modals/send-email/se
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-present-list',
@@ -16,6 +17,7 @@ export class PresentListPage {
   public activities = null;
   public activitySearchForm: FormGroup;
   public activitySearch = new Array();
+  private eventId = '';
 
   constructor(
     private tools: ToolsService,
@@ -23,12 +25,22 @@ export class PresentListPage {
     private global: GlobalsService,
     private formBuilder: FormBuilder,
     private modalController: ModalController,
+    private route: ActivatedRoute,
   ) {
     this.createForm();
+    this.getParams();
   }
 
   ionViewDidEnter() {
-    this.getAllActivities();
+
+  }
+
+  async goToReport(activityId) {
+    try {
+      this.global.navigateByUrl('admin/report?id=' + activityId);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async openSendEmailModal(activity) {
@@ -41,19 +53,28 @@ export class PresentListPage {
     await modal.present();
   }
 
+  async getParams() {
+    try {
+      if (this.route.snapshot.queryParams.id) {
+        this.eventId = await this.route.snapshot.queryParams.id;
+        await this.getEventActivities();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   private createForm() {
     this.activitySearchForm = this.formBuilder.group({
-      date_start: this.formBuilder.control(''),
-      date_end: this.formBuilder.control(''),
+      name: this.formBuilder.control(''),
     });
   }
 
-  async getAllActivities() {
+  async getEventActivities() {
     const loading = await this.global.createLoading('Carregando atividades...');
     await loading.present();
-    this.activities = await this.apiCore.getAllActivity();
+    this.activities = await this.apiCore.getEventActivities(this.eventId);
     if (this.activities) {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.activities.length; i++) {
@@ -69,7 +90,6 @@ export class PresentListPage {
         Object.assign(this.activities[i], obj);
       }
     }
-    console.log(this.activities);
     await loading.dismiss();
   }
 
@@ -85,15 +105,19 @@ export class PresentListPage {
     try {
       this.activitySearch = [];
       const activitiesToFilter = this.activities;
-
-      const dateStart = this.activitySearchForm.value.date_start;
-      const dateEnd = this.activitySearchForm.value.date_end;
+      const keyword = this.activitySearchForm.value.name;
 
       this.activitySearch = activitiesToFilter.filter(collection => {
-
-        return collection.formatedInitialTime >= dateStart && collection.formatedInitialTime <= dateEnd;
+        return collection.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.description.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.room.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.room.type.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.speaker.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.speaker.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.formatedFinalTime.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+          || collection.formatedInitialTime.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
       });
-      console.log(this.activitySearch);
 
     } catch (error) {
       console.log(error);

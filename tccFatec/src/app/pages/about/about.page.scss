@@ -9,9 +9,23 @@ hr.principal{
 
 hr.sub{
    border: 0;
-   background:  rgb(131, 5, 5); 
+   background:  var(--ion-color-scrum-master); 
    margin-right: 50%;
    margin-left: 30px;
+}
+
+.scrum-Master{
+ font-size: 13px;
+ color: var(--ion-color-scrum-master);
+}
+
+.product-owner{
+    font-size:30px;
+    color: var(--ion-color-product-owner);
+}
+
+.orientador{
+    color: var(--ion-color-orientador)
 }
 
 h1.sub-title{

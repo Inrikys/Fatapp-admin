@@ -3,6 +3,9 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { SecureimagesPipe } from 'src/app/secureimages.pipe';
+
 
 @Component({
   selector: 'app-activity-student',
@@ -13,6 +16,7 @@ export class ActivityStudentPage {
 
   public activity;
   public qrcode;
+  public ImgVar = null;
   public subscribers = null;
 
   constructor(
@@ -20,6 +24,7 @@ export class ActivityStudentPage {
     private tools: ToolsService,
     private global: GlobalsService,
     private route: ActivatedRoute,
+    private secureImagePipe: SecureimagesPipe
   ) {
     this.getQrCode();
   }
@@ -50,9 +55,7 @@ export class ActivityStudentPage {
           Object.assign(this.activity, formatedTime);
           if (success) {
             this.getSubscribers(this.activity.id);
-            // const link = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${this.activity.qrCode}`;
-            const link = this.activity.qrCode;
-            this.qrcode = `<img src="${link}">`;
+            this.ImgVar = environment.apiCoreUrl + 'files/' + this.activity.qrCode;;
           }
         }
 
@@ -66,7 +69,6 @@ export class ActivityStudentPage {
 
   async getSubscribers(activityId) {
     this.subscribers = await this.apiCore.getSubscriptions(activityId);
-    console.log(this.subscribers);
   }
 
 
