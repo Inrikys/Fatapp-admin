@@ -25,6 +25,7 @@ export class RegisterEventValidatorService {
       finalDate: [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       banner: [null, Validators.compose([Validators.required])],
       certified: [null, Validators.compose([Validators.required])],
+      description: [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -57,6 +58,9 @@ export class RegisterEventValidatorService {
       ],
       certified: [
         {type: 'required', message: 'Escolha um certificado referente ao evento'},
+      ],
+      description: [
+        {type: 'required', message: 'Descrição obrigatória'},
       ],
     };
   }

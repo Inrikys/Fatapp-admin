@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
-import { BannerService } from '../banner/banner.service';
 import { ToolsService } from '../tools/tools.service';
-import { map } from "rxjs/operators";
-
-
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 
 
 
@@ -19,7 +13,6 @@ export class FatappCoreService {
 
   private httpOptions: any;
   private httpOptionsFormData: any;
-  private sanitizer: DomSanitizer
 
   constructor(
     private http: HttpClient,
@@ -167,23 +160,6 @@ export class FatappCoreService {
     });
   }
 
-  // EVENT
-  async getEventImage(file) {
-    this.http
-      .get(file, { responseType: 'blob' })
-      .pipe(map(async val => {
-        let mySrc;
-        const reader = new FileReader();
-        reader.readAsDataURL(val);
-        reader.onloadend = await function () {
-          // result includes identifier 'data:image/png;base64,' plus the base64 data
-          mySrc = reader.result;
-          console.log('bora tesstar sapoha final' + mySrc);
-        }
-        
-        return mySrc //this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(val));
-      }));   
-  }
 
   async getAllEvents() {
     const link = environment.apiCoreUrl + 'events/';
@@ -194,6 +170,13 @@ export class FatappCoreService {
 
   async getEvent(id) {
     const link = environment.apiCoreUrl + 'events/' + id;
+    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
+      console.log(error);
+    });
+  }
+
+  async getEventActivities(id) {
+    const link = environment.apiCoreUrl + 'events/' + id + '/activities';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
@@ -216,6 +199,7 @@ export class FatappCoreService {
     formData.append('finalDate', `${data.finalDate}`);
     formData.append('banner', data.banner);
     formData.append('certificateId', data.certified);
+    formData.append('description', data.description);
 
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
@@ -247,6 +231,7 @@ export class FatappCoreService {
     formData.append('finalDate', data.finalDate);
     formData.append('banner', data.banner);
     formData.append('certificateId', data.certified);
+    formData.append('description', data.description);
 
     return this.http.put(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
@@ -455,8 +440,7 @@ export class FatappCoreService {
     });
   }
 
-  //reports
-
+  //  Reports
   async getNoAttendedReport(id) {
     const link = environment.apiCoreUrl + 'activities/' + id + '/reportNoAttended';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {

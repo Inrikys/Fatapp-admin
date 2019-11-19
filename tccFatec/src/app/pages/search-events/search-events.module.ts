@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ActivitiesPage } from './activities.page';
+import { SearchEventsPage } from './search-events.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: ActivitiesPage
+    component: SearchEventsPage
   }
 ];
 
@@ -20,10 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule,
     ComponentsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ActivitiesPage]
+  declarations: [SearchEventsPage]
 })
-export class ActivitiesPageModule {}
+export class SearchEventsPageModule {}
