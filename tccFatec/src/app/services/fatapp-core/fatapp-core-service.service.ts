@@ -39,7 +39,7 @@ export class FatappCoreService {
 
   // Send e-mail
   async sendEmail(data, activityId) {
-    const link = environment.apiCoreUrl + 'activities/' + activityId + '/report';
+    const link = environment.apiCoreUrl + 'activities/' + activityId + '/excel';
     const obj = {
       emails: [data.email]
     };
@@ -448,12 +448,5 @@ export class FatappCoreService {
     });
   }
 
-  // Email Excel
-  async sendPresentList(id){
-    const link = environment.apiCoreUrl + 'activities/' + id + '/excel';
-    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
-  }
 
 }

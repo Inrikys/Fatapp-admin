@@ -100,6 +100,13 @@ export class PresentListPage {
       console.log(error);
     }
   }
+  async goToQrCode(activityId) {
+    try {
+      this.global.navigateByUrl('admin/qr-code?id=' + activityId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async getActivitySearch() {
     try {
