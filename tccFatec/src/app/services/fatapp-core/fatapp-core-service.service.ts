@@ -448,18 +448,12 @@ export class FatappCoreService {
   }
 
   //reports
-
-  async getNoAttendedReport(id) {
-    const link = environment.apiCoreUrl + 'activities/' + id + '/reportNoAttended';
+  
+  async getReport(id, type) {
+    const link = environment.apiCoreUrl + 'activities/' + id + '/report?type=' + type;
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
   }
 
-  async getAttendedReport(id) {
-    const link = environment.apiCoreUrl + 'activities/' + id + '/reportAttended';
-    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
-  }
 }
