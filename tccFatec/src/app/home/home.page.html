@@ -4,29 +4,59 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            Home
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <!-- <div class="welcome">
+        <img class="page-icon" src="../../../assets/imgs/bem-vindo.jpeg">
+    </div> -->
+    <ion-card class="title-text-manual">
+        <ion-card-header>
+            <ion-row>
+                <ion-col size="12" class="title-text" style="color:black">
+                    Manual do Usuário Fatapp Admin
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+    </ion-card>
 
-    <div padding-bottom class="container">
-        <div padding>
-            <div class="page-title">Novidades</div>
-        </div>
-        <ion-slides pager="true" [options]="sliderConfig">
-            <ion-slide *ngFor="let slide of banners">
-                <ion-img class="banner" src='{{slide.imgPath}}'></ion-img>
-            </ion-slide>
-        </ion-slides>
-        <div padding>
-            <div class="page-title">Conheça o Fatapp Usuários</div>
-        </div>
-        <ion-slides pager="true" [options]="sliderConfig">
-            <ion-slide *ngFor="let slide of banners">
-                <ion-img class="banner" src='{{slide.imgPath}}'></ion-img>
-            </ion-slide>
-        </ion-slides>
-    </div>
+    <ion-card class="head">
+        <ion-card-header>
+            <ion-row>
+                <ion-col size="12" class="title-text">
+                    Controlar Salas
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+        
+        <ion-card class="body">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="4" class="image-controlesala">
+                            <img src="../../../assets/imgs/manual/ContSalas.jpg">
+                        </ion-col>
+
+                        <ion-col size="8">
+                            <br/><br/><br/>
+                            <div class="manual-text">
+                                <ol>
+                                    <li> No menu, clique na opção “Salas”;</li>
+                                    <li>Para cadastrar uma nova sala clique no ícone de “+”;</li>
+                                    <li>Será exibida uma tela onde após o preenchimento e o clique em “Adicionar Sala”;</li>
+                                    <li>Será redirecionado a tela anterior, com a nova sala cadastrada;</li>
+                                    <li>Para editar a sala, basta clicar no ícone de “lápis” onde será exibido as informações para serem adicionadas à sala.</li>
+                                    <br/>
+                                    <b>
+                                            A Figura ao lado representa a interface do Fatapp Admin referente ao percurso para se controlar salas.
+                                    </b>
+                                </ol>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+        </ion-card>
+    </ion-card>
+
 </ion-content>

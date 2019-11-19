@@ -28,4 +28,6 @@ export class HomePage {
     this.banners = await this.bannerService.getMainBanner();
   }
 
+  
+
 }
