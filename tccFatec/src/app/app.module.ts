@@ -34,12 +34,11 @@ library.add(fas, far, fab);
 
 // BrMasker
 import { BrMaskerModule } from 'br-mask';
-
 import { YourInterceptor } from '../app/services/Interceptor/interceptor';
 
 
 @NgModule({
-    declarations: [AppComponent /*, SecureImagesPipe*/],
+    declarations: [AppComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -54,14 +53,13 @@ import { YourInterceptor } from '../app/services/Interceptor/interceptor';
         AccountModalModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule
-                //SecureimagesPipe
     ],
     providers: [
         StatusBar,
         SplashScreen,
         AngularFireAuth,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {provide: HTTP_INTERCEPTORS,useClass: YourInterceptor,multi: true}
+        {provide: HTTP_INTERCEPTORS, useClass: YourInterceptor, multi: true}
     ],
     bootstrap: [AppComponent]
 })

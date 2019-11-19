@@ -39,7 +39,7 @@ export class FatappCoreService {
 
   // Send e-mail
   async sendEmail(data, activityId) {
-    const link = environment.apiCoreUrl + 'activities/' + activityId + '/report';
+    const link = environment.apiCoreUrl + 'activities/' + activityId + '/excel';
     const obj = {
       emails: [data.email]
     };
@@ -440,18 +440,13 @@ export class FatappCoreService {
     });
   }
 
-  //  Reports
-  async getNoAttendedReport(id) {
-    const link = environment.apiCoreUrl + 'activities/' + id + '/reportNoAttended';
+  // Reports
+  async getReport(id, type) {
+    const link = environment.apiCoreUrl + 'activities/' + id + '/report?type=' + type;
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
       console.log(error);
     });
   }
 
-  async getAttendedReport(id) {
-    const link = environment.apiCoreUrl + 'activities/' + id + '/reportAttended';
-    return this.http.get(link, this.httpOptions).toPromise().catch(error => {
-      console.log(error);
-    });
-  }
+
 }

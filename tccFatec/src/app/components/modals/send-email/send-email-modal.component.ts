@@ -33,7 +33,7 @@ export class SendEmailModalComponent {
       } else {
         const response = await this.apiCore.sendEmail(this.sendEmailForm.value, this.passedActivity.id);
         if (response) {
-          this.global.createAlert('E-mail enviado com sucesso!');
+          this.global.createAlert('E-mail foi enviado! Pode demorar até 10 minutos para e-mail destino receber');
         } else {
           this.global.createAlert('Ocorreu um erro ao enviar e-mail');
         }

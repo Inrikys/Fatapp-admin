@@ -4,7 +4,6 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
-import { SecureimagesPipe } from 'src/app/secureimages.pipe';
 
 
 @Component({
@@ -24,7 +23,6 @@ export class ActivityStudentPage {
     private tools: ToolsService,
     private global: GlobalsService,
     private route: ActivatedRoute,
-    private secureImagePipe: SecureimagesPipe
   ) {
     this.getQrCode();
   }
@@ -55,7 +53,7 @@ export class ActivityStudentPage {
           Object.assign(this.activity, formatedTime);
           if (success) {
             this.getSubscribers(this.activity.id);
-            this.ImgVar = environment.apiCoreUrl + 'files/' + this.activity.qrCode;;
+            this.ImgVar = environment.apiCoreUrl + 'files/' + this.activity.qrCode;
           }
         }
 

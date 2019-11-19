@@ -4,6 +4,8 @@ import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-serv
 import { GlobalsService } from 'src/app/services/globals.service';
 import { NavController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { environment } from 'src/environments/environment.prod';
+
 
 @Component({
   selector: 'app-qr-code',
@@ -12,7 +14,7 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 })
 export class QrCodePage {
 
-  public qrcode: string = null;
+  public imgVar: string = null;
   public activity = null;
 
   constructor(
@@ -22,9 +24,11 @@ export class QrCodePage {
     private navController: NavController,
     private tools: ToolsService,
   ) {
-    this.getQrCode();
   }
 
+  ionViewDidEnter() {
+    this.getQrCode();
+  }
 
   async getQrCode() {
     try {
@@ -38,16 +42,14 @@ export class QrCodePage {
           loading.dismiss();
           this.navController.back();
         } else {
-          let formatedInitialTime = this.tools.formatFrontDate(this.activity.initialDate);
-          let formatedFinalTime = this.tools.formatFrontTimeDate(this.activity.finalDate);
+          let formatedInitialTime = await this.tools.formatFrontDate(this.activity.initialDate);
+          let formatedFinalTime = await this.tools.formatFrontTimeDate(this.activity.finalDate);
           let formatedTime = {
             formatedInitialTime,
             formatedFinalTime,
           };
           Object.assign(this.activity, formatedTime);
-          const link = `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${this.activity.qrCode}`;
-          this.qrcode = `<img src="${link}">`;
-
+          this.imgVar = environment.apiCoreUrl + 'files/' + this.activity.qrCode;
         }
 
         loading.dismiss();

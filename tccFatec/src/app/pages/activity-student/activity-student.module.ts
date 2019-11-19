@@ -7,8 +7,6 @@ import { ActivityStudentPage } from './activity-student.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 
-import { SecureimagesPipe } from 'src/app/secureimages.pipe';
-
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +22,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [ActivityStudentPage, SecureimagesPipe],
-  providers: [SecureimagesPipe]
+  declarations: [ActivityStudentPage],
+  providers: []
 })
 export class ActivityStudentPageModule {}
