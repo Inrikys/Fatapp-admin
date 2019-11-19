@@ -26,7 +26,7 @@ export class AppComponent {
         { title: 'Cadastrar certificado', url: '/admin/certified'},
         { title: 'Cadastrar evento', url: '/admin/register-event' },
         { title: 'Editar eventos', url: '/admin/edit-event' },
-        { title: 'Lista de presença', url: '/admin/present-list' },
+        { title: 'Lista de presença', url: '/admin/search-events' },
     ];
     public speakerMenu = [
         { title: 'Cadastrar palestrante', url: '/admin/register-speaker' },

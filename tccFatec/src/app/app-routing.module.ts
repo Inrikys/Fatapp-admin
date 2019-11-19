@@ -29,9 +29,10 @@ const routes: Routes = [
       { path: 'activity-student', loadChildren: './pages/activity-student/activity-student.module#ActivityStudentPageModule' },
       { path: 'certified', loadChildren: './pages/certified/certified.module#CertifiedPageModule' },
       { path: 'report', loadChildren: './pages/report/report.module#ReportPageModule' },
+      { path: 'search-events', loadChildren: './pages/search-events/search-events.module#SearchEventsPageModule' },
     ]
   },
-  
+
 
 
 

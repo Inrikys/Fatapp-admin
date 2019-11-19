@@ -44,7 +44,6 @@ export class ReportPage {
         report = await this.apiCore.getAttendedReport(id);
         let labels = [];
         let data = [];
-        console.log(report);
         for (let i = 0; i < report.length; i++) {
           labels.push(report[i].acronym);
           data.push(report[i].qtde)
