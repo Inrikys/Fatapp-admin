@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as dateFns from 'date-fns';
+import * as dateFnsTz from 'date-fns-tz';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,7 @@ export class ToolsService {
     const hour = splitHour[0];
     const minute = splitHour[1];
 
+
     const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy HH:mm');
     return result;
   }
@@ -110,5 +112,10 @@ export class ToolsService {
 
     const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy');
     return result;
+  }
+
+  convertUTC(data) {
+    const timeZone = 'America/Sao_Paulo';
+    const result = dateFnsTz.utcToZonedTime(data, timeZone);
   }
 }

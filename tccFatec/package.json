@@ -41,6 +41,7 @@
     "cordova-sqlite-storage": "^3.2.1",
     "core-js": "^2.5.4",
     "date-fns": "^2.4.1",
+    "date-fns-tz": "^1.0.8",
     "firebase": "^6.3.1",
     "firebase-admin": "^8.5.0",
     "ionic": "^5.4.5",
