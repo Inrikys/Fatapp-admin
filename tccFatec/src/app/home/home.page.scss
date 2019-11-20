@@ -11,14 +11,25 @@
 }
 
 .welcome{
-  text-align: center; 
-  width: 100%;
-  margin-top: 10px;
+  width:60%;
+  
+}
+
+.container{
+  display:flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.text-welcome{
+  line-height: 200%;
+  margin: 55px;
 }
 
 .head{
-  margin: 5px;
+  margin: 10px;
   background-color: var(--ion-color-primary);
+  margin-bottom: 30px;
 }
 
 .body{
@@ -51,7 +62,7 @@
   text-align: center;
   // background-color: var(--ion-color-scrum-master);
   
-  margin: 5px;
+  margin: 10px;
 }
 
 .image-controlesala{
