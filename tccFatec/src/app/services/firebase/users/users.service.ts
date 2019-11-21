@@ -116,6 +116,7 @@ export class UsersService {
     this.afAuth.auth.signOut().then(() => {
       this.storage.remove('user_storage').then((data) => {
         this.user.next(data);
+        this.global.navigateByUrl('/home');
       });
     }).catch(error => {
       this.global.createAlert(error);

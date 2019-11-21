@@ -79,8 +79,8 @@ export class PresentListPage {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.activities.length; i++) {
         this.tools.formatFrontTimeDate(this.activities[i].initialDate);
-        let formatedInitialTime = this.tools.formatFrontDate(this.activities[i].initialDate);
-        let formatedFinalTime = this.tools.formatFrontDate(this.activities[i].finalDate);
+        let formatedInitialTime = await  this.tools.formatFrontDate(this.activities[i].initialDate);
+        let formatedFinalTime = await this.tools.formatFrontDate(this.activities[i].finalDate);
         let subscribers = await this.apiCore.getSubscriptions(this.activities[i].id);
         let obj = {
           formatedInitialTime,
@@ -130,5 +130,4 @@ export class PresentListPage {
       console.log(error);
     }
   }
-
 }

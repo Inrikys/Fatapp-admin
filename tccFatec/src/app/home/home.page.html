@@ -11,22 +11,4 @@
 
 <ion-content>
 
-    <div padding-bottom class="container">
-        <div padding>
-            <div class="page-title">Novidades</div>
-        </div>
-        <ion-slides pager="true" [options]="sliderConfig">
-            <ion-slide *ngFor="let slide of banners">
-                <ion-img class="banner" src='{{slide.imgPath}}'></ion-img>
-            </ion-slide>
-        </ion-slides>
-        <div padding>
-            <div class="page-title">Conheça o Fatapp Usuários</div>
-        </div>
-        <ion-slides pager="true" [options]="sliderConfig">
-            <ion-slide *ngFor="let slide of banners">
-                <ion-img class="banner" src='{{slide.imgPath}}'></ion-img>
-            </ion-slide>
-        </ion-slides>
-    </div>
 </ion-content>
