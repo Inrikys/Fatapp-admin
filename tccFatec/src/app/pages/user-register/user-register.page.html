@@ -53,9 +53,8 @@
                 <ion-row>
                     <ion-col>
                         <ion-select formControlName="user_type" placeholder="Tipo de usuário">
-                            <ion-select-option value="Coordenação">Coordenação</ion-select-option>
-                            <ion-select-option value="Secretaria">Secretaria</ion-select-option>
-                            <ion-select-option value="Docente">Docente</ion-select-option>
+                            <ion-select-option value="Administrador">Administrador</ion-select-option>
+                            <ion-select-option value="Comum">Comum</ion-select-option>
                         </ion-select>
                         <ng-container *ngFor="let validation of validationMessages.user_type">
                             <div class="error-message"

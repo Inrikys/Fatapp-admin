@@ -18,7 +18,6 @@ import { UsersService } from './services/firebase/users/users.service';
 })
 export class AppComponent {
     public userMenu = [
-        { title: 'Home', url: '/home' },
         { title: 'Cadastrar usuário', url: '/admin/user-register' },
         { title: 'Controle de acesso', url: '/admin/access-control' },
     ];
@@ -38,10 +37,12 @@ export class AppComponent {
         { title: 'Editar atividade', url: '/admin/edit-activity' },
     ];
     public generalLinks = [
+        { title: 'Home', url: '/home' },
         { title: 'Sobre', url: '/about' },
-        { title: 'Política de privacidade', url: '/privacy-policy' },
     ];
-
+    public comumLinks = [
+        { title: 'Lista de presença', url: '/admin/search-events' },
+    ];
     public user: User = null;
 
     constructor(

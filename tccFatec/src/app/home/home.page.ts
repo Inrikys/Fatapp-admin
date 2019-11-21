@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {BannerService} from '../services/banner/banner.service';
 
 @Component({
   selector: 'app-home',
@@ -8,24 +7,11 @@ import {BannerService} from '../services/banner/banner.service';
 })
 export class HomePage {
 
-  public banners: any;
 
-  sliderConfig = {
-    spaceBetween: 1,
-
-  };
   constructor(
-      private bannerService: BannerService,
   ) {
-    this.initialize();
+
   }
 
-  async initialize() {
-    await this.getBanner();
-  }
-
-  async getBanner(){
-    this.banners = await this.bannerService.getMainBanner();
-  }
 
 }

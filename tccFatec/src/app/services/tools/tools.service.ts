@@ -69,53 +69,51 @@ export class ToolsService {
   }
 
   formatFrontDate(data) {
-    const splitDate = data.split('-');
-    const splitDay = splitDate[2].split('T');
-    const splitHour = splitDay[1].split(':');
-
-    const year = splitDate[0];
-    const month = splitDate[1];
-    const day = splitDay[0];
-    const hour = splitHour[0];
-    const minute = splitHour[1];
-
-
-    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy HH:mm');
+    const timeZone = 'America/Sao_Paulo';
+    const resultData = new Date(data);
+    const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
+    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy HH:mm', { timeZone: 'America/Sao_Paulo' });
     return result;
   }
 
   formatFrontTimeDate(data) {
-    const splitDate = data.split('-');
-    const splitDay = splitDate[2].split('T');
-    const splitHour = splitDay[1].split(':');
+    // const splitDate = data.split('-');
+    // const splitDay = splitDate[2].split('T');
+    // const splitHour = splitDay[1].split(':');
 
-    const year = splitDate[0];
-    const month = splitDate[1];
-    const day = splitDay[0];
-    const hour = splitHour[0];
-    const minute = splitHour[1];
+    // const year = splitDate[0];
+    // const month = splitDate[1];
+    // const day = splitDay[0];
+    // const hour = splitHour[0];
+    // const minute = splitHour[1];
 
-    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'HH:mm');
+    // const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'HH:mm');
+    // return result;
+
+    const timeZone = 'America/Sao_Paulo';
+    const resultData = new Date(data);
+    const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
+    const result = dateFnsTz.format(spDate, 'HH:mm', { timeZone: 'America/Sao_Paulo' });
     return result;
   }
 
   formatFrontDateWithoutTime(data) {
-    const splitDate = data.split('-');
-    const splitDay = splitDate[2].split('T');
-    const splitHour = splitDay[1].split(':');
+    // const splitDate = data.split('-');
+    // const splitDay = splitDate[2].split('T');
+    // const splitHour = splitDay[1].split(':');
 
-    const year = splitDate[0];
-    const month = splitDate[1];
-    const day = splitDay[0];
-    const hour = splitHour[0];
-    const minute = splitHour[1];
+    // const year = splitDate[0];
+    // const month = splitDate[1];
+    // const day = splitDay[0];
+    // const hour = splitHour[0];
+    // const minute = splitHour[1];
 
-    const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy');
-    return result;
-  }
-
-  convertUTC(data) {
+    // const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy');
+    // return result;
     const timeZone = 'America/Sao_Paulo';
-    const result = dateFnsTz.utcToZonedTime(data, timeZone);
+    const resultData = new Date(data);
+    const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
+    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy', { timeZone: 'America/Sao_Paulo' });
+    return result;
   }
 }
