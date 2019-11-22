@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ActivitiesComponent } from 'src/app/components/modals/activities/activities.component';
 import { RegisterActivityValidatorService } from 'src/app/services/validators/register-activity/register-activity-validator.service';
 import { FatappCoreService } from 'src/app/services/fatapp-core/fatapp-core-service.service';
@@ -37,8 +37,9 @@ export class EditActivityPage {
     private activityValidator: RegisterActivityValidatorService,
     private apiCore: FatappCoreService,
     private tools: ToolsService,
+    private alertController: AlertController,
     private global: GlobalsService,
-  ) {
+    ) {
     this.activityForm = this.activityValidator.getActivityForm();
     this.validationMessages = this.activityValidator.getActivityFormValidationsMessages();
     this.getTargetAudience();
@@ -100,12 +101,12 @@ export class EditActivityPage {
     modal.present();
 
     modal.onDidDismiss()
-      .then((data: any) => {
-        if (data.data) {
-          this.speaker = data.data;
-          this.speakerEmail = this.speaker.speakerEmail;
-        }
-      });
+    .then((data: any) => {
+      if (data.data) {
+        this.speaker = data.data;
+        this.speakerEmail = this.speaker.speakerEmail;
+      }
+    });
   }
 
   async openEventsModal() {
@@ -115,13 +116,13 @@ export class EditActivityPage {
     modal.present();
 
     modal.onDidDismiss()
-      .then((data: any) => {
-        if (data.data) {
-          const response = data.data;
-          this.eventTitle = response.title;
-          this.event = response;
-        }
-      });
+    .then((data: any) => {
+      if (data.data) {
+        const response = data.data;
+        this.eventTitle = response.title;
+        this.event = response;
+      }
+    });
   }
 
   async openActivitiesModal() {
@@ -131,21 +132,21 @@ export class EditActivityPage {
     modal.present();
 
     modal.onDidDismiss()
-      .then(async (data: any) => {
-        if (data.data) {
-          this.activityId = data.data.id;
-          this.activityTitle = data.data.title;
-          this.activityDescription = data.data.description;
-          this.formatedInitialTime = data.data.formatedInitialTime;
-          this.formatedFinalTime = data.data.formatedFinalTime;
-          this.activityType = data.data.type;
-          this.speaker = data.data.speaker;
-          this.event = data.data.event;
-          this.speakerEmail = data.data.speaker.speakerEmail;
-          this.eventTitle = data.data.event.title;
-          this.roomId = data.data.room.id;
-        }
-      });
+    .then(async (data: any) => {
+      if (data.data) {
+        this.activityId = data.data.id;
+        this.activityTitle = data.data.title;
+        this.activityDescription = data.data.description;
+        this.formatedInitialTime = data.data.formatedInitialTime;
+        this.formatedFinalTime = data.data.formatedFinalTime;
+        this.activityType = data.data.type;
+        this.speaker = data.data.speaker;
+        this.event = data.data.event;
+        this.speakerEmail = data.data.speaker.speakerEmail;
+        this.eventTitle = data.data.event.title;
+        this.roomId = data.data.room.id;
+      }
+    });
   }
 
   resetInputs() {
@@ -158,12 +159,42 @@ export class EditActivityPage {
   }
 
   async removeActivity() {
-    const loading = await this.global.createLoading('Carregando...');
-    await loading.present();
-    const response = await this.apiCore.removeActivity(this.activityId);
-    await loading.dismiss();
+
+    try {
+      let option = null;
+      const alert = await this.alertController.create({
+        message: 'Deseja mesmo remover?',
+        buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            option = false;
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            option = true;
+          }
+        }
+        ]
+      });
+
+      await alert.present();
+
+      alert.onDidDismiss().then(async () => {
+        if (option) {
+          const loading = await this.global.createLoading('Carregando...');
+          await loading.present();
+          const response = await this.apiCore.removeActivity(this.activityId);
+          this.resetInputs();
+          await loading.dismiss();
+        }
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-
 
 }
