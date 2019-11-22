@@ -406,16 +406,13 @@ export class FatappCoreService {
 
   async removeResourceRoom(roomId, resourceId) {
     console.log(resourceId);
+    console.log(roomId);
     const link = environment.apiCoreUrl + `rooms/${roomId}/resources/${resourceId}`;
 
 
     return await this.http.delete(link, this.httpOptions).toPromise().catch(error => {
       console.log(error.status);
-      if (error.status === 200) {
-        return true;
-      } else {
-        return false;
-      }
+      this.global.createAlert('Houve algum erro ao remover o recurso da sala')
     });
   }
 
