@@ -13,6 +13,9 @@
                     <ion-col size="7">
                         <ion-button (click)="getActivitySearch()">Pesquisar</ion-button>
                     </ion-col>
+                    <ion-item lines="none">
+                        <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
+                    </ion-item>
                 </ion-row>
             </ion-grid>
         </form>
@@ -29,32 +32,29 @@
                             <div class="d-block">{{activity.formatedDate}}</div>
                             <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
                             <div class="d-block">Palestrante: <span
-                                    class="speaker-name">{{activity.speaker.speakerName}}</span></div>
-                            <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
-                            <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
-                        </ion-label>
-                        <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
-                    </ion-item>
+                                class="speaker-name">{{activity.speaker.speakerName}}</span></div>
+                                <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                                <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                            </ion-label>
+                            <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
+                        </ion-item>
+                    </div>
                 </div>
-            </div>
-            <div *ngIf="activitySearch" class="agenda-items">
-                <div *ngFor="let activity of activitySearch">
-                    <ion-item>
-                        <ion-label>
-                            <div class="d-block">{{activity.formatedDate}}</div>
-                            <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
-                            <div class="d-block">Palestrante: <span
+                <div *ngIf="activitySearch" class="agenda-items">
+                    <div *ngFor="let activity of activitySearch">
+                        <ion-item>
+                            <ion-label>
+                                <div class="d-block">{{activity.formatedDate}}</div>
+                                <span>{{activity.formatedInitialTime}}</span> - <span>{{activity.formatedFinalTime}}</span>
+                                <div class="d-block">Palestrante: <span
                                     class="speaker-name">{{activity.speaker.speakerName}}</span></div>
-                            <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
-                            <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
-                        </ion-label>
-                        <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
-                    </ion-item>
-                </div>
+                                    <div class="d-block">E-mail: <span>{{activity.speaker.speakerEmail}}</span></div>
+                                    <div class="d-block">Título: <span class="activity-name">{{activity.title}}</span></div>
+                                </ion-label>
+                                <ion-button (click)="goToQrCode(activity.id)" fill="outline" slot="end">QR-Code</ion-button>
+                            </ion-item>
+                        </div>
+                    </div>
+                </span>
             </div>
-        </span>
-        <ion-item lines="none">
-            <ion-button (click)="goToRegisterActivity()" slot="end">Agendar</ion-button>
-        </ion-item>
-    </div>
-</ion-content>
+        </ion-content>

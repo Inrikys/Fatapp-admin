@@ -106,12 +106,11 @@ export class CalendarOfEventsPage {
   async getActivitySearch() {
     try {
       this.activitySearch = [];
-      const activitiesToFilter = this.activities;
+      const activitiesToFilter = this.activitiesRoom;
 
       const keyword = this.activitySearchForm.value.name;
 
       this.activitySearch = activitiesToFilter.filter(collection => {
-
         return collection.formatedInitialTime.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.formatedFinalTime.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.formatedDate.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
