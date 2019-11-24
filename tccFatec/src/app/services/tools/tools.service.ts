@@ -72,7 +72,7 @@ export class ToolsService {
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
-    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy HH:mm', { timeZone: 'America/Sao_Paulo' });
+    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy HH:mm', {timeZone});
     return result;
   }
 
@@ -93,7 +93,7 @@ export class ToolsService {
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
-    const result = dateFnsTz.format(spDate, 'HH:mm', { timeZone: 'America/Sao_Paulo' });
+    const result = dateFnsTz.format(spDate, 'HH:mm', { timeZone });
     return result;
   }
 
@@ -113,7 +113,7 @@ export class ToolsService {
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
-    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy', { timeZone: 'America/Sao_Paulo' });
+    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy', { timeZone });
     return result;
   }
 }
