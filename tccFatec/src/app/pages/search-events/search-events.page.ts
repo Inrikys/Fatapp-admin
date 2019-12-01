@@ -80,7 +80,6 @@ export class SearchEventsPage {
   }
 
   selectEvent(event) {
-    console.log(event.id);
     this.global.navigateByUrl('admin/present-list?id=' + event.id);
   }
 }

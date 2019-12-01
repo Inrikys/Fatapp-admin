@@ -36,7 +36,6 @@ export class UsersService {
   async setData(data) {
     await this.storage.set('user_storage', data);
     this.user.next(data);
-    console.log(await this.storage.get('user_storage'));
   }
 
 

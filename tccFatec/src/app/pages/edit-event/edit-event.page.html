@@ -51,7 +51,7 @@
             <ion-col size="12">
               <ion-item lines="none">
                 <ion-label position="fixed">Descrição: </ion-label>
-                <ion-input disabled class="edit-form" [(ngModel)]="edition" formControlName="description" ></ion-input>
+                <ion-input disabled class="edit-form" [(ngModel)]="description" formControlName="description" ></ion-input>
               </ion-item>
               <ng-container *ngFor="let validation of validationMessages.description">
                 <div class="error-message"
