@@ -23,7 +23,8 @@ export class EditSpeakerPage {
   public validationMessages;
   public speakerId = '';
   public pictureSpeaker = null;
-  public img = null;
+  public speakerImage;
+
 
   public speakerSearch = new Array();
 
@@ -33,7 +34,7 @@ export class EditSpeakerPage {
     private global: GlobalsService,
     private alertController: AlertController,
     private modalController: ModalController,
-  ) {
+    ) {
     this.editSpeakerForm = this.editSpeakerValidator.getEditSpeakerForm();
     this.validationMessages = this.editSpeakerValidator.getEditSpeakerFormValidationsMessages();
   }
@@ -43,7 +44,7 @@ export class EditSpeakerPage {
       if (!this.editSpeakerForm.valid) {
         this.editSpeakerValidator.validateAllFormFields();
       } else {
-        this.editSpeakerForm.value.speakerPicture = this.pictureSpeaker;
+        this.editSpeakerForm.value.speakerPicture = this.speakerImage;
         const response: any = await this.apiCore.registerSpeaker(this.editSpeakerForm.value);
         if (response.id) {
           this.global.createAlert('Palestrante alterado com sucesso!');
@@ -81,18 +82,18 @@ export class EditSpeakerPage {
       const alert = await this.alertController.create({
         message: 'Deseja mesmo remover o palestrante?',
         buttons: [
-          {
-            text: 'Cancelar',
-            role: 'cancel',
-            handler: () => {
-              option = false;
-            }
-          }, {
-            text: 'Ok',
-            handler: () => {
-              option = true;
-            }
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            option = false;
           }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            option = true;
+          }
+        }
         ]
       });
 
@@ -126,19 +127,19 @@ export class EditSpeakerPage {
       modal.present();
 
       modal.onDidDismiss()
-        .then(async (data: any) => {
-          if (data.data) {
-            this.passedSpeaker = data.data;
-            this.emailSpeaker = await this.passedSpeaker.speakerEmail;
-            this.nameSpeaker = await this.passedSpeaker.speakerName;
-            this.phoneSpeaker = await this.passedSpeaker.speakerPhone;
-            this.phone2Speaker = await this.passedSpeaker.speakerPhone2;
-            this.curriculumSpeaker = await this.passedSpeaker.speakerCurriculum;
-            this.pictureSpeaker = await this.passedSpeaker.speakerPicture;
-            this.speakerId = await this.passedSpeaker.id;
-            this.removeDisable();
-          }
-        });
+      .then(async (data: any) => {
+        if (data.data) {
+          this.passedSpeaker = data.data;
+          this.emailSpeaker = await this.passedSpeaker.speakerEmail;
+          this.nameSpeaker = await this.passedSpeaker.speakerName;
+          this.phoneSpeaker = await this.passedSpeaker.speakerPhone;
+          this.phone2Speaker = await this.passedSpeaker.speakerPhone2;
+          this.curriculumSpeaker = await this.passedSpeaker.speakerCurriculum;
+          this.pictureSpeaker = await this.passedSpeaker.speakerPicture;
+          this.speakerId = await this.passedSpeaker.id;
+          this.removeDisable();
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -151,9 +152,6 @@ export class EditSpeakerPage {
   }
 
   onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.pictureSpeaker = file;
-    }
+    this.speakerImage = event.target.files[0];
   }
 }

@@ -9,6 +9,24 @@ export class ToolsService {
 
   constructor() { }
 
+
+  public fileName(){
+   const data = new Date();
+   let filename = '';
+   filename = `${data}`;
+   const size = filename.length;
+   var newString = '';
+
+    for(let i = 0; i < size; i++ ) {
+
+      if( filename.charAt(i) != " " ) {
+        newString += filename.charAt(i);
+      }
+    }
+    console.log(newString);
+    return newString;
+  }
+
   // Convert to Base 64
   public toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -44,7 +62,7 @@ export class ToolsService {
       new Date(yearFinal, monthFinal, dayFinal, hourFinal, minuteFinal, 0),
       new Date(yearInitial, monthInitial, dayInitial, hourInitial, minuteInitial, 0),
 
-    );
+      );
 
     if (difference >= 0) {
       return true;
@@ -77,18 +95,6 @@ export class ToolsService {
   }
 
   formatFrontTimeDate(data) {
-    // const splitDate = data.split('-');
-    // const splitDay = splitDate[2].split('T');
-    // const splitHour = splitDay[1].split(':');
-
-    // const year = splitDate[0];
-    // const month = splitDate[1];
-    // const day = splitDay[0];
-    // const hour = splitHour[0];
-    // const minute = splitHour[1];
-
-    // const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'HH:mm');
-    // return result;
 
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
@@ -98,18 +104,7 @@ export class ToolsService {
   }
 
   formatFrontDateWithoutTime(data) {
-    // const splitDate = data.split('-');
-    // const splitDay = splitDate[2].split('T');
-    // const splitHour = splitDay[1].split(':');
-
-    // const year = splitDate[0];
-    // const month = splitDate[1];
-    // const day = splitDay[0];
-    // const hour = splitHour[0];
-    // const minute = splitHour[1];
-
-    // const result = dateFns.format(new Date(year, month - 1, day, hour, minute), 'dd/MM/yyyy');
-    // return result;
+    
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);

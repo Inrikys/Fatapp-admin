@@ -66,12 +66,7 @@ export class RegisterEventPage {
   }
 
   selectBanner(event) {
-    console.log(event.target.files[0]);
-    // const currentDay = new Date();
-    // event.taget.files[0].slice(0, event.target.files[0].size, 'image/png');
-    // this.banner = new File (['blob'], `${currentDay}` , { type: 'image/png' });
     this.banner = event.target.files[0];
-    console.log(this.banner);
   }
 
   async getAllCertifieds() {

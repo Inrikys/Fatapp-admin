@@ -86,6 +86,7 @@ export class ReportPage {
       } else {
         let report = null;
         report = await this.apiCore.getReport(id, 'noattended');
+        console.log(report);
         const labels = [];
         const data = [];
         console.log(report);

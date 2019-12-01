@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ export class FatappCoreService {
   constructor(
     private http: HttpClient,
     private global: GlobalsService,
-  ) {
+    private tools: ToolsService,
+    ) {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -188,15 +190,18 @@ export class FatappCoreService {
       })
     };
 
+    const filename = await this.tools.fileName();
+
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('edition', data.edition);
     formData.append('initialDate', `${data.initialDate}`);
     formData.append('finalDate', `${data.finalDate}`);
-    formData.append('banner', data.banner);
+    formData.append('banner', data.banner, filename + '.png');
     formData.append('certificateId', data.certified);
     formData.append('description', data.description);
 
+    console.log(formData);
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
@@ -221,11 +226,13 @@ export class FatappCoreService {
 
     const formData = new FormData();
 
+    const filename = await this.tools.fileName();
+
     formData.append('title', data.title);
     formData.append('edition', data.edition);
     formData.append('initialDate', data.initialDate);
     formData.append('finalDate', data.finalDate);
-    formData.append('banner', data.banner);
+    formData.append('banner', data.banner, filename + '.png');
     formData.append('certificateId', data.certified);
     formData.append('description', data.description);
 
@@ -261,15 +268,16 @@ export class FatappCoreService {
         'token': environment.apiCoreToken,
       })
     };
-    console.log(data);
     const formData = new FormData();
+
+    const filename = await this.tools.fileName();
 
     formData.append('speakerName', data.speakerName);
     formData.append('speakerEmail', data.speakerEmail);
     formData.append('speakerPhone', data.speakerPhone);
     formData.append('speakerPhone2', data.speakerPhone2);
     formData.append('speakerCurriculum', data.speakerCurriculum);
-    formData.append('speakerPicture', data.speakerPicture);
+    formData.append('speakerPicture', data.speakerPicture, filename + '.png');
 
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
