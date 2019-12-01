@@ -99,7 +99,7 @@ export class ReportPage {
           data: {
             labels,
             datasets: [{
-              label: 'Inscritos que compareceram na atividade',
+              label: 'Inscritos que não compareceram na atividade',
               data,
               backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
               borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
@@ -143,7 +143,7 @@ export class ReportPage {
           data: {
             labels,
             datasets: [{
-              label: 'Inscritos que compareceram na atividade',
+              label: 'Total de inscritos',
               data,
               backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
               borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
