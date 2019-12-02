@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { GlobalsService } from '../globals.service';
-import { ToolsService } from '../tools/tools.service';
-
 
 
 @Injectable({
@@ -12,12 +10,10 @@ import { ToolsService } from '../tools/tools.service';
 export class FatappCoreService {
 
   private httpOptions: any;
-  private httpOptionsFormData: any;
 
   constructor(
     private http: HttpClient,
     private global: GlobalsService,
-    private tools: ToolsService,
   ) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -346,7 +342,6 @@ export class FatappCoreService {
 
 
   // RESOURCES
-
   async getAllResources() {
     const link = environment.apiCoreUrl + 'resources/';
     return this.http.get(link, this.httpOptions).toPromise().catch(error => {
@@ -447,6 +442,4 @@ export class FatappCoreService {
       console.log(error);
     });
   }
-
-
 }

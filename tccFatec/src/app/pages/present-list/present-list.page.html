@@ -19,6 +19,9 @@
     </div>
     <br>
     <div class='container'>
+        <span *ngIf="!activities || activities == ''">
+            <div>Não há nenhuma atividade agendada nesse evento.</div>
+        </span>
         <span *ngIf="activities">
             <span *ngIf="!activitySearch || activitySearch == ''">
                 <div *ngFor="let activity of activities">

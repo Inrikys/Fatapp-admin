@@ -7,6 +7,8 @@ import { EventsComponent } from 'src/app/components/modals/events/events.compone
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { ActivatedRoute } from '@angular/router';
+import { LogService } from 'src/app/services/firebase/log/log.service';
+
 
 @Component({
   selector: 'app-register-activity',
@@ -31,6 +33,7 @@ export class RegisterActivityPage {
     private tools: ToolsService,
     private global: GlobalsService,
     private route: ActivatedRoute,
+    private log: LogService,
   ) {
     this.activityForm = this.activityValidator.getActivityForm();
     this.validationMessages = this.activityValidator.getActivityFormValidationsMessages();
