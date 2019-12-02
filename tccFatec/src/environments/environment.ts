@@ -18,7 +18,7 @@ export const environment = {
   // tslint:disable-next-line:max-line-length
   // apiCoreToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcxNzU0NTg5fQ.tBo13Rj60g5zYn9tRzBg3HMg9C4is4mCY18Cezj-jf8',
   // tslint:disable-next-line:max-line-length
-  apiCoreToken:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwiaWF0IjoxNTczMzMxNTE5fQ.1gzAyuihet0pCAzqJ8SyUKOyJZFarIjijNnJzgIP8MQ',
+  apiCoreToken:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTc1MjUwOTg2fQ.88uKawDVmWJvVuygC_WTNl3qg9mnUo7X4hDzUp9mKCM',
 };
 
 /*
