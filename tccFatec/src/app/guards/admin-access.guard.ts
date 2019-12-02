@@ -28,7 +28,9 @@ export class AdminAccessGuard implements CanActivate {
       return false;
     } else if (user.user_type !== 'Administrador') {
       this.global.createAlert('Apenas usuários administradores podem acessar essa página');
-    } else {
+    } else if(user.user_type === 'Bloqueado'){
+        this.global.createAlert('Usuário bloqueado');
+      }  else {
       return true;
     }
 

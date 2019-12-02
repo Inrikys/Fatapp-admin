@@ -8,8 +8,8 @@
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
-                <ion-button (click)="removeRoom()" fill="outline">Remover sala</ion-button>
-                <ion-button (click)="openEditRoomModal(room)" fill="outline">Editar sala</ion-button>
+              <ion-button (click)="removeRoom()" fill="outline">Remover sala</ion-button>
+              <ion-button (click)="openEditRoomModal(room)" fill="outline">Editar sala</ion-button>
             </ion-item>
             <ion-item lines="none">
               <h1 class="page-title"><span>{{room.type}} </span><span>{{room.name}}</span></h1>
@@ -35,10 +35,11 @@
 
     <div class="box">
       <ion-grid>
+        <div>Adicionar recurso à sala</div>
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none">
-                <ion-button (click)="goToAddResource()" fill="outline" slot="start">Adicionar/Alterar</ion-button>
+              <ion-button (click)="goToAddResource()" fill="outline" slot="start">Adicionar/Alterar</ion-button>
             </ion-item>
             <ion-item lines="none">
               <ion-icon name="construct" slot="start"></ion-icon>
@@ -53,11 +54,13 @@
       <div *ngIf="resourcesRoom">
         <div class="resource-item" *ngFor="let resource of resourcesRoom">
           <ion-grid class="ion-padding-top">
+            <ion-item lines="none">
+              <ion-button (click)="removeResourceRoom(resource.resource.id)" fill="outline">Remover da sala</ion-button>
+            </ion-item>
             <ion-row>
               <ion-col size="12">
                 <ion-item lines="none">
                   <ion-label>{{resource.resource.name}}</ion-label>
-                  <ion-button (click)="removeResourceRoom(resource.id)" fill="outline" slot="end">Remover</ion-button>
                 </ion-item>
               </ion-col>
             </ion-row>
