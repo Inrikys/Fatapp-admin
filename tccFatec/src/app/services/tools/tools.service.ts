@@ -10,16 +10,20 @@ export class ToolsService {
   constructor() { }
 
 
-  public fileName(){
-   const data = new Date();
-   let filename = '';
-   filename = `${data}`;
-   const size = filename.length;
-   var newString = '';
+  public fileName() {
+    const timeZone = 'America/Sao_Paulo';
+    const data = new Date();
+    const spDate = dateFnsTz.utcToZonedTime(data, timeZone);
+    const result = dateFnsTz.format(spDate, 'yyyy-MM-dd-HH:mm', { timeZone });
+    let filename = '';
+    filename = `${result}`;
+    const size = filename.length;
+    let newString = '';
 
-    for(let i = 0; i < size; i++ ) {
+    for (let i = 0; i < size; i++) {
 
-      if( filename.charAt(i) != " " ) {
+      // tslint:disable-next-line:quotemark
+      if (filename.charAt(i) !== " ") {
         newString += filename.charAt(i);
       }
     }
@@ -62,7 +66,7 @@ export class ToolsService {
       new Date(yearFinal, monthFinal, dayFinal, hourFinal, minuteFinal, 0),
       new Date(yearInitial, monthInitial, dayInitial, hourInitial, minuteInitial, 0),
 
-      );
+    );
 
     if (difference >= 0) {
       return true;
@@ -90,12 +94,11 @@ export class ToolsService {
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
-    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy HH:mm', {timeZone});
+    const result = dateFnsTz.format(spDate, 'dd/MM/yyyy HH:mm', { timeZone });
     return result;
   }
 
   formatFrontTimeDate(data) {
-
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
@@ -104,7 +107,6 @@ export class ToolsService {
   }
 
   formatFrontDateWithoutTime(data) {
-    
     const timeZone = 'America/Sao_Paulo';
     const resultData = new Date(data);
     const spDate = dateFnsTz.utcToZonedTime(resultData, timeZone);
