@@ -44,7 +44,7 @@ export class FatappCoreService {
 
     return this.http.post(link, obj, this.httpOptions).toPromise().catch(error => {
       console.log(error);
-      this.global.createAlert(error.error.message);
+      this.global.createAlert('Não é possível enviar por e-mail se a atividade não possui inscritos');
     });
   }
 
