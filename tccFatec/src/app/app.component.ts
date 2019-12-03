@@ -39,6 +39,7 @@ export class AppComponent {
     public generalLinks = [
         { title: 'Home', url: '/home' },
         { title: 'Sobre', url: '/about' },
+        { title: 'Manual', url: '/admin/manual'}
     ];
     public comumLinks = [
         { title: 'Lista de presença', url: '/admin/search-events' },

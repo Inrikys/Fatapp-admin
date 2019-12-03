@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'edit-speaker', loadChildren: './pages/edit-speaker/edit-speaker.module#EditSpeakerPageModule' },
       { path: 'edit-activity', loadChildren: './pages/edit-activity/edit-activity.module#EditActivityPageModule' },
       { path: 'certified', loadChildren: './pages/certified/certified.module#CertifiedPageModule' },
+      { path: 'manual', loadChildren: './pages/manual/manual.module#ManualPageModule' },
     ]
   },
   {
