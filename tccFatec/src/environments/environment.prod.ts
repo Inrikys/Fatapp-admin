@@ -9,5 +9,5 @@ export const environment = {
   },
   apiCoreUrl: 'http://ec2-54-188-117-176.us-west-2.compute.amazonaws.com/',
   // tslint:disable-next-line:max-line-length
-  apiCoreToken:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTcyODI5NDEzfQ.nV6KnEtxgWONyukaQInhKpDa5Z00hYWo6kIz19F1rKE',
+  apiCoreToken:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiaGVucmlxdWU2NjFAZ21haWwuY29tIiwiaWF0IjoxNTc1MjUwOTg2fQ.88uKawDVmWJvVuygC_WTNl3qg9mnUo7X4hDzUp9mKCM',
 };

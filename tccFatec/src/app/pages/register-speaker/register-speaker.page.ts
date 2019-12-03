@@ -30,7 +30,6 @@ export class RegisterSpeakerPage {
         this.speakerValidator.validateAllFormFields();
       } else {
         this.speakerForm.value.speakerPicture = this.speakerImage;
-        console.log(this.speakerForm.value);
         const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
         if (response.speakerName) {
           this.global.createAlert('Palestrante cadastrado com sucesso!');
