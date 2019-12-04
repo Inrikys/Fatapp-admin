@@ -22,7 +22,10 @@ export class RoomPage {
   }
 
   async ionViewDidEnter() {
+    const loading = await this.global.createLoading('Aguarde...');
+    await loading.present();
     await this.getAllRooms();
+    await loading.dismiss();
   }
 
   async goToAddRoomModal() {
@@ -30,20 +33,20 @@ export class RoomPage {
       component: AddRoomModalComponent,
     });
     await modal.present();
-    await modal.onDidDismiss().then(() => {
+    await modal.onDidDismiss().then(async () => {
+      const loading = await this.global.createLoading('Aguarde...');
+      await loading.present();
       this.getAllRooms();
+      await loading.dismiss();
     });
   }
 
   async getAllRooms() {
     try {
-      const loading = await this.global.createLoading('Aguarde...');
-      await loading.present();
       const response = await this.apiCore.getAllRooms();
       this.rooms = await response;
       this.rooms = this.rooms.sort((a, b) => (parseInt(a.name) > parseInt(b.name) ? 1 : -1));
       await this.getResourcesRoom();
-      await loading.dismiss();
     } catch (error) {
       console.log(error);
     }

@@ -32,7 +32,7 @@ export class QrCodePage {
 
   async getQrCode() {
     try {
-      const loading = await this.global.createLoading('Carregando Qr Code');
+      const loading = await this.global.createLoading('Carregando QR Code');
       loading.present();
       if (this.route.snapshot.queryParams.id) {
         const id = await this.route.snapshot.queryParams.id;
