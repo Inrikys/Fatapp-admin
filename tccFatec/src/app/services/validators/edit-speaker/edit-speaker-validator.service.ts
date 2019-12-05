@@ -25,6 +25,7 @@ export class EditSpeakerValidatorService {
       speakerPhone: [null, Validators.compose([Validators.required])],
       speakerPhone2: [null],
       speakerCurriculum: [null, Validators.compose([Validators.required])],
+      speakerPicture: [null],
     });
   }
 

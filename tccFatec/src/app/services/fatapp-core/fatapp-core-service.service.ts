@@ -16,7 +16,7 @@ export class FatappCoreService {
     private http: HttpClient,
     private global: GlobalsService,
     private tools: ToolsService,
-    ) {
+  ) {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -275,10 +275,13 @@ export class FatappCoreService {
     formData.append('speakerName', data.speakerName);
     formData.append('speakerEmail', data.speakerEmail);
     formData.append('speakerPhone', data.speakerPhone);
-    formData.append('speakerPhone2', data.speakerPhone2);
+    if (data.speakerPhone2) {
+      formData.append('speakerPhone2', data.speakerPhone2);
+    }
     formData.append('speakerCurriculum', data.speakerCurriculum);
-    formData.append('speakerPicture', data.speakerPicture, filename + '.png');
-
+    if (data.speakerPicture) {
+      formData.append('speakerPicture', data.speakerPicture, filename + '.png');
+    }
 
     return this.http.post(link, formData, httpOptions).toPromise().catch(error => {
       console.log(error);
@@ -417,7 +420,7 @@ export class FatappCoreService {
 
 
     return await this.http.delete(link, this.httpOptions).toPromise().catch(error => {
-      if(error.status >= 200 && error.status <=300){
+      if (error.status >= 200 && error.status <= 300) {
         return true;
       } else {
         return false;

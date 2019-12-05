@@ -71,7 +71,7 @@ export class CertifiedPage {
 
       let option = null;
       const alert = await this.alertController.create({
-        message: 'Deseja mesmo remover?',
+        message: 'Remover o certificado também apagará os eventos e atividades que estão vínculadas à ele. Deseja mesmo remover?',
         buttons: [
           {
             text: 'Cancelar',
