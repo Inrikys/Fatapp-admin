@@ -66,7 +66,8 @@ export class RegisterCoursePage {
 
       let option = null;
       const alert = await this.alertController.create({
-        message: 'Deseja mesmo remover?',
+        // tslint:disable-next-line:max-line-length
+        message: 'A remoção do público-alvo também pode ocasionar na remoção de atividades que estão relacionadas a ele. Deseja mesmo remover?',
         buttons: [
           {
             text: 'Cancelar',

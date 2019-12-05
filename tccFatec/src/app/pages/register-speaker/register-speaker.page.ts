@@ -29,15 +29,11 @@ export class RegisterSpeakerPage {
       if (!this.speakerForm.valid) {
         this.speakerValidator.validateAllFormFields();
       } else {
-        if (!this.speakerImage) {
-          this.global.createAlert('Foto obrigatória');
-        } else {
-          this.speakerForm.value.speakerPicture = this.speakerImage;
-          const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
-          if (response.speakerName) {
-            this.global.createAlert('Palestrante cadastrado com sucesso!');
-            this.resetInputs();
-          }
+        this.speakerForm.value.speakerPicture = this.speakerImage;
+        const response: any = await this.apiCore.registerSpeaker(this.speakerForm.value);
+        if (response.speakerName) {
+          this.global.createAlert('Palestrante cadastrado com sucesso!');
+          this.resetInputs();
         }
       }
     } catch (error) {

@@ -10,9 +10,6 @@
             <div *ngIf="!pictureSpeaker || pictureSpeaker == ''" class="ion-text-center">
               <img class="speaker-picture" src="../../../../assets/imgs/edit-speaker.jpeg">
             </div>
-            <div *ngIf="pictureSpeaker">
-              <img src="{{img}}">
-            </div>
           </ion-col>
         </ion-row>
 
@@ -32,7 +29,7 @@
         <ion-row>
           <ion-col size="4">
             <ion-item lines="none">
-              <ion-label class="ion-padding-right">E-mail: </ion-label>
+              <ion-label class="ion-padding-right">E-mail*: </ion-label>
             </ion-item>
           </ion-col>
           <ion-col size="8">
@@ -48,7 +45,7 @@
         <ion-row>
           <ion-col size="4">
             <ion-item lines="none">
-              <ion-label class="ion-padding-right">Nome: </ion-label>
+              <ion-label class="ion-padding-right">Nome*: </ion-label>
             </ion-item>
           </ion-col>
           <ion-col size="8">
@@ -66,7 +63,7 @@
         <ion-row>
           <ion-col size="4">
             <ion-item lines="none">
-              <ion-label class="ion-padding-right">Telefone: </ion-label>
+              <ion-label class="ion-padding-right">Telefone*: </ion-label>
             </ion-item>
           </ion-col>
           <ion-col size="8">
@@ -94,7 +91,7 @@
         <ion-row>
           <ion-col size="4">
             <ion-item lines="none">
-              <ion-label class="ion-padding-right">Resumo CV: </ion-label>
+              <ion-label class="ion-padding-right">Resumo CV*: </ion-label>
             </ion-item>
           </ion-col>
           <ion-col size="8">
@@ -114,7 +111,7 @@
             </ion-item>
           </ion-col>
           <ion-col size="8">
-            <input type="file" (change)="onFileSelect($event)">
+            <input type="file" accept="image/*" (change)="onFileSelect($event)">
           </ion-col>
         </ion-row>
         <div class="ion-padding-bottom">

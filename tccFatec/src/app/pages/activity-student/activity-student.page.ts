@@ -27,20 +27,16 @@ export class ActivityStudentPage {
     this.getQrCode();
   }
 
-  ionViewDidEnter() {
-
-  }
-
   async getQrCode() {
     try {
       let success = true;
-      const loading = await this.global.createLoading('Carregando Qr Code');
+      const loading = await this.global.createLoading('Carregando lista de presença');
       loading.present();
       if (this.route.snapshot.queryParams.id) {
         const id = await this.route.snapshot.queryParams.id;
         this.activity = await this.apiCore.getActivity(id);
         if (!this.activity || this.activity === undefined || this.activity === '') {
-          this.global.createAlert('Erro ao gerar QrCode');
+          this.global.createAlert('Erro ao carregar lista de presença');
           success = false;
           loading.dismiss();
         } else {

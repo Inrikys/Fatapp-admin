@@ -54,9 +54,8 @@ export class SpeakersComponent {
 
         return collection.speakerName.toLowerCase().indexOf(keyword.toLowerCase()) > -1
           || collection.speakerPhone.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speakerPhone2.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-          || collection.speakerCurriculum.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+          || collection.speakerEmail.toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+
       });
 
     } catch (error) {

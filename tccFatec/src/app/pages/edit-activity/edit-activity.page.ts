@@ -51,7 +51,7 @@ export class EditActivityPage {
       if (!this.activityForm.valid) {
         this.activityValidator.validateAllFormFields();
       } else {
-        const loading = await this.global.createLoading('Cadastrando atividade...');
+        const loading = await this.global.createLoading('Alterando atividade...');
         await loading.present();
         validDate = await this.tools.validateDate(this.activityForm.value.initialDate, this.activityForm.value.finalDate);
         if (validDate) {
