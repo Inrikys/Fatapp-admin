@@ -19,6 +19,7 @@ export class ReportPage {
 
   bars: any;
   colorArray: any;
+  hasSubscribes: false;
   constructor(private apiCore: FatappCoreService, private route: ActivatedRoute,
               private global: GlobalsService,
               private navController: NavController,
@@ -86,10 +87,8 @@ export class ReportPage {
       } else {
         let report = null;
         report = await this.apiCore.getReport(id, 'noattended');
-        console.log(report);
         const labels = [];
         const data = [];
-        console.log(report);
         // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < report.length; i++) {
           labels.push(report[i].acronym);

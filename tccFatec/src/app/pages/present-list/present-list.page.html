@@ -5,16 +5,16 @@
         <h1 class="page-title">Lista de presença</h1>
         <form [formGroup]="activitySearchForm">
             <ion-grid class="box">
-              <ion-row>
-                <ion-col>
-                  <ion-label position="fixed">Pesquisar:</ion-label>
-                  <ion-input formControlName="name"></ion-input>
-                </ion-col>
-              </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label position="fixed">Pesquisar:</ion-label>
+                        <ion-input formControlName="name"></ion-input>
+                    </ion-col>
+                </ion-row>
             </ion-grid>
-          <div class="ion-text-center">
-            <ion-button (click)="getActivitySearch()">Pesquisar</ion-button>
-          </div>
+            <div class="ion-text-center">
+                <ion-button (click)="getActivitySearch()">Pesquisar</ion-button>
+            </div>
         </form>
     </div>
     <br>
@@ -36,13 +36,16 @@
                                 <div class="d-block">Tipo: <span>{{activity.type}}</span></div>
                                 <div class="d-block">Local: <span>{{activity.room.type}}</span> {{activity.room.name}}
                                 </div>
-                                   <div class="d-block">Público-alvo: <span *ngFor="let target of activity.targetAudience">{{target.acronym}} </span>
+                                <div class="d-block">Público-alvo: <span
+                                        *ngFor="let target of activity.targetAudience">{{target.acronym}} </span>
                                 </div>
                                 <br>
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                                 <br>
-                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos: <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span></div>
+                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos:
+                                    <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span>
+                                </div>
                             </ion-label>
                         </ion-item>
                         <ion-card-content>
@@ -50,13 +53,16 @@
                             {{activity.description}}
                         </ion-card-content>
                         <ion-button (click)="goToActivityStudent(activity.id)" fill="outline">Lista de
-                                presença manual
-                            </ion-button>
-                            <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por e-mail
-                            </ion-button>
+                            presença manual
+                        </ion-button>
+                        <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por
+                            e-mail
+                        </ion-button>
+                        <span *ngIf="activity.subscribers.total > 0">
                             <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
                             </ion-button>
-                            <ion-button (click)="goToQrCode(activity.id)" fill="outline">QR-Code</ion-button>
+                        </span>
+                        <ion-button (click)="goToQrCode(activity.id)" fill="outline">QR-Code</ion-button>
                     </ion-card>
                 </div>
             </span>
@@ -80,7 +86,9 @@
                                 <div class="d-block">De: <span>{{activity.formatedInitialTime}}</span></div>
                                 <div class="d-block">Até: <span>{{activity.formatedFinalTime}}</span></div>
                                 <br>
-                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos: <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span></div>
+                                <div *ngIf="activity.subscribers" class="d-block">Quantidade de inscritos:
+                                    <span>{{activity.subscribers.total}}</span>/<span>{{activity.room.capacity}}</span>
+                                </div>
                             </ion-label>
                         </ion-item>
                         <ion-card-content>
@@ -90,10 +98,12 @@
                         <ion-button (click)="goToActivityStudent(activity.id)" fill="outline">Lista de
                             presença manual
                         </ion-button>
-                        <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por e-mail
+                        <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por
+                            e-mail
                         </ion-button>
+                        <span *ngIf="activity.subscribers.total > 0">
                         <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
-                        </ion-button>
+                        </ion-button></span>
                         <ion-button (click)="goToQrCode(activity.id)" fill="outline">QR-Code</ion-button>
                     </ion-card>
                 </div>
