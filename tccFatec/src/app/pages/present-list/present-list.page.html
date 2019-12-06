@@ -58,9 +58,11 @@
                         <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por
                             e-mail
                         </ion-button>
-                        <span *ngIf="activity.subscribers.total > 0">
-                            <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
-                            </ion-button>
+                        <span *ngIf="activity.subscribers">
+                            <span *ngIf="activity.subscribers.total > 0">
+                                <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
+                                </ion-button>
+                            </span>
                         </span>
                         <ion-button (click)="goToQrCode(activity.id)" fill="outline">QR-Code</ion-button>
                     </ion-card>
@@ -101,9 +103,12 @@
                         <ion-button (click)="openSendEmailModal(activity)" fill="outline">Enviar lista de presença por
                             e-mail
                         </ion-button>
-                        <span *ngIf="activity.subscribers.total > 0">
-                        <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
-                        </ion-button></span>
+                        <span *ngIf="activity.subscribers">
+                            <span *ngIf="activity.subscribers.total > 0">
+                                <ion-button (click)="goToReport(activity.id)" fill="outline">Relatório
+                                </ion-button>
+                            </span>
+                        </span>
                         <ion-button (click)="goToQrCode(activity.id)" fill="outline">QR-Code</ion-button>
                     </ion-card>
                 </div>
