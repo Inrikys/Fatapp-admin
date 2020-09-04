@@ -45,7 +45,7 @@
     "firebase": "^6.3.1",
     "firebase-admin": "^8.5.0",
     "ionic": "^5.4.5",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "paulstelzer-ionic-angular-toolkit": "^2.0.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
